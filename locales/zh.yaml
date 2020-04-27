@@ -1,0 +1,164 @@
+blockchain:
+  blockchain: 区块链
+  address: 地址
+  block: 区块
+  transaction: 交易
+  contract: 合约
+  token: Token
+  misc: 杂项
+  blockchain_height: 区块高度
+  network_weight: 网络权重
+  fee_rate: 费率
+block:
+  brief:
+    address: 由 {0} 挖出
+    transaction: '用时 {1} 秒，包含 {0} 条交易'
+    reward: 区块奖励
+  list:
+    block_list: 区块列表
+    height: 区块高度
+    time: 挖出时间
+    reward: 区块奖励
+    mined_by: 挖矿地址
+    size: 区块大小
+    transactions: 交易数
+  summary: 区块信息
+  block_height: 区块高度
+  block_hash: 区块哈希值
+  block_size: 区块大小
+  block_weight: 区块权重
+  bytes: 字节
+  timestamp: 时间戳
+  block_reward: 区块奖励
+  difficulty: 难度值
+  merkle_root: Merkle 树
+  mined_by: 挖矿地址
+  transactions: 交易数
+  previous_block: 上一区块
+  next_block: 下一区块
+transaction:
+  summary: 交易信息
+  confirmations: 个确认
+  unconfirmed: 未确认
+  transaction_id: 交易 ID
+  transaction_hash: 交易哈希值
+  included_in_block: 包含于区块
+  transaction_size: 交易大小
+  bytes: 字节
+  timestamp: 时间戳
+  confirmation: 确认数
+  transaction_fee: 交易手续费
+  coinbase_input: Coinbase 交易输入
+  empty_output: 空输出
+  op_return_output: OP_RETURN 输出
+  unparsed_address: 无法解析的地址
+  fee: 手续费
+  reward: 奖励
+  gas_refund: Gas 退款
+  utxo:
+    type: 类型
+    script: 脚本
+    code: 代码
+    contract_create: 合约创建
+    contract_call: 合约调用
+  receipt:
+    sender: 调用方
+    contract_address: 合约地址
+    gas_used: Gas 使用量
+    excepted: 异常信息
+    event_logs: 事件日志
+    address: 地址
+    topics: 主题
+    data: 数据
+  mempool: 内存池
+address:
+  invalid_address: 无效的地址
+  summary: 账户信息
+  address: 账户地址
+  balance: 账户余额
+  unconfirmed: 未确认
+  staking: 被锁定
+  total_received: 收入总计
+  total_sent: 支出总计
+  token_balances: Token 余额
+  blocks_mined: 挖矿数量
+  transaction_count: 交易数
+  transaction_list: 交易列表
+  balance_changes: 余额变动
+  token_balance_changes: Token 余额变动
+  timestamp: 时间戳
+  transaction_id: 交易 ID
+  changes: 变动
+my_addresses:
+  star: 收藏
+  unstar: 取消收藏
+  summary: 总计
+contract:
+  summary: 合约信息
+  address: 合约地址
+  owner: 创建人
+  create_transaction: 创建于
+  token:
+    name: Token 名称
+    total_supply: 发行总量
+    tokens: Token
+    mint_tokens: 铸造 Token
+    burn_tokens: 烧毁 Token
+    token_holders: Token 持有人数
+  balance: 合约余额
+  total_received: 转入总计
+  total_sent: 转出总计
+  transaction_count: 交易数
+  transaction_list: 交易列表
+misc:
+  misc: 其他
+  charts_title: 图表
+  rich_list_title: 富豪榜
+  biggest_miners_title: 挖矿榜
+  ranking: 排名
+  address: 地址
+  balance: 余额
+  blocks_mined: 挖出块数
+  percentage: 占比
+  network_statistics: 网络状态
+  stats:
+    daily_transactions: 每日交易数
+    total_transactions: 总交易数
+    contract_transactions: 合约交易数
+    block_interval: 区块时间间隔
+    coinstake_distribution: 挖矿分布
+    address_growth: 地址数增长
+    blocks: 区块个数
+    interval: '区块间隔 (秒)'
+    expected_value: 期望值
+    coins: 币的数量
+    blocks_mined: 挖矿数量
+  stake_calculator:
+    title: 挖矿计算器
+    enter_address: 输入你的地址（可选）
+    weight: 你的 METRIX 数量
+    expected_time: 期望用时
+    seconds: 秒
+    minutes: 分钟
+    hours: 小时
+    days: 天
+    months: 月
+    years: 年
+    average_blocks_per_day: 每日挖出区块数量
+    average_blocks_per_year: 每年挖出区块数量
+    yearly_roi: 年化收益率
+nav:
+  search: 搜索 区块 / 交易 / 地址 / 合约 / Token
+pagination:
+  go_to: 前往
+footer:
+  contact_us: 联系我们
+  facebook: 脸书
+  twitter: 推特
+  forum: 论坛
+action:
+  copy: 复制
+  view_all: 查看全部
+  go: 前往
+notification:
+  new_transaction_received: 你收到了一条新交易

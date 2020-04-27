@@ -16,7 +16,6 @@
           <tr v-for="{height, timestamp, size, reward, miner, transactionCount} of list">
             <td>
               <div class="frame">
-                BK
                 <nuxt-link :to="{name: 'block-id', params: {id: height }}">{{height}}</nuxt-link>
               </div>
             </td>

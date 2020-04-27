@@ -6,47 +6,46 @@
           <ul>
             <li>
               <div class="item-title">Block height</div>
-              <div class="item-info">3423333</div>
+              <div class="item-info">{{ height }}</div>
             </li>
             <li class="border">
               <div class="item-title">Block hash</div>
-              <div class="item-info">3423333</div>
+              <div class="item-info">{{ hash }}</div>
             </li>
             <li class="border">
               <div class="item-title">Block size</div>
-              <div class="item-info">3423333</div>
+              <div class="item-info">{{ size }}</div>
             </li>
             <li class="border">
               <div class="item-title">Confirmations</div>
-              <div class="item-info">3423333</div>
-            </li>
-            <li>
-              <div class="item-title">Block size</div>
-              <div class="item-info">3423333</div>
+              <div class="item-info">{{ transactions[0].confirmations }}</div>
             </li>
           </ul>
         </div>
         <div class="block-info-right list">
           <ul>
             <li>
-              <div class="item-title">Block Height</div>
-              <div class="item-info">3423333</div>
+              <div class="item-title">Block Time</div>
+              <div class="item-info">{{ time }} (
+                <FromNow :timestamp="time" />
+                )
+              </div>
             </li>
             <li>
-              <div class="item-title">Block Hash</div>
-              <div class="item-info">3423333</div>
+              <div class="item-title">Block Difficulty</div>
+              <div class="item-info">{{ difficulty }}</div>
             </li>
             <li>
-              <div class="item-title">Block Size</div>
-              <div class="item-info">3423333</div>
+              <div class="item-title">Block Reward</div>
+              <div class="item-info">{{ reward }}</div>
             </li>
             <li>
-              <div class="item-title">Confirmations</div>
-              <div class="item-info">3423333</div>
+              <div class="item-title">Miner</div>
+              <div class="item-info">{{ miner }}</div>
             </li>
             <li>
-              <div class="item-title">Block Size</div>
-              <div class="item-info">3423333</div>
+              <div class="item-title">Previous Block</div>
+              <div class="item-info"></div>
             </li>
           </ul>
         </div>

@@ -22,7 +22,7 @@
           <td>{{transaction.outputValue - transaction.inputValue}} MRX</td>
           <td>{{transaction.fees |metrix(3)}} MRX</td>
           <td>MRX Transfer</td>
-          <td>{{transaction.confirmations}}Confirmations</td>
+          <td>{{transaction.confirmations}}</td>
         </tr>
       </tbody>
     </table>

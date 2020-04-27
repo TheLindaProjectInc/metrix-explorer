@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-    <Panel width="100%" title="交易列表">
+    <Panel width="100%" title="TX List">
       <table>
         <thead>
           <tr>
-            <td>交易id</td>
-            <td>时间</td>
-            <td>交易金额</td>
-            <td>手续费</td>
-            <td>交易类型</td>
-            <td>确认数</td>
+            <td>TX ID</td>
+            <td>Time</td>
+            <td>Value</td>
+            <td>Fee</td>
+            <td>TX Type</td>
+            <td>Confirmations</td>
           </tr>
         </thead>
         <tbody>
@@ -22,7 +22,7 @@
             </td>
             <td>{{outputValue | metrix(4)}}</td>
             <td>{{fees | metrix(4)}}</td>
-            <td>MRX类型</td>
+            <td>MRX TX</td>
             <td>{{confirmations}}</td>
           </tr>
         </tbody>

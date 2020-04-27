@@ -5,7 +5,7 @@ export default {
   render(createElement, {props}) {
     return [
       // createElement('Icon', {props: {icon: 'cubes'}}),
-      createElement('span', {staticClass: 'monospace'}, '交易列表')
+      createElement('span', {staticClass: 'monospace'}, 'Transaction list')
     ]
   }
 }

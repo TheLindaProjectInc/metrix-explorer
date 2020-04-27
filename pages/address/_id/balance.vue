@@ -3,9 +3,9 @@
     <table>
       <thead>
         <tr>
-          <td>交易id</td>
-          <td>时间</td>
-          <td>账户余额</td>
+          <td>Transaction id</td>
+          <td>Time</td>
+          <td>Account Balance</td>
         </tr>
       </thead>
       <tbody>

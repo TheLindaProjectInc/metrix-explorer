@@ -4,9 +4,9 @@
     <table>
       <thead>
         <tr>
-          <td>地址</td>
-          <td>余额</td>
-          <td>操作</td>
+          <td>Address</td>
+          <td>Balance</td>
+          <td>-----</td>
         </tr>
       </thead>
       <tbody>

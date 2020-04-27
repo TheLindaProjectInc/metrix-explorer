@@ -1,23 +1,23 @@
 <template>
   <div class="container">
-    <Panel width="100%" height="255px" title="交易概览" noMargin="true">
+    <Panel width="100%" height="255px" title="Transaction Overview" noMargin="true">
       <div class="address-info">
         <div class="address-info-left list">
           <ul class="border">
             <li>
-              <div class="item-title">metrix余额</div>
+              <div class="item-title">Metrix Balance</div>
               <div class="item-info">{{ balance | metrix }} MRX</div>
             </li>
             <li >
-              <div class="item-title">挖矿锁定金额</div>
+              <div class="item-title">Mining Amount</div>
               <div class="item-info">{{ staking | metrix }} MRX</div>
             </li>
             <li>
-              <div class="item-title">Token 余额</div>
+              <div class="item-title">Token Balance</div>
               <div class="item-info"></div>
             </li>
             <li>
-              <div class="item-title">可选</div>
+              <div class="item-title">Optional</div>
               <div class="item-info"></div>
             </li>
           </ul>
@@ -25,19 +25,19 @@
         <div class="address-info-right list">
           <ul>
             <li>
-              <div class="item-title">排名</div>
+              <div class="item-title">Rank</div>
               <div class="item-info">{{ ranking }}</div>
             </li>
             <li>
-              <div class="item-title">交易数</div>
+              <div class="item-title">Transaction Count</div>
               <div class="item-info">{{ transactionCount }}</div>
             </li>
             <li>
-              <div class="item-title">收入合计</div>
+              <div class="item-title">Total Received</div>
               <div class="item-info">{{ totalReceived | metrix }} MRX</div>
             </li>
             <li>
-              <div class="item-title">支出合计</div>
+              <div class="item-title">Total Sent</div>
               <div class="item-info">{{ totalSent | metrix }} MRX</div>
             </li>
           </ul>
@@ -75,12 +75,12 @@ export default {
       address: [
         {
           link: "address-id",
-          name: "交易明细",
+          name: "Transaction List",
           id: this.$route.params.id
         },
         {
           link: "address-id-balance",
-          name: "余额变动",
+          name: "Balance Change",
           id: this.$route.params.id
         }
       ]

@@ -3,11 +3,11 @@
     <table>
       <thead>
         <tr>
-          <td>序号</td>
-          <td>地址</td>
-          <td>余额</td>
-          <td>交易数</td>
-          <td>占比</td>
+          <td>Rank</td>
+          <td>Address</td>
+          <td>Balance</td>
+          <td>TX Count</td>
+          <td>Percentage</td>
         </tr>
       </thead>
       <tbody>

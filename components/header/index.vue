@@ -8,19 +8,19 @@
       <div class="nav-item">
         <div>
           <nuxt-link to="/block" class="nav-item-main">
-            区块链
+            Blockchain
             <span></span>
           </nuxt-link>
         </div>
         <ul>
           <li>
-            <nuxt-link to="/block">区块</nuxt-link>
+            <nuxt-link to="/block">Block</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/tx">交易</nuxt-link>
+            <nuxt-link to="/tx">Transaction</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/misc/rich-list">富豪榜</nuxt-link>
+            <nuxt-link to="/misc/rich-list">Rich List</nuxt-link>
           </li>
         </ul>
       </div>
@@ -28,16 +28,16 @@
       <div class="nav-item">
         <div>
           <nuxt-link to="/contract/tokens" class="nav-item-main">
-            代币
+            Tokens
             <span></span>
           </nuxt-link>
         </div>
         <ul>
           <li>
-            <nuxt-link to="/contract/tokens">代币概览</nuxt-link>
+            <nuxt-link to="/contract/tokens">Token Overview</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/">代币交易</nuxt-link>
+            <nuxt-link to="/">Token Transactions</nuxt-link>
           </li>
         </ul>
       </div>
@@ -45,25 +45,25 @@
       <div class="nav-item">
         <div>
           <span class="nav-item-main">
-            资源
+            Resources
             <span></span>
           </span>
         </div>
         <ul>
           <li>
-            <a href="https://chart.metrix.info/"  target="_Blank">统计图表</a>
+            <a href="https://chart.metrix.info/"  target="_Blank">Charts</a>
           </li>
           <li>
-            <nuxt-link to="/misc/biggest-miners">挖矿</nuxt-link>
+            <nuxt-link to="/misc/biggest-miners">Biggest Miners</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/misc/api">浏览器API</nuxt-link>
+            <nuxt-link to="/misc/api">Browser API</nuxt-link>
           </li>
           <li>
-            <a href="https://testnet.metrix.info/"  target="_Blank">测试网络</a>
+            <a href="https://testnet.metrix.info/"  target="_Blank">Testnet Explorer</a>
           </li>
           <li>
-            <nuxt-link to="/misc/toolbox">工具箱</nuxt-link>
+            <nuxt-link to="/misc/toolbox">Toolbox</nuxt-link>
           </li>
         </ul>
       </div>
@@ -71,15 +71,15 @@
       <div class="nav-item">
         <div>
           <nuxt-link to="/" class="nav-item-main">
-            更多
+            More
             <span></span>
           </nuxt-link>
         </div>
         <ul>
-          <li><a href="https://metrix.org/"  target="_Blank">官网</a></li>
+          <li><a href="https://metrix.org/"  target="_Blank">Official Website</a></li>
           <li>
-            <a href="https://forum.metrix.org/"  target="_Blank">论坛</a></li>
-          <li><a href="https://metrixeco.io/wallet"  target="_Blank">钱包&生态</a></li></li>
+            <a href="https://forum.metrix.org/"  target="_Blank">Discord</a></li>
+          <li><a href="https://metrixeco.io/wallet"  target="_Blank">Wallets</a></li></li>
         </ul>
       </div>
 

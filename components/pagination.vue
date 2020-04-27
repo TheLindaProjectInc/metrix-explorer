@@ -1,10 +1,10 @@
 <template>
   <div class="pagination">
     <div class="pagination-wrapper">
-      <button class="prev">前一页</button>
+      <button class="prev">Previous page</button>
       <input class="current" v-model="inputValue"/>
-      <button class="next">后一页</button>
-      <span class="total">共100页</span>
+      <button class="next">Next page</button>
+      <span class="total">100 pages</span>
     </div>
   </div>
 </template>

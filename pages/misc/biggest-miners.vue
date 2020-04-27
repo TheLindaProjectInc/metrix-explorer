@@ -1,23 +1,23 @@
 <template>
   <div class="container">
-    <Panel width="100%" title="区块详情" noMargin="true">
+    <Panel width="100%" title="Staking Overview" noMargin="true">
       <div class="block-info">
         <div class="block-info-left list">
           <ul>
             <li class="border">
-              <div class="item-title">挖矿总资产</div>
+              <div class="item-title">Total Supply</div>
               <div class="item-info"></div>
             </li>
             <li class="border">
-              <div class="item-title">网络权重</div>
+              <div class="item-title">Network weight</div>
               <div class="item-info">{{this.netStakeWeight | metrix(8)}}</div>
             </li>
             <li class="border">
-              <div class="item-title">难度</div>
+              <div class="item-title">Difficulty</div>
               <div class="item-info"></div>
             </li>
             <li class="border">
-              <div class="item-title">年化收益</div>
+              <div class="item-title">Annual ROI</div>
               <div
                 class="item-info"
               >{{ (reward * 365 * 675 / this.netStakeWeight * 100).toFixed(2) }}%</div>
@@ -27,15 +27,15 @@
         <div class="block-info-right list">
           <ul>
             <li>
-              <div class="item-title">区块时间</div>
+              <div class="item-title">Block Time</div>
               <div class="item-info"></div>
             </li>
             <li>
-              <div class="item-title">区块奖励</div>
+              <div class="item-title">Block Reward</div>
               <div class="item-info"></div>
             </li>
             <li>
-              <div class="item-title">通胀效</div>
+              <div class="item-title">Annual Inflation</div>
               <div class="item-info"></div>
             </li>
           </ul>
@@ -44,16 +44,16 @@
     </Panel>
 
     <div class="deal-detail">
-      <Panel width="100%" title="挖矿排行">
+      <Panel width="100%" title="Staking Rankings">
         <table>
           <thead>
             <tr>
-              <td>序号</td>
-              <td>地址</td>
-              <td>挖出块数</td>
-              <td>占比</td>
-              <td>奖励合计</td>
-              <td>余额</td>
+              <td>Rank</td>
+              <td>Address</td>
+              <td>Blocks Mined</td>
+              <td>Percentage</td>
+              <td>Total Rewards(MRX)</td>
+              <td>Balance</td>
             </tr>
           </thead>
           <tbody>

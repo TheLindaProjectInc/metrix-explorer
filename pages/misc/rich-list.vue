@@ -1,13 +1,12 @@
 <template>
-  <Panel width="100%" title="富豪榜">
+  <Panel width="100%" title="Rich List">
     <table>
       <thead>
         <tr>
-          <td>序号</td>
-          <td>地址</td>
-          <td>余额</td>
-          <td>交易数</td>
-          <td>占比</td>
+          <td>ID</td>
+          <td>Address</td>
+          <td>Balance</td>
+          <td>Percentage</td>
         </tr>
       </thead>
       <tbody>
@@ -15,7 +14,6 @@
           <td>{{ 100 * (currentPage - 1) + index + 1 }}</td>
           <td><nuxt-link :to="{name:'address-id',params:{id:address}}"> {{address}}</nuxt-link></td>
           <td>{{ balance | metrix(8) }}</td>
-          <td></td>
           <td>{{ (balance / totalSupply * 100).toFixed(4) + '%' }}</td>
         </tr>
       </tbody>

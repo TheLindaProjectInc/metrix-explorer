@@ -16,15 +16,15 @@ export default {
     return {
       itemlist: [
         {
-          info: "我的收藏",
+          info: "Subscriptions",
           url: ""
         },
         {
-          info: "计算器",
+          info: "Stake Calculator",
           url: "stake-calculator"
         },
         {
-          info: "反馈",
+          info: "Feedback",
           url: "feedback"
         }
       ]

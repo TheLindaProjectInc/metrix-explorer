@@ -4,11 +4,11 @@
       <table>
         <thead>
           <tr>
-            <td>交易id</td>
-            <td>时间</td>
-            <td>金额</td>
-            <td>手续费</td>
-            <td>确认数</td>
+            <td>ID</td>
+            <td>Time</td>
+            <td>Amount</td>
+            <td>Fee</td>
+            <td>Confirmations</td>
           </tr>
         </thead>
         <tbody>

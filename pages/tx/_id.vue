@@ -1,23 +1,23 @@
 <template>
   <div class="container">
-    <Panel width="100%" height="255px" title="交易概览" noMargin="true">
+    <Panel width="100%" height="255px" title="Transaction Overview" noMargin="true">
       <div class="block-info">
         <div class="block-info-left list">
           <ul>
             <li v-if="blockHeight">
-              <div class="item-title">所属区块</div>
+              <div class="item-title">Block Height</div>
               <div class="item-info">{{blockHeight}}</div>
             </li>
             <li>
-              <div class="item-title">确认数</div>
+              <div class="item-title">Confirmations</div>
               <div class="item-info">{{confirmation}}</div>
             </li>
             <li>
-              <div class="item-title">时间</div>
+              <div class="item-title">Time</div>
               <div class="item-info">{{timestamp | timestamp}}</div>
             </li>
             <li>
-              <div class="item-title">大小</div>
+              <div class="item-title">TX Size</div>
               <div class="item-info">{{size}}</div>
             </li>
           </ul>
@@ -25,15 +25,15 @@
         <div class="block-info-right list">
           <ul>
             <li>
-              <div class="item-title">输入</div>
+              <div class="item-title">Input Value</div>
               <div class="item-info">{{inputsValue | metrix(7)}} MRX</div>
             </li>
             <li>
-              <div class="item-title">输出</div>
+              <div class="item-title">Output Value</div>
               <div class="item-info">{{outputsValue | metrix(7)}} MRX</div>
             </li>
             <li>
-              <div class="item-title">矿工费</div>
+              <div class="item-title">Fee</div>
               <div class="item-info">{{fees | metrix(7)}} MRX</div>
             </li>
           </ul>
@@ -42,7 +42,7 @@
     </Panel>
 
     <div class="deal-detail">
-      <Panel width="100%" title="交易明细">
+      <Panel width="100%" title="Transaction Details">
         <div class="deal-detail-info">
           <div class="deal-detail-list">
             <div class="list-send">
@@ -67,13 +67,13 @@
           </div>
           <div class="script">
             <div class="script-input">
-              <div class="script-caption">输入脚本</div>
+              <div class="script-caption">Input script</div>
               <ul>
                 <li v-for="input in inputs">{{input.scriptSig.asm}}</li>
               </ul>
             </div>
             <div class="script-output">
-              <div class="script-caption">输出脚本</div>
+              <div class="script-caption">Output Script</div>
               <ul>
                 <li v-for="output in outputs">{{output.scriptPubKey.asm}}</li>
               </ul>

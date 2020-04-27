@@ -16,27 +16,27 @@ export default {
     return {
       itemlist: [
         {
-          info: "简介",
+          info: "Introduction",
           url: "/index"
         },
         {
-          info: "账户",
+          info: "Account",
           url: "/index"
         },
         {
-          info: "合约",
+          info: "Contract",
           url: "/index"
         },
         {
-          info: "事务",
+          info: "--",
           url: "/index"
         },
         {
-          info: "事件日志",
+          info: "Events",
           url: "/index"
         },
         {
-          info: "令牌",
+          info: "Token",
           url: "/index"
         }
       ]

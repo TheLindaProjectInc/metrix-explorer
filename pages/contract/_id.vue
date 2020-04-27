@@ -5,22 +5,22 @@
         <div class="address-info-left list">
           <ul>
             <li>
-              <div class="item-title">Token名称</div>
+              <div class="item-title">Token Name</div>
               <div class="item-info">{{ mrc20.name }}</div>
             </li>
             <li class="border">
-              <div class="item-title">发行量</div>
+              <div class="item-title">Total Supply</div>
               <div class="item-info">
                 {{ mrc20.totalSupply | mrc20(mrc20.decimals, true) }}
                 {{ mrc20.symbol || $t('contract.token.tokens') }}
               </div>
             </li>
             <li class="border">
-              <div class="item-title">合约地址</div>
+              <div class="item-title">Contract Address</div>
               <div class="item-info">{{addressHex}}</div>
             </li>
             <li>
-              <div class="item-title">创建人</div>
+              <div class="item-title"></div>
               <div class="item-info"></div>
             </li>
           </ul>
@@ -28,19 +28,19 @@
         <div class="address-info-right list">
           <ul>
             <li>
-              <div class="item-title">排名</div>
+              <div class="item-title">Rank</div>
               <div class="item-info"></div>
             </li>
             <li>
-              <div class="item-title">交易数</div>
+              <div class="item-title">TX Count</div>
               <div class="item-info">{{ transactionCount }}</div>
             </li>
             <li>
-              <div class="item-title">收入合计</div>
+              <div class="item-title">Total Received</div>
               <div class="item-info">{{ totalReceived | metrix }} MRX</div>
             </li>
             <li>
-              <div class="item-title">支出合计</div>
+              <div class="item-title">Total Sent</div>
               <div class="item-info">{{ totalSent | metrix }} MRX</div>
             </li>
           </ul>
@@ -79,12 +79,12 @@ export default {
       panelAddress: [
         {
           link: "contract-id",
-          name: "交易明细",
+          name: "Transaction List",
           id: this.$route.params.id
         },
         {
           link: "contract-id-rich-list",
-          name: "富豪榜",
+          name: "Rich List",
           id: this.$route.params.id
         }
       ]
@@ -129,7 +129,7 @@ export default {
       return this.mrc20Balances.filter(token => token.balance !== "0");
     },
     title() {
-      return this.mrc20.name + "概览";
+      return this.mrc20.name + "Overview";
     }
   }
 };

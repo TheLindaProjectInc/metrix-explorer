@@ -1,14 +1,14 @@
 <template>
   <div class="container">
-    <Panel title="Token列表" width="100%">
+    <Panel title="Token List" width="100%">
       <table>
         <thead>
           <tr>
             <td>#</td>
-            <td>名称</td>
-            <td>发行总量</td>
-            <td>交易数</td>
-            <td>持有地址数</td>
+            <td>Name</td>
+            <td>Total Supply</td>
+            <td>TX Count</td>
+            <td>Token Holders</td>
           </tr>
         </thead>
         <tbody>

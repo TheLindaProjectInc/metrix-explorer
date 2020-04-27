@@ -2,12 +2,12 @@
   <table>
     <thead>
       <tr>
-        <td>交易id</td>
-        <td>时间</td>
+        <td>ID</td>
+        <td>Time</td>
         <td>Token</td>
-        <td>交易类型</td>
-        <td>手续费(MRX)</td>
-        <td>确认数</td>
+        <td></td>
+        <td>Fee(MRX)</td>
+        <td>Confirmations</td>
       </tr>
     </thead>
     <tbody>

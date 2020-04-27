@@ -1,5 +1,5 @@
 <template>
-  <Panel width="100%" title="简介" titleSize="32">
+  <Panel width="100%" title="API" titleSize="32">
     <section>
       <div>helloworld</div>
       <div></div>

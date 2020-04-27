@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-    <Panel width="100%" title="区块列表">
+    <Panel width="100%" title="Block List">
       <table>
         <thead>
           <tr>
-            <td>高度</td>
-            <td>时间</td>
-            <td>交易数</td>
-            <td>区块大小</td>
-            <td>挖出地址</td>
-            <td>区块奖励</td>
+            <td>Height</td>
+            <td>Time</td>
+            <td>Number of Transactions</td>
+            <td>Block Size</td>
+            <td>Miner</td>
+            <td>Block Reward</td>
           </tr>
         </thead>
         <tbody>

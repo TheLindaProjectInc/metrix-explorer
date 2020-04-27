@@ -2,13 +2,13 @@
   <div class="container">
     <div class="notification">
       <i></i>
-      <p>2019 METRIX 黑客松大赛全球征集令开始报名啦</p>
+      <p>2020 METRIX ANNOUCEMENTS</p>
     </div>
 
-    <Panel title="全网概览" width="100%" height="355px" icon="icon-global" noMargin="true">
+    <Panel title="Network Overview" width="100%" height="355px" icon="icon-global" noMargin="true">
       <div class="detail">
         <div class="info">
-          <span class="title">全网状态</span>
+          <span class="title">Network Status</span>
           <div class="frame">
             <div class="icon" v-for="(item,index) in icons">
               <div class="icons">
@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="info">
-          <span class="title">METRIX过去14天交易数</span>
+          <span class="title">Metrix Trasactions in the last 14 days</span>
           <div class="frame">
             <div class="chart" ref="daily-transactions"></div>
           </div>
@@ -29,15 +29,15 @@
     </Panel>
 
     <div class="block-deal">
-      <Panel title="区块" width="590px" height="720px" icon="icon-block" link="/block">
+      <Panel title="Block" width="590px" height="720px" icon="icon-block" link="/block">
         <table class="block-table">
           <thead>
             <tr>
-              <td class="td-block">区块</td>
-              <td class="td-address">地址</td>
-              <td class="td-deal">交易数</td>
-              <td class="td-award">奖励</td>
-              <td class="td-time">时间</td>
+              <td class="td-block">Block</td>
+              <td class="td-address">Address</td>
+              <td class="td-deal">TX Count</td>
+              <td class="td-award">Block Reward</td>
+              <td class="td-time">Time</td>
             </tr>
           </thead>
           <tbody>
@@ -51,7 +51,7 @@
                 >{{block.miner | format(8,9)}}</nuxt-link>
               </td>
               <td>{{block.transactionCount}}</td>
-              <td>{{block.reward | metrix(4) }}METRIX</td>
+              <td>{{block.reward | metrix(4) }}MRX</td>
               <td>
                 <FromNow :timestamp="block.timestamp" />
               </td>
@@ -59,13 +59,13 @@
           </tbody>
         </table>
       </Panel>
-      <Panel title="交易" width="590px" height="720px" icon="icon-deal" link="/tx">
+      <Panel title="Transactions" width="590px" height="720px" icon="icon-deal" link="/tx">
         <table class="deal-table">
           <thead>
             <tr>
-              <td class="td-hash">哈希</td>
-              <td class="td-trade">交易额</td>
-              <td class="td-time">时间</td>
+              <td class="td-hash">TX ID</td>
+              <td class="td-trade">Value</td>
+              <td class="td-time">Time</td>
             </tr>
           </thead>
           <tbody>
@@ -75,7 +75,7 @@
                   :to="{name: 'tx-id', params: {id: transaction.id}}"
                 >{{transaction.id | format(10,15)}}</nuxt-link>
               </td>
-              <td>{{ transaction.outputValue | metrix(4) }} METRIX</td>
+              <td>{{ transaction.outputValue | metrix(4) }} MRX</td>
               <td>
                 <FromNow :timestamp="transaction.timestamp" />
               </td>
@@ -106,42 +106,42 @@ export default {
       icons: [
         {
           img: "global",
-          describe: "全球节点数",
+          describe: "Global Nodes",
           number: "6554"
         },
         {
           img: "global",
-          describe: "全球节点数",
+          describe: "Global Nodes",
           number: "6554"
         },
         {
           img: "global",
-          describe: "全球节点数",
+          describe: "Global Nodes",
           number: "6554"
         },
         {
           img: "global",
-          describe: "全球节点数",
+          describe: "Global Nodes",
           number: "6554"
         },
         {
           img: "global",
-          describe: "全球节点数",
+          describe: "Global Nodes",
           number: "6554"
         },
         {
           img: "global",
-          describe: "全球节点数",
+          describe: "Global Nodes",
           number: "6554"
         },
         {
           img: "global",
-          describe: "全球节点数",
+          describe: "Global Nodes",
           number: "6554"
         },
         {
           img: "global",
-          describe: "全球节点数",
+          describe: "Global Nodes",
           number: "6554"
         }
       ],
@@ -258,7 +258,7 @@ export default {
           {
             name: "Price",
             type: "line",
-            stack: "总量",
+            stack: "Total",
             color: "#5197D5",
             showSymbol: false,
             label: {

@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="output-frame">
-          <p class="margin-bottom">预期利润概览</p>
+          <p class="margin-bottom">Expected Rewards</p>
           <div class="result">
             <template v-if="weight">
               <div class="field margin-bottom">

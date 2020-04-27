@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     submit() {
-      window.alert("发送成功");
+      window.alert("Submit success");
     }
   }
 };

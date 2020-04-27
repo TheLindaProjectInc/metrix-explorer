@@ -1,27 +1,27 @@
 <template>
   <div class="container">
-    <Panel width="100%" title="区块详情" noMargin="true">
+    <Panel width="100%" title="Block details" noMargin="true">
       <div class="block-info">
         <div class="block-info-left list">
           <ul>
             <li>
-              <div class="item-title">区块高度</div>
+              <div class="item-title">Block height</div>
               <div class="item-info">3423333</div>
             </li>
             <li class="border">
-              <div class="item-title">区块哈希</div>
+              <div class="item-title">Block hash</div>
               <div class="item-info">3423333</div>
             </li>
             <li class="border">
-              <div class="item-title">区块大小</div>
+              <div class="item-title">Block size</div>
               <div class="item-info">3423333</div>
             </li>
             <li class="border">
-              <div class="item-title">确认数</div>
+              <div class="item-title">Confirmations</div>
               <div class="item-info">3423333</div>
             </li>
             <li>
-              <div class="item-title">区块大小</div>
+              <div class="item-title">Block size</div>
               <div class="item-info">3423333</div>
             </li>
           </ul>
@@ -29,23 +29,23 @@
         <div class="block-info-right list">
           <ul>
             <li>
-              <div class="item-title">区块高度</div>
+              <div class="item-title">Block Height</div>
               <div class="item-info">3423333</div>
             </li>
             <li>
-              <div class="item-title">区块哈希</div>
+              <div class="item-title">Block Hash</div>
               <div class="item-info">3423333</div>
             </li>
             <li>
-              <div class="item-title">区块大小</div>
+              <div class="item-title">Block Size</div>
               <div class="item-info">3423333</div>
             </li>
             <li>
-              <div class="item-title">确认数</div>
+              <div class="item-title">Confirmations</div>
               <div class="item-info">3423333</div>
             </li>
             <li>
-              <div class="item-title">区块大小</div>
+              <div class="item-title">Block Size</div>
               <div class="item-info">3423333</div>
             </li>
           </ul>
@@ -54,15 +54,15 @@
     </Panel>
 
     <div class="deal-detail">
-      <Panel width="100%" title="交易明细">
+      <Panel width="100%" title="Transaction details">
         <table>
           <thead>
             <tr>
-              <td>交易id</td>
-              <td>时间</td>
-              <td>手续费</td>
-              <td>交易类型</td>
-              <td>确认数</td>
+              <td>Tranasaction id</td>
+              <td>time</td>
+              <td>Fee</td>
+              <td>Type</td>
+              <td>Confirmations</td>
             </tr>
           </thead>
           <tbody>
@@ -76,7 +76,7 @@
                 <FromNow :timestamp="transaction.timestamp" />
               </td>
               <td>{{transaction.fees | metrix(3)}}MRX</td>
-              <td>MRX类型</td>
+              <td>MRX Transfer</td>
               <td>{{transaction.confirmations}}</td>
             </tr>
           </tbody>

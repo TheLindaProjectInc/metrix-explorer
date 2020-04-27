@@ -2,7 +2,7 @@
   <div class="breadcrumb">
     <ul class="breadcrumb-list">
       <li class="home">
-        <nuxt-link to="/">首页</nuxt-link>
+        <nuxt-link to="/">Home</nuxt-link>
       </li>
       <li>
         /

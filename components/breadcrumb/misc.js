@@ -5,7 +5,7 @@ export default {
   render(createElement) {
     return [
       createElement('Icon', {props: {icon: 'area-chart'}}),
-      '资源'
+      'Resources'
     ]
   }
 }

@@ -3,12 +3,12 @@
     <table>
       <thead>
         <tr>
-          <td>交易id</td>
-          <td>时间</td>
-          <td>净收入</td>
-          <td>手续费</td>
-          <td>交易类型</td>
-          <td>确认数</td>
+          <td>Transaction id</td>
+          <td>Time</td>
+          <td>Net income</td>
+          <td>Fee</td>
+          <td>Type</td>
+          <td>Confirmations</td>
         </tr>
       </thead>
       <tbody>
@@ -21,8 +21,8 @@
           </td>
           <td>{{transaction.outputValue - transaction.inputValue}} MRX</td>
           <td>{{transaction.fees |metrix(3)}} MRX</td>
-          <td>MRX转账</td>
-          <td>{{transaction.confirmations}}个确认</td>
+          <td>MRX Transfer</td>
+          <td>{{transaction.confirmations}}Confirmations</td>
         </tr>
       </tbody>
     </table>

@@ -1,4 +1,4 @@
-# metrixinfo API Documentation
+# Metrix-Explorer-API Documentation
 
 * [Pagination Parameters](#pagination-parameters)
 * [Block / Timestamp Filter Parameters](#block--timestamp-filter-parameters)

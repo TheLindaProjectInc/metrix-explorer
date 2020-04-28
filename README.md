@@ -151,3 +151,7 @@ To run the UI in dev mode edit the package.json file and insert the follwing int
 ```
 
 Run the prod processes in pm2. when development is complete.
+
+
+Full API Documentation
+[API documentation](https://github.com/TheLindaProjectInc/metrix-explorer-api/blob/master/metrix-explorer-api/README.md)

@@ -1,5 +1,3 @@
 # qtuminfo
 
-[API documentation](https://github.com/TheLindaProjectInc/metrixinfo-api/blob/master/README.md)
-
-[Deploy documentation](https://github.com/TheLindaProjectInc/metrixinfo/blob/master/doc/deploy.md)
+[API documentation](https://github.com/TheLindaProjectInc/metrix-explorer-api/blob/master/metrix-explorer-api/README.md)

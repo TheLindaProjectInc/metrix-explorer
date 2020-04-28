@@ -25,7 +25,7 @@ GET /mrc20
     <tbody>
         <tr>
             <td colspan="3">
-              <a href="https://github.com/TheLindaProjectInc/metrixinfo-api/blob/master/README.md#Pagination-Parameters">
+              <a href="https://github.com/TheLindaProjectInc/metrix-explorer/blob/master/metrix-explorer-api/README.md#Pagination-Parameters">
                 Pagination Parameters
               </a>
             </td>
@@ -177,14 +177,14 @@ GET /mrc20/:token/txs
     <tbody>
         <tr>
             <td colspan="3">
-              <a href="https://github.com/TheLindaProjectInc/metrixinfo-api/blob/master/README.md#Pagination-Parameters">
+              <a href="https://github.com/TheLindaProjectInc/metrix-explorer/blob/master/metrix-explorer-api/README.md#Pagination-Parameters">
                 Pagination Parameters
               </a>
             </td>
         </tr>
         <tr>
             <td colspan="3">
-              <a href="https://github.com/TheLindaProjectInc/metrixinfo-api/blob/master/README.md#Block--Timestamp-Filter-Parameters">
+              <a href="https://github.com/TheLindaProjectInc/metrix-explorer/blob/master/metrix-explorer-api/README.md#Block--Timestamp-Filter-Parameters">
                 Block / Timestamp Filter Parameters
               </a>
             </td>

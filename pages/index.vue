@@ -111,7 +111,7 @@ export default {
         },
         {
           img: "global",
-          describe: "Global Nodes",
+          describe: "Daily Transactions",
           number: "6554"
         },
         {

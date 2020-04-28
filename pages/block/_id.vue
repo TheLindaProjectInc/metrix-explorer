@@ -8,9 +8,11 @@
               <div class="item-title">Block height</div>
               <div class="item-info">{{ height }}</div>
             </li>
-            <li class="border">
-              <div class="item-title">Block hash</div>
-              <div class="item-info">{{ hash }}</div>
+            <li>
+              <div class="item-title">Block Time</div>
+              <div class="item-info">{{timestamp | timestamp}}(
+                <FromNow :timestamp="timestamp" />)
+              </div>
             </li>
             <li class="border">
               <div class="item-title">Block size</div>
@@ -24,12 +26,9 @@
         </div>
         <div class="block-info-right list">
           <ul>
-            <li>
-              <div class="item-title">Block Time</div>
-              <div class="item-info">{{ time }} (
-                <FromNow :timestamp="time" />
-                )
-              </div>
+            <li class="border">
+              <div class="item-title">Block hash</div>
+              <div class="item-info">{{ hash }}</div>
             </li>
             <li>
               <div class="item-title">Block Difficulty</div>
@@ -37,11 +36,13 @@
             </li>
             <li>
               <div class="item-title">Block Reward</div>
-              <div class="item-info">{{ reward }}</div>
+              <div class="item-info">{{ reward | metrix(8) }}</div>
             </li>
             <li>
               <div class="item-title">Miner</div>
-              <div class="item-info">{{ miner }}</div>
+              <div class="item-info">
+              <nuxt-link :to="{name: 'address-id', params: {id: miner}}">{{miner}}</nuxt-link>
+              </div>
             </li>
             <li>
               <div class="item-title">Previous Block</div>
@@ -57,11 +58,9 @@
         <table>
           <thead>
             <tr>
-              <td>Tranasaction id</td>
-              <td>time</td>
+              <td>Transaction ID</td>
+              <td>Time</td>
               <td>Fee</td>
-              <td>Type</td>
-              <td>Confirmations</td>
             </tr>
           </thead>
           <tbody>
@@ -74,9 +73,8 @@
               <td>
                 <FromNow :timestamp="transaction.timestamp" />
               </td>
-              <td>{{transaction.fees | metrix(3)}}MRX</td>
-              <td>MRX Transfer</td>
-              <td>{{transaction.confirmations}}</td>
+              <td v-if="transaction.fees !== '0'">{{transaction.fees | metrix(3)}} MRX</td>
+              <td v-else>-</td>
             </tr>
           </tbody>
         </table>

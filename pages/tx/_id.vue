@@ -46,7 +46,7 @@
         <div class="deal-detail-info">
           <div class="deal-detail-list">
             <div class="list-send">
-              <div>输入 ({{inputs.length}}) {{inputsValue|metrix(7)}} MRX</div>
+              <div>Inputs ({{inputs.length}}) {{inputsValue|metrix(7)}} MRX</div>
               <ul>
                 <li v-for="input in inputs">
                   <span><nuxt-link :to="{name: 'address-id', params: {id: input.address}}">{{input.address}}</nuxt-link></span>
@@ -56,7 +56,7 @@
             </div>
             <div class="list-icon"></div>
             <div class="list-receive">
-              <div>输出 ({{outputs.length}}) {{outputsValue|metrix(7)}} BTC</div>
+              <div>Outputs ({{outputs.length}}) {{outputsValue|metrix(7)}} BTC</div>
               <ul>
                 <li v-for="output in outputs">
                   <span><nuxt-link :to="{name: 'address-id', params: {id: output.address}}">{{output.address}}</nuxt-link> </span>

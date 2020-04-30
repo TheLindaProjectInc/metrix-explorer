@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Panel width="100%" title="TX List">
+    <Panel width="100%" title="Transaction List">
       <table>
         <thead>
           <tr>

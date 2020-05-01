@@ -1,9 +1,14 @@
 <template>
   <div class="container">
-    <Panel width="100%" height="255px" title="Transaction Overview" noMargin="true">
+    <div class="panel-main">
+      <div class="panel-title">
+        <div class="logo">
+          <span style="font-size: 16px;">Transaction Overview</span>
+        </div>
+      </div>
       <div class="block-info">
-        <div class="block-info-left list">
-          <ul>
+        <div class="list-left">
+          <ul class="border">
             <li v-if="blockHeight">
               <div class="item-title">Block Height</div>
               <div class="item-info">{{blockHeight}}</div>
@@ -17,12 +22,12 @@
               <div class="item-info">{{timestamp | timestamp}}</div>
             </li>
             <li>
-              <div class="item-title">TX Size</div>
+              <div class="item-title">TX Size </div>
               <div class="item-info">{{size}}</div>
             </li>
           </ul>
         </div>
-        <div class="block-info-right list">
+        <div class="list-right">
           <ul>
             <li>
               <div class="item-title">Input Value</div>
@@ -39,48 +44,82 @@
           </ul>
         </div>
       </div>
-    </Panel>
+    </div>
 
     <div class="deal-detail">
-      <Panel width="100%" title="Transaction Details">
-        <div class="deal-detail-info">
-          <div class="deal-detail-list">
-            <div class="list-send">
-              <div>Inputs ({{inputs.length}}) {{inputsValue|metrix(7)}} MRX</div>
+      <div class="panel-main margin">
+        <div class="panel-title">
+          <div class="logo">
+            <span style="font-size: 16px;">Transaction Details</span>
+          </div>
+        </div>
+        <div class="transaction">
+          <div class="summary">
+            <div class="summary-item">
+              Inputs ({{inputs.length}})&nbsp;
+              <span class="monospace">{{inputsValue|metrix(7)}}</span> MRX
+            </div>
+            <div class="summary-item">
+              Outputs ({{outputs.length}})&nbsp;
+              <span class="monospace">{{outputsValue|metrix(7)}}</span> MRX
+            </div>
+          </div>
+          <div class="detail">
+            <div class="utxo-list input-list">
               <ul>
-                <li v-for="input in inputs">
-                  <span><nuxt-link :to="{name: 'address-id', params: {id: input.address}}">{{input.address}}</nuxt-link></span>
-                  <span>{{input.value | metrix(3)}}MRX</span>
-                </li>
+                <div class="utxo" v-for="input in inputs">
+                  <div class="is-pulled-left">
+                    <div class="utxo-address">
+                      <nuxt-link :to="{name: 'address-id', params: {id: input.address}}">{{input.address}}</nuxt-link>
+                    </div>
+                    <div class="utxo-type">
+                      <span class="key">Type</span>
+                      <span class="value"></span>
+                    </div>
+                    <div class="utxo-script">
+                      <span class="key">Script</span>
+                      <span class="value">{{input.scriptSig.asm}}</span>
+                    </div>
+                  </div>
+                  <div class="is-pulled-right">
+                    <div class="utxo-value monospace">
+                      <nuxt-link :to="{name: 'address-id', params: {id: input.address}}">{{input.value | metrix(8)}} </nuxt-link>
+                      <span class="symbol">MRX</span>
+                    </div>
+                  </div>
+                </div>
               </ul>
             </div>
             <div class="list-icon"></div>
-            <div class="list-receive">
-              <div>Outputs ({{outputs.length}}) {{outputsValue|metrix(7)}} BTC</div>
+            <div class="utxo-list">
               <ul>
-                <li v-for="output in outputs">
-                  <span><nuxt-link :to="{name: 'address-id', params: {id: output.address}}">{{output.address}}</nuxt-link> </span>
-                  <span>{{output.value | metrix(3)}}MRX</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="script">
-            <div class="script-input">
-              <div class="script-caption">Input script</div>
-              <ul>
-                <li v-for="input in inputs">{{input.scriptSig.asm}}</li>
-              </ul>
-            </div>
-            <div class="script-output">
-              <div class="script-caption">Output Script</div>
-              <ul>
-                <li v-for="output in outputs">{{output.scriptPubKey.asm}}</li>
+                <div class="utxo" v-for="output in outputs">
+                  <div class="is-pulled-left">
+                    <div class="utxo-address">
+                      <nuxt-link :to="{name: 'address-id', params: {id: output.address}}">{{output.address}}</nuxt-link>
+                    </div>
+                    <div class="utxo-type">
+                      <span class="key">Type</span>
+                      <span class="value"></span>
+                    </div>
+                    <div class="utxo-script">
+                      <span class="key">Script</span>
+                      <span class="value" v-if="output.scriptPubKey.asm">{{output.scriptPubKey.asm}}</span>
+                      <span class="value" v-else>Empty</span>
+                    </div>
+                  </div>
+                  <div class="is-pulled-right">
+                    <div class="utxo-value monospace">
+                      {{output.value | metrix(8)}}
+                      <span class="symbol">MRX</span>
+                    </div>
+                  </div>
+                </div>
               </ul>
             </div>
           </div>
         </div>
-      </Panel>
+      </div>
     </div>
   </div>
 </template>

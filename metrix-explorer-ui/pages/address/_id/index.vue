@@ -14,13 +14,13 @@
       <tbody>
         <tr v-for="transaction in transactions">
           <td>
-            <nuxt-link :to="{name: 'address-id', params: {id: id}}">{{id | format(15,6)}}</nuxt-link>
+            <nuxt-link :to="{name: 'tx-id', params: {id: transaction.id}}">{{transaction.id | format(15,6)}}</nuxt-link>
           </td>
           <td>
             <FromNow :timestamp="transaction.timestamp" />
           </td>
-          <td>{{transaction.outputValue - transaction.inputValue}} MRX</td>
-          <td>{{transaction.fees |metrix(3)}} MRX</td>
+          <td>{{transaction.outputValue - transaction.inputValue | metrix(3)}} MRX</td>
+          <td v-if="transaction.outputs[4]">{{transaction.outputs[4].value | metrix(3)}} MRX</td>
           <td>MRX Transfer</td>
           <td>{{transaction.confirmations}}</td>
         </tr>

@@ -2,7 +2,7 @@
   <div class="footer-container">
     <div class="footer-main">
       <div class="footer-info">
-        <span>Metrixcoin.info is the official blockchain explorer of Qtum, providing blocks, addresses, transactions, contracts and staking queries and statistics service.</span>
+        <span>Metrixcoin.info is the official blockchain explorer of Metrixcoin, providing blocks, addresses, transactions, contracts and staking queries and statistics service.</span>
       </div>
       <div class="footer-dispose">
         <div class="footer-change-language">

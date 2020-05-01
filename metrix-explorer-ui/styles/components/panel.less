@@ -1,7 +1,7 @@
 @import '../../styles/main.less';
 
 .margin {
-    margin-bottom: .size(165px)[];
+    margin-bottom: 123.75px;
 }
 
 .panel-main {
@@ -52,17 +52,22 @@
         }
 
         .select {
+            margin-left: 9px;
+
             ul {
+                display: -webkit-box;
                 display: flex;
-                font-size: .size(22px)[];
-                margin: 0 0 .size(20px)[] 0;
+                font-size: 13.5px;
 
                 li {
+                    display: -webkit-box;
                     display: flex;
+                    -webkit-box-align: center;
                     align-items: center;
+                    -webkit-box-pack: center;
                     justify-content: center;
-                    width: .size(132px)[];
-                    height: .size(34px)[];
+                    padding: 1.5px 12px;
+                    height: 25.5px;
                     border: 1px solid @select-blue;
                     cursor: pointer;
                     a {

@@ -1,28 +1,42 @@
 <template>
   <div class="container">
-    <Panel width="100%" height="255px" title="Transaction Overview" noMargin="true">
+    <div class="panel-main">
+      <div class="panel-title">
+        <div class="logo">
+          <span style="font-size: 16px;">Address Overview</span>
+        </div>
+        <div class="star">
+          <div class="icon">
+          </div>
+          <p>Subscribe</p>
+        </div>
+      </div>
       <div class="address-info">
-        <div class="address-info-left list">
+        <div class="list">
           <ul class="border">
             <li>
+              <div class="item-title">Address</div>
+              <div class="item-info address-item monospace">{{id}}</div>
+            </li>
+            <li>
               <div class="item-title">Metrix Balance</div>
-              <div class="item-info">{{ balance | metrix }} MRX</div>
+              <div class="item-info monospace">{{ balance | metrix }} MRX</div>
             </li>
             <li >
               <div class="item-title">Mining Amount</div>
-              <div class="item-info">{{ staking | metrix }} MRX</div>
+              <div class="item-info monospace">{{ staking | metrix }} MRX</div>
             </li>
             <li>
               <div class="item-title">Token Balance</div>
-              <div class="item-info"></div>
+              <div class="item-info monospace"></div>
             </li>
             <li>
               <div class="item-title">Optional</div>
-              <div class="item-info"></div>
+              <div class="item-info monospace"></div>
             </li>
           </ul>
         </div>
-        <div class="address-info-right list">
+        <div class="list">
           <ul>
             <li>
               <div class="item-title">Rank</div>
@@ -30,21 +44,21 @@
             </li>
             <li>
               <div class="item-title">Transaction Count</div>
-              <div class="item-info">{{ transactionCount }}</div>
+              <div class="item-info monospace">{{ transactionCount }}</div>
             </li>
             <li>
               <div class="item-title">Total Received</div>
-              <div class="item-info">{{ totalReceived | metrix }} MRX</div>
+              <div class="item-info monospace">{{ totalReceived | metrix }} MRX</div>
             </li>
             <li>
               <div class="item-title">Total Sent</div>
-              <div class="item-info">{{ totalSent | metrix }} MRX</div>
+              <div class="item-info monospace">{{ totalSent | metrix }} MRX</div>
             </li>
           </ul>
         </div>
       </div>
-    </Panel>
-    <Panel width="100%" :address="address" class="address-detail">
+    </div>
+    <Panel :address="address" class="address-detail panel-main margin">
       <nuxt-child></nuxt-child>
     </Panel>
   </div>

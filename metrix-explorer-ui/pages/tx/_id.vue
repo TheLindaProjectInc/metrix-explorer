@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="panel-main">
+    <Panel class="panel-main">
       <div class="panel-title">
         <div class="logo">
           <span style="font-size: 16px;">Transaction Overview</span>
@@ -44,10 +44,10 @@
           </ul>
         </div>
       </div>
-    </div>
+    </Panel>
 
     <div class="deal-detail">
-      <div class="panel-main margin">
+      <Panel class="panel-main">
         <div class="panel-title">
           <div class="logo">
             <span style="font-size: 16px;">Transaction Details</span>
@@ -119,7 +119,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </Panel>
     </div>
   </div>
 </template>

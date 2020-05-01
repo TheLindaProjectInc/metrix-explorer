@@ -1,5 +1,5 @@
 <template>
-  <div :class="noMargin? 'panel-main':'panel-main margin'" :style="{width:width,height:height}">
+  <div :class="noMargin? 'panel-main':'panel-main'" :style="{width:width,height:height}">
     <div class="panel-title" v-if="title || address.toString()">
       <div class="logo" v-if="!address.toString()">
         <i :class="icon"></i>

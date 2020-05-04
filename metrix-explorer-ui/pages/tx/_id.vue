@@ -96,7 +96,8 @@
                 <div class="utxo" v-for="output in outputs">
                   <div class="is-pulled-left">
                     <div class="utxo-address">
-                      <nuxt-link :to="{name: 'address-id', params: {id: output.address}}">{{output.address}}</nuxt-link>
+                      <nuxt-link v-if="output.address" :to="{name: 'address-id', params: {id: output.address}}">{{output.address}}</nuxt-link>
+                      <span v-else>Empty Output</span>
                     </div>
                     <div class="utxo-type">
                       <span class="key">Type</span>

@@ -1,33 +1,33 @@
 <template>
   <div class="container">
-    <Panel width="100%" title="Transaction List">
+    <Panel class="panel-main margin" width="100%" title="Transaction List">
       <table>
         <thead>
           <tr>
-            <td>TX ID</td>
+            <td>ID</td>
             <td>Time</td>
             <td>Value</td>
             <td>Fee</td>
-            <td>TX Type</td>
+            <td>Type</td>
             <td>Confirmations</td>
           </tr>
         </thead>
         <tbody>
           <tr v-for="{id, timestamp,outputValue, fees, confirmations} of list">
-            <td>
+            <td class="metrix-link break-word monospace">
               <nuxt-link :to="{name: 'tx-id', params: {id: id}}">{{id | format(15,6)}}</nuxt-link>
             </td>
             <td>
               <FromNow :timestamp="timestamp" />
             </td>
-            <td>{{outputValue | metrix(4)}}</td>
-            <td>{{fees | metrix(4)}}</td>
-            <td>MRX TX</td>
+            <td class="monospace">{{outputValue | metrix(8)}} MRX</td>
+            <td class="monospace">{{fees | metrix(4)}}</td>
+            <td></td>
             <td>{{confirmations}}</td>
           </tr>
         </tbody>
       </table>
-      <pagination />
+      <Pagination />
     </Panel>
   </div>
 </template>

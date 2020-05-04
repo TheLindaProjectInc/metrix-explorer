@@ -63,7 +63,7 @@ export default {
   background: @metrix-blue;
 }
 .header-container {
-  width: .size(1800px) [];
+  padding: 0 75px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

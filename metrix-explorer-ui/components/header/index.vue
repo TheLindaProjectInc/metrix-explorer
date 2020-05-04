@@ -2,7 +2,7 @@
   <div class="nav-container">
     <nuxt-link to="/" class="anchor">
       <span class="metrix-icon metrix-icon--metrix"></span>
-      <span class="title">Metrix.info</span>
+      <span class="title">explorer.metrixcoin.com</span>
     </nuxt-link>
     <nav class="nav-list">
       <div class="nav-item">

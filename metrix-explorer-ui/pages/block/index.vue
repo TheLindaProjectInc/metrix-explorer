@@ -16,7 +16,7 @@
           <tr v-for="{height, timestamp, size, reward, miner, transactionCount} of list">
             <td>
               <div class="frame">
-                <nuxt-link :to="{name: 'block-id', params: {id: height }}">{{height}}</nuxt-link>
+                <nuxt-link class="metrix-link break-word monospace" :to="{name: 'block-id', params: {id: height }}">{{height}}</nuxt-link>
               </div>
             </td>
             <td>
@@ -25,7 +25,7 @@
             <td>{{ transactionCount}}</td>
             <td>{{ size.toLocaleString() }}</td>
             <td>
-              <nuxt-link :to="{name: 'address-id', params: {id: miner}}">{{miner}}</nuxt-link>
+              <nuxt-link class="metrix-link break-word monospace" :to="{name: 'address-id', params: {id: miner}}">{{miner}}</nuxt-link>
             </td>
             <td>{{ reward | metrix(1) }}</td>
           </tr>

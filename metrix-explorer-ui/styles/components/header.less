@@ -13,7 +13,7 @@ a {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: .size(117px)[];
+    height: 70px;
 
     .anchor {
         display: flex;
@@ -21,7 +21,7 @@ a {
 
         .metrix-icon {
             vertical-align: middle;
-            font-size: .size(42px)[];
+            font-size: 31.5px;
         }
 
         .title {
@@ -34,28 +34,31 @@ a {
         align-items: center;
 
         .nav-item {
+            display:flex;
             position: relative;
-            height: 87.75px;
+            height: 70px;
+            align-items: center;
+            justify-content: center;
 
             .nav-item-main {
                 width: 108px;
                 font-size: 14px;
                 display: flex;
-                align-items: center;
                 justify-content: center;
-                padding: 35px 0 0 0;
+                padding: 0 0 0 0;
                 color: #ffffff;
                 cursor: pointer;
                 
-                span {
+                .triangle {
                     display: block;
-                    margin-left: 5px;
-                    margin-top: 5px;
+                    margin-left: 8px;
+                    margin-top: 3px;
                     width: 0;
                     height: 0;
                     border-left: 4px solid transparent;
                     border-right: 4px solid transparent;
-                    border-top: 4px solid #ffffff;
+                    border-top: 4px solid #fff;
+                    transition: transform .4s;
                 }
             }
 
@@ -63,47 +66,60 @@ a {
                 background: @white;
                 position: absolute;
                 display: none;
-                top: 89px;
+                top: 70px;
+                left: 1px;
                 color: @black;
-                width: 120px;
-                box-shadow: 6px 6px 5px @border-gray;
+                box-shadow: 6px 6px 5px #f2f2f2;
+                line-height: 20px;
                 z-index: 50;
                 li {
-                    padding: 7px 0 10px 31px;
-                    font-size: 14px;
-                    border-left: 2px solid @white;
-                    cursor: pointer;
-
                     a {
+                        min-width: 130px;
+                        padding: 7px 15px 10px 26px;
+                        font-size: 14px;
+                        border-left: 2px solid @white;
+                        cursor: pointer;
+                        position: relative;
                         color: @black;
                     }
                 }
 
                 li:last-child {
-                    border-bottom: 2px solid @metrix-blue;
+                    border-bottom: 2px solid @white;
                 }
             }
         }
 
-        .nav-item:nth-child(1) {
-            ul {
-                li {
-                    padding: 7px 0 10px 26px;
-                }
+        .active {
+            .triangle {
+                transform: rotate(-180deg);
             }
         }
 
         .nav-item:hover {
             background: #600766;
 
+            .triangle {
+                transform: rotate(-180deg);
+            }
+
             ul {
                 display: block;
 
                 li:hover {
-                    border-left: 2px solid @metrix-blue;
+                    a{
+                        color: @metrix-blue;
+                    }
 
-                    a {
-                        color: @metrix-blue
+                    a:before{
+                        content: "";
+                        display: block;
+                        height: 22.5px;
+                        width: 11.25px;
+                        position: absolute;
+                        left: 8px;
+                        top: 5px;
+                        background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4LjAzMSIgaGVpZ2h0PSIxNCI+PHBhdGggZGF0YS1uYW1lPSLlvaLnirYgMjQwMCIgZD0iTS4yNSAxLjQ4MUEuODY0Ljg2NCAwIDAxLjI2MS4yNTUuOS45IDAgMDExLjUwOS4yNDRsNi4yMyA2LjEyMmEuODYzLjg2MyAwIDAxMCAxLjIzN2wtNi4yMyA2LjEyMmEuOS45IDAgMDEtMS4yNDgtLjAxMS44NjQuODY0IDAgMDEtLjAxMS0xLjIyNmw1LjYtNS41em0wIDAiIGZpbGw9IiM1MDhmYzgiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==) no-repeat 50%;
                     }
                 }
             }

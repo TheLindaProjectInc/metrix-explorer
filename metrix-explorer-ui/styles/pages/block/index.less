@@ -20,15 +20,15 @@ table {
             }
 
             td:nth-child(3) {
-                width: .size(245px)[];
+                width: .size(205px)[];
             }
 
             td:nth-child(4) {
-                width: .size(250px)[];
+                width: .size(200px)[];
             }
 
             td:nth-child(5) {
-                width: .size(435px)[];
+                width: .size(475px)[];
             }
 
             td:nth-child(6) {
@@ -43,28 +43,34 @@ table {
                 font-size: .size(20px) [];
             }
 
-            td:nth-child(1) {
-                padding: .size(30px) [] 0 .size(20px) [] .size(30px) [];
-
+            td:first-child {
+                padding: 22.5px 0 15px 22.5px;
                 .frame {
-                    background: @panel-gray;
-                    height: .size(50px)[];
-                    width: .size(130px)[];
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+                    a{
+                        background: @white;
+                        height: .size(50px)[];
+                        width: .size(130px)[];
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        border: 1px solid #e2eef8;
+                    }
+
+                    a:hover {
+                        color: #fff;
+                        background: @metrix-blue;
+                        border: 1px solid #e2eef8;
+                    }
                 }
             }
 
-            td:nth-child(1) a {
-                color: @metrix-blue;
-            }
-
             td:nth-child(5) {
-                font-size: .size(16px)[];
+                padding: 0 7.5px 0 0;
+                font-size: 16px;
 
                 a {
-                    color: @metrix-blue;
+                    color: @metrix-link;
                 }
             }
         }

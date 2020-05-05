@@ -9,7 +9,7 @@
         <div>
           <nuxt-link to="/block" class="nav-item-main">
             Blockchain
-            <span></span>
+            <span class="triangle"></span>
           </nuxt-link>
         </div>
         <ul>
@@ -29,7 +29,7 @@
         <div>
           <nuxt-link to="/contract/tokens" class="nav-item-main">
             Tokens
-            <span></span>
+            <span class="triangle"></span>
           </nuxt-link>
         </div>
         <ul>
@@ -46,7 +46,7 @@
         <div>
           <span class="nav-item-main">
             Resources
-            <span></span>
+            <span class="triangle"></span>
           </span>
         </div>
         <ul>
@@ -60,7 +60,7 @@
             <nuxt-link to="/misc/api">Browser API</nuxt-link>
           </li>
           <li>
-            <a href="https://testnet.metrix.info/"  target="_Blank">Testnet Explorer</a>
+            <a href="https://testnet.metrixcoin.com/"  target="_Blank">Testnet Explorer</a>
           </li>
           <li>
             <nuxt-link to="/misc/toolbox">Toolbox</nuxt-link>
@@ -72,14 +72,14 @@
         <div>
           <nuxt-link to="/" class="nav-item-main">
             More
-            <span></span>
+            <span class="triangle"></span>
           </nuxt-link>
         </div>
         <ul>
-          <li><a href="https://metrix.org/"  target="_Blank">Official Website</a></li>
+          <li><a href="https://metrixcoin.com/"  target="_Blank">Official Website</a></li>
           <li>
-            <a href="https://forum.metrix.org/"  target="_Blank">Discord</a></li>
-          <li><a href="https://metrixeco.io/wallet"  target="_Blank">Wallets</a></li></li>
+            <a href="https://discord.gg/BRqar6x"  target="_Blank">Discord</a></li>
+          <li><a href="https://github.com/TheLindaProjectInc/Altitude/releases/latest"  target="_Blank">Wallets</a></li></li>
         </ul>
       </div>
 

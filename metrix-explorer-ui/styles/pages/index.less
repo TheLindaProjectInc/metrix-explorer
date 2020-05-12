@@ -22,62 +22,129 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 297.75px;
+    height: 520px;
+    overflow: hidden;
+    transition: height .2s;
+
     .info {
-      width: 50%;
-      padding: .size(30px) [] .size(40px) [] .size(20px) [] .size(40px) [];
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
       span {
         font-size: .size(16px) [];
         color: @font-gray;
       }
-      .frame {
-        border: 1px solid @border-gray;
-        height: .size(315px) [];
-        margin-top: .size(20px) [];
-        border-radius: 6px;
-        display: flex;
-        flex-wrap: wrap;
-        .icon {
-          width: .size(175px) [];
-          height: .size(157px) [];
-          .word {
-            font-size: .size(14px) [];
-            color: @frame-gray;
-            text-align: center;
-          }
-          .border {
-            border-left: 1px solid @frame-gray;
-            border-style: dashed;
-          }
-          .number {
-            padding-top: .size(10px) [];
-            font-size: .size(18px) [];
-            text-align: center;
-          }
-          .icons {
-            width: 100%;
-            margin-top: .size(40px) [];
-            .icon-global {
-              height: .size(45px) [];
-              width: .size(30px) [];
-              display: block;
-              background: url("~assets/images/sprites.png") 0px -90px no-repeat;
-              background-size: 40 * 0.75px auto;
-              margin: 0 auto;
-            }
-          }
+      .icon {
+        width: 240px;
+        height: 155.25px;
+        margin-bottom: 20px;
+        .word {
+          font-size: 13.5px;
+          color: @frame-gray;
+          text-align: center;
         }
-        .chart {
-          width: .size(730px) [];
-          height: .size(300px) [];
+        .border {
+          border-left: 1px solid @frame-gray;
+          border-style: dashed;
+        }
+        .number {
+          padding-top: 15px;
+          font-size: 22.5px;
+          text-align: center;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+        .icons {
+          width: 100%;
+          margin-top: 30px;
+          .icon-base {
+            height: 41.25px;
+            width: 41.25px;
+            display: block;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: 26px auto;
+            background-color: @metrix-blue;
+            border-radius: 50%;
+            object-fit: contain;
+            margin: 0 auto 10px;
+          }
+
+          .icon-height {
+              background-image: url("~assets/images/a98e310.png");
+          }
+
+          .icon-time {
+              background-image: url(~assets/images/cb27e8f.png);
+          }
+          
+          .icon-node {
+              background-image: url(~assets/images/2625092.png);
+          }
+          
+          .icon-address {
+              background-image: url(~assets/images/e5f1236.png);
+          }
+          
+          .icon-txValue {
+              background-image: url(~assets/images/6f412c4.png);
+          }
+          
+          .icon-txCount {
+              background-image: url(~assets/images/8ddd5e1.png);
+          }
+          
+          .icon-send {
+              background-image: url(~assets/images/4231c9f.png);
+              background-position: 10px 8px
+          }
+          
+          .icon-miner {
+              background-image: url(~assets/images/6766acb.png);
+          }
+          
+          .icon-weight {
+              background-image: url(~assets/images/3898b3a.png);
+          }
+          
+          .icon-reward {
+              background-image: url(~assets/images/ae2bc5d.png);
+          }
+          
+          .icon-distance {
+              background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAADqElEQVRYR9WY3YsbZRTGn2fSujNjBaFe9KLgBy29FUHNh1gLi7VgvRALIr3QC2/VUoXFZGkjE7XS1o+C/4AXiyDeuqIgYjPZLf4Lu/bGCxWUbtuZJLszT5lssptJajabzWR2cxGG9817zu89ed73nDPEHvtwj/EiUeDSgnceIT8CYHQHJnKq9kDnmQQktIA6c4B+dvL26d61iQT5g1/uHJoyM39CisFuzxkbTt4yJwJcrPqPklomiUB420D479Cw5OMQrgpoVPL2BIENLUMUVnHUOW79MSxw0fWeIbA4eWBqGRgVmIuSGpXCJCPcAoawypEiDKSg4Z0AS0gjwqNKAouTB97poUsnwjvRMBrO5K+10YFTutYgZHjUeXaEezgdSey5Q7fnJEGtEUc+zVk3h03Ns9Xm0+LajYlq+MKCdzgQbyIqJkK+SfKfYYGF8AiBaxMFLi42zjAMvoV6a+54xRvfRN9c08nbU4mXlx/Wmk8ZCn4FdABgHWRTChmV5+tIUYk+qHcQorJUwo1K3ppOFPhCzX8sgGoQDgFc0qpO7JuybtVv/7et7sbcR5ZfePgWyM0GZIttDiu5jd9d/H3lkbXm/uugjkH8C2LBKZhL2zY0YMG2dj3I8TlX1oOozwN6HuRdSS9W8rY7TtjI1tiASzV/DtLrIMMAOvNJzv5+3LBjAy7VvMsQzrcAabzj5MxrScD2AZeu148hE34mcH/vQY5a37BN0XkmSIThHZCvtZpz8pKTs2aSgu0DLla9JRJPjOaQc5kfzbPlMjv7Gs3MFqtiGi7V/AakBwDjOyFYWX//Eba/I0tGeygEaQQETkk6LMD1YE1/nqefCGWX0RhwserVSUSZ5beM4b9czh5cGQRQcv0fAL0EA+87WftK0rD9knC9OtECjk7PfKZhni6f4Nr/gRRdf57ASSiYcQoHLqUM3HI/l8lZZ8u8vy53I3B09r+o5O1z94verOvPK9UIb2q4nVPaaZy86OSsci/0eoR1EgpTkkQMOI4n4d1Kwf6qe3RXAwMMJLxVKVjfdKA3gTHjFOxdcejabJ3C2qiHBl75OGv+FE1sABMzTi4N4AGS6ERVwF2EmK48Zy/sdkl0v8z/O0DmuIHwKqFTSCvCJderYyNxbJUGuAToNoAnUwT2VwA9FEcd1DR2yjfjPSdrfrnVFscxH6slZl3/DVFfQ4x1qt2OevEJVA3DfLWc5cC6YxywfbXEuIwmaWdsLVKSkL3/8KR8jcXPPeukA0uzbDczAAAAAElFTkSuQmCC);
+          }
+          
+          .icon-effect {
+              background-image: url(~assets/images/93089fe.png);
+          }
+          
+          .icon-feerate {
+              background-image: url(~assets/images/8f0cf0c.png);
+          }
+          
+          .icon-Annual_Inflation_Rate {
+              background-image: url(~assets/images/67f1188.png);
+          }
         }
       }
+      .chart {
+        width: .size(730px) [];
+        height: .size(300px) [];
+      }
+
     }
     .metrix-deal-chart {
       width: 50%;
       padding: .size(30px) [] .size(40px) [] .size(20px) [] .size(40px) [];
     }
   }
+
+  .detail.collapse {
+    height: 180px;
+  }
+
   .block-deal {
     display: flex;
     width: 100%;

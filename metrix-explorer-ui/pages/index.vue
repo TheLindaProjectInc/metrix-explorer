@@ -3,26 +3,18 @@
     <div class="notification">
       <i></i>
       <p>2020 METRIX ANNOUCEMENTS</p>
+      <p>06-05-2020 still broken</p>
     </div>
 
-    <Panel title="Network Overview" width="100%" height="355px" icon="icon-global" noMargin="true">
-      <div class="detail">
+    <Panel title="Network Overview" icon="icon-global" noMargin="true" :toggle="true" :expand="this.isExpand" @toggle-expand="isExpand = !isExpand" >
+      <div class="detail" :class="{collapse: !this.isExpand}">
         <div class="info">
-          <span class="title">Network Status</span>
-          <div class="frame">
-            <div class="icon" v-for="(item,index) in icons">
-              <div class="icons">
-                <i :class="`icon-${item.img}`"></i>
-              </div>
-              <p :class="index === 0||index===4 ? 'word' :'word border'">{{item.describe}}</p>
-              <p class="number">{{item.number}}</p>
+          <div class="icon" v-for="(item,index) in icons">
+            <div class="icons">
+              <i :class="`icon-base icon-${item.img}`"></i>
             </div>
-          </div>
-        </div>
-        <div class="info">
-          <span class="title">Metrix Trasactions in the last 14 days</span>
-          <div class="frame">
-            <div class="chart" ref="daily-transactions"></div>
+            <p :class="index === 0||index===4 ? 'word' :'word border'">{{item.describe}}</p>
+            <p class="number">{{item.number}}</p>
           </div>
         </div>
       </div>
@@ -51,7 +43,7 @@
                 >{{block.miner | format(8,9)}}</nuxt-link>
               </td>
               <td>{{block.transactionCount}}</td>
-              <td>{{block.reward | metrix(4) }}MRX</td>
+              <td>{{block.reward | metrix(4) }} MRX</td>
               <td>
                 <FromNow :timestamp="block.timestamp" />
               </td>
@@ -105,51 +97,52 @@ export default {
     return {
       icons: [
         {
-          img: "global",
-          describe: "Global Nodes",
-          number: "6554"
+          img: "height",
+          describe: "Block Height",
+          number: 0
         },
         {
-          img: "global",
-          describe: "Daily Transactions",
-          number: "6554"
+          img: "time",
+          describe: "Latest Block Time",
+          number: 0
         },
         {
-          img: "global",
-          describe: "Global Nodes",
-          number: "6554"
+          img: "feerate",
+          describe: "Fee Rate (MRX/kB)",
+          number: 0
         },
         {
-          img: "global",
-          describe: "Global Nodes",
-          number: "6554"
+          img: "txCount",
+          describe: "TXs Last 24hr",
+          number: 0
         },
         {
-          img: "global",
-          describe: "Global Nodes",
-          number: "6554"
+          img: "send",
+          describe: "Supply",
+          number: 0
         },
         {
-          img: "global",
-          describe: "Global Nodes",
-          number: "6554"
+          img: "weight",
+          describe: "Net Stake Weight",
+          number: 0
         },
         {
-          img: "global",
-          describe: "Global Nodes",
-          number: "6554"
+          img: "distance",
+          describe: "Block Interval",
+          number: 0
         },
         {
-          img: "global",
-          describe: "Global Nodes",
-          number: "6554"
+          img: "miner",
+          describe: "Difficulty",
+          number: 0
         }
       ],
       recentBlocks: [],
       recentTransactions: [],
       netStakeWeight: 0,
       feeRate: 0,
-      dailyTransactions: []
+      dailyTransactions: [],
+      isExpand: !1
     };
   },
   async asyncData({ req, error }) {
@@ -157,7 +150,7 @@ export default {
       let [
         recentBlocks,
         recentTransactions,
-        { netStakeWeight, feeRate },
+        { netStakeWeight, feeRate, supply },
         dailyTransactions
       ] = await Promise.all([
         Block.getRecentBlocks({ ip: req && req.ip }),
@@ -169,6 +162,7 @@ export default {
         recentBlocks,
         recentTransactions,
         netStakeWeight,
+        supply,
         feeRate,
         dailyTransactions
       };
@@ -197,6 +191,17 @@ export default {
     },
     onFeeRate(feeRate) {
       this.feeRate = feeRate;
+    },
+    async netStats() {
+
+      //var time = new Date(this.recentBlocks[0].timestamp *1000);
+
+      //this.icons[0].number = (this.recentBlocks[0].height).toLocaleString();
+      //this.icons[1].number = ('0' + time.getHours()).slice(-2) + ':' + ('0' + time.getMinutes()).slice(-2) + ':' + ('0' + time.getSeconds()).slice(-2);
+      //this.icons[2].number = this.feeRate;
+      //this.icons[3].number = (+(this.dailyTransactions[this.dailyTransactions.length - 1].transactionCount) + +(this.dailyTransactions[this.dailyTransactions.length - 1].contractTransactionCount)).toLocaleString();
+      //this.icons[4].number = (this.supply).toLocaleString();
+      //this.icons[5].number = Math.round(this.netStakeWeight / 1e8).toLocaleString();
     },
     async renderDailyTransactionsChart() {
       const [echarts] = await Promise.all([
@@ -256,7 +261,7 @@ export default {
         ],
         series: [
           {
-            name: "Price",
+            name: "TX's",
             type: "line",
             stack: "Total",
             color: "#5197D5",
@@ -323,6 +328,7 @@ export default {
     this._onMempoolTransaction = this.onMempoolTransaction.bind(this);
     this._onStakeWeight = this.onStakeWeight.bind(this);
     this._onFeeRate = this.onFeeRate.bind(this);
+    this.netStats();
 
     this.$subscribe(
       "mempool",

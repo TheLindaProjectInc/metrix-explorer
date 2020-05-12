@@ -22,6 +22,13 @@
           <i class="arrow"></i>
         </nuxt-link>
       </template>
+      <template v-if="toggle">
+        <div class="expand" @click="$emit('toggle-expand')" >
+          <span v-if="expand==true">Collapse</span>
+          <span v-else>Show All</span>
+          <i class="arrow"></i>
+        </div>
+      </template>
     </div>
     <slot></slot>
   </div>
@@ -52,6 +59,14 @@ export default {
     link: {
       type: String,
       default: ""
+    },
+    toggle: {
+      type: Boolean,
+      default: false
+    },
+    expand: {
+      type: Boolean,
+      default: false
     },
     noMargin: {
       type: String,

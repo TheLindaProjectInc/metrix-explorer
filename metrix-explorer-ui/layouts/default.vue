@@ -57,8 +57,7 @@ export default {
 #app {
   display: flex;
   flex-direction: column;
-  width:100%;
-
+  width: 1400px;
   min-height: 100vh;
   background: @metrix-blue;
 }

@@ -20,7 +20,7 @@
             <td>
               <FromNow :timestamp="timestamp" />
             </td>
-            <td class="monospace">{{outputValue | metrix(8)}} MRX</td>
+            <td class="monospace">{{outputValue | metrix(4)}} MRX</td>
             <td class="monospace">{{fees | metrix(4)}}</td>
             <td></td>
             <td>{{confirmations}}</td>

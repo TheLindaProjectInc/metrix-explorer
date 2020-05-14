@@ -57,7 +57,8 @@ export default {
 #app {
   display: flex;
   flex-direction: column;
-  width: 1400px;
+  width: 100%;
+
   min-height: 100vh;
   background: @metrix-blue;
 }
@@ -69,13 +70,13 @@ export default {
   margin: 0 auto;
 }
 .main-container {
-  width: .size(1600px) [];
+  width: .size(1600px)[];
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
 }
 .container {
-  width: .size(1600px) [];
+  width: .size(1600px)[];
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

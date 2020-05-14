@@ -20,9 +20,9 @@ export default {
     };
   },
   props: {
-    pages: { type: Number, required: true },
-    currentPage: { type: Number, required: true },
-    getLink: { type: Function, required: true }
+    // pages: { type: Number, required: true },
+    // currentPage: { type: Number, required: true },
+    // getLink: { type: Function, required: true }
   },
   methods: {
     submit() {

@@ -61,6 +61,7 @@
               <td>Transaction ID</td>
               <td>Time</td>
               <td>Fee</td>
+              <td>Type</td>
             </tr>
           </thead>
           <tbody>
@@ -75,6 +76,11 @@
               </td>
               <td v-if="transaction.fees !== '0'">{{transaction.fees | metrix(3)}} MRX</td>
               <td v-else>-</td>
+              <td v-if="transaction.outputIndex === '0'">Coinbase</td>
+              <td v-else-if="transaction.outputIndex === '1'">CoinStake</td>
+              <td v-else-if="transaction.outputIndex === '2'">Governer</td>
+              <td v-else-if="transaction.outputIndex === '3'">Budget</td>
+              <td v-else-if="transaction.outputIndex > '3'">MRX Transfer</td>
             </tr>
           </tbody>
         </table>

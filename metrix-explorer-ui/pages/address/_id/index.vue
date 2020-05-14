@@ -3,9 +3,10 @@
     <table>
       <thead>
         <tr>
-          <td>ID</td>
+          <td>Transaction ID</td>
           <td>Time</td>
           <td>Net income</td>
+          <td>Fee</td>
           <td>Type</td>
           <td>Confirmations</td>
         </tr>
@@ -19,6 +20,7 @@
             <FromNow :timestamp="transaction.timestamp" />
           </td>
           <td>{{transaction.outputValue - transaction.inputValue | metrix(3)}} MRX</td>
+	        <td v-if="transaction.outputs[4]">{{transaction.outputs[4].value | metrix(3)}} MRX</td>
           <td>MRX Transfer</td>
           <td>{{transaction.confirmations}}</td>
         </tr>

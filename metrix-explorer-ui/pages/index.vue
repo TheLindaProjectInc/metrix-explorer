@@ -194,14 +194,14 @@ export default {
     },
     async netStats() {
 
-      //var time = new Date(this.recentBlocks[0].timestamp *1000);
+      var time = new Date(this.recentBlocks[0].timestamp *1000);
 
-      //this.icons[0].number = (this.recentBlocks[0].height).toLocaleString();
-      //this.icons[1].number = ('0' + time.getHours()).slice(-2) + ':' + ('0' + time.getMinutes()).slice(-2) + ':' + ('0' + time.getSeconds()).slice(-2);
-      //this.icons[2].number = this.feeRate;
-      //this.icons[3].number = (+(this.dailyTransactions[this.dailyTransactions.length - 1].transactionCount) + +(this.dailyTransactions[this.dailyTransactions.length - 1].contractTransactionCount)).toLocaleString();
-      //this.icons[4].number = (this.supply).toLocaleString();
-      //this.icons[5].number = Math.round(this.netStakeWeight / 1e8).toLocaleString();
+      this.icons[0].number = (this.recentBlocks[0].height).toLocaleString();
+      this.icons[1].number = ('0' + time.getHours()).slice(-2) + ':' + ('0' + time.getMinutes()).slice(-2) + ':' + ('0' + time.getSeconds()).slice(-2);
+      this.icons[2].number = this.feeRate;
+      this.icons[3].number = (+(this.dailyTransactions[this.dailyTransactions.length - 1].transactionCount) + +(this.dailyTransactions[this.dailyTransactions.length - 1].contractTransactionCount)).toLocaleString();
+      this.icons[4].number = (this.supply).toLocaleString();
+      this.icons[5].number = Math.round(this.netStakeWeight / 1e8).toLocaleString();
     },
     async renderDailyTransactionsChart() {
       const [echarts] = await Promise.all([

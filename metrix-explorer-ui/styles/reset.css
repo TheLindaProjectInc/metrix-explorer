@@ -40,6 +40,7 @@
   }
   body {
     line-height: 1;
+    font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif!important;
   }
   ol, ul {
     list-style: none;

@@ -37,6 +37,7 @@ block:
   previous_block: Previous Block
   next_block: Next Block
 transaction:
+  list: Transactions
   summary: Transaction Summary
   confirmations: confirmation | confirmations
   unconfirmed: unconfirmed

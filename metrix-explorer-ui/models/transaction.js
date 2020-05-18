@@ -29,6 +29,10 @@ class Transaction {
     return MetrixinfoAPI.get('/recent-txs', options)
   }
 
+  static getTxList(options = {}) {
+    return MetrixinfoAPI.get('/tx/list', options)
+  }
+
   static sendRawTransaction(data, options = {}) {
     return MetrixinfoAPI.post('/tx/send', {rawtx: data}, options)
   }

@@ -29,6 +29,17 @@
             }
         }
 
+        button:hover {
+            background: @select-blue;
+            color: @white;
+
+            &[disabled] {
+                color: @font-gray;
+                background: @white;
+                cursor: not-allowed;
+            }
+        }
+
         .current {
             border-radius: .size(30px)[];
             line-height: .size(30px)[];

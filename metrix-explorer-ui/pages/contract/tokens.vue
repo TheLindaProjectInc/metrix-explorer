@@ -23,7 +23,7 @@
           </tr>
         </tbody>
       </table>
-      <pagination />
+      <pagination :getLink="getLink" :currentPage="currentPage" :pages="pages" />
     </Panel>
   </div>
 </template>

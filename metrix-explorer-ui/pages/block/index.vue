@@ -31,7 +31,7 @@
           </tr>
         </tbody>
       </table>
-      <pagination />
+      <pagination :getLink="getLink" :currentPage="currentPage" :pages="pages"/>
     </Panel>
   </div>
 </template>
@@ -62,6 +62,7 @@ export default {
   data() {
     return {
       list: [],
+      currentPage: Number(this.$route.query.page || 1),
       date: ""
     };
   },

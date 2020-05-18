@@ -89,7 +89,7 @@
           </template>
         </tbody>
       </table>
-      <Pagination v-if="pages > 1" :pages="pages" :currentPage="currentPage" :getLink="getLink" />
+      <Pagination :getLink="getLink" :currentPage="currentPage" :pages="pages" />
     </div>
   </div>
 </template>

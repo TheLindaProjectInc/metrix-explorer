@@ -26,7 +26,7 @@
         </tr>
       </tbody>
     </table>
-    <pagination />
+    <pagination :getLink="getLink" :currentPage="currentPage" :pages="pages" />
   </div>
 </template>
 <script>

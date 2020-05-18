@@ -18,7 +18,7 @@
         </tr>
       </tbody>
     </table>
-    <Pagination/>
+    <Pagination :getLink="getLink" :currentPage="currentPage" :pages="pages"/>
   </Panel>
 </template>
 <script>

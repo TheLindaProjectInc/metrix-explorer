@@ -42,7 +42,7 @@ export default {
       return this.currentPage === 1;
     },
     isInLastPage() {
-      return this.currentPage === this.Pages;
+      return this.currentPage === this.pages;
     }
   },
   methods: {

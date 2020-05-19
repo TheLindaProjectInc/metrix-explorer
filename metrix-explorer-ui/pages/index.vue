@@ -317,6 +317,7 @@ export default {
           reward: block.reward
         });
         this.recentBlocks.pop();
+        thts.netStats();
       } else {
         this.recentBlocks = await Block.getRecentBlocks();
       }

@@ -7,7 +7,7 @@ export default {
     titleTemplate: '%s - metrix.info',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=auto, min-width=1400, initial-scale=1, user-scalable=no' }
+      { name: 'viewport', content: 'width=1400, initial-scale=1, user-scalable=no' }
     ]
   },
   build: {

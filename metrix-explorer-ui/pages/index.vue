@@ -151,12 +151,14 @@ export default {
         recentBlocks,
         recentTransactions,
         { netStakeWeight, feeRate, supply },
-        dailyTransactions
+        dailyTransactions,
+        blockInterval
       ] = await Promise.all([
         Block.getRecentBlocks({ ip: req && req.ip }),
         Transaction.getRecentTransactions({ ip: req && req.ip }),
         Misc.info({ ip: req && req.ip }),
-        Misc.dailyTransactions({ ip: req && req.ip })
+        Misc.dailyTransactions({ ip: req && req.ip }),
+        Misc.blockInterval({ ip: req && req.ip })
       ]);
       return {
         recentBlocks,
@@ -164,7 +166,8 @@ export default {
         netStakeWeight,
         supply,
         feeRate,
-        dailyTransactions
+        dailyTransactions,
+        blockInterval
       };
     } catch (err) {
       if (err instanceof RequestError) {
@@ -202,6 +205,9 @@ export default {
       this.icons[3].number = (+(this.dailyTransactions[this.dailyTransactions.length - 1].transactionCount) + +(this.dailyTransactions[this.dailyTransactions.length - 1].contractTransactionCount)).toLocaleString();
       this.icons[4].number = (this.supply).toLocaleString();
       this.icons[5].number = Math.round(this.netStakeWeight / 1e8).toLocaleString();
+    },
+    onRecentTransactions: function(t) {
+      this.recentTransactions = t
     },
     async renderDailyTransactionsChart() {
       const [echarts] = await Promise.all([
@@ -326,27 +332,24 @@ export default {
 
   mounted() {
     this.renderDailyTransactionsChart();
-    this._onMempoolTransaction = this.onMempoolTransaction.bind(this);
-    this._onStakeWeight = this.onStakeWeight.bind(this);
-    this._onFeeRate = this.onFeeRate.bind(this);
-    this.netStats();
+    this._onMempoolTransaction = this.onMempoolTransaction.bind(this),
+    this._onStakeWeight = this.onStakeWeight.bind(this),
+    this._onFeeRate = this.onFeeRate.bind(this),
+    this._netStats = this.netStats.bind(this),
+    this._onRecentTransactions = this.onRecentTransactions.bind(this),
 
-    this.$subscribe(
-      "mempool",
-      "mempool/transaction",
-      this._onMempoolTransaction
-    );
-    this.$subscribe("blockchain", "stakeweight", this._onStakeWeight);
-    this.$subscribe("blockchain", "feerate", this._onFeeRate);
+    this.$subscribe("transaction", "recent-transactions", this._onRecentTransactions),
+    this.$subscribe("mempool", "mempool/transaction", this._onMempoolTransaction),
+    this.$subscribe("blockchain", "stakeweight", this._onStakeWeight),
+    this.$subscribe("blockchain", "feerate", this._onFeeRate),
+    this.$subscribe("blockchain", "netstats", this._netStats)
   },
   beforeDestroy() {
-    this.$unsubscribe(
-      "mempool",
-      "mempool/transaction",
-      this._onMempoolTransaction
-    );
-    this.$unsubscribe("blockchain", "stakeweight", this._onStakeWeight);
-    this.$unsubscribe("blockchain", "feerate", this._onFeeRate);
+    this.$unsubscribe("transaction", "recent-transactions", this._onRecentTransactions),
+    this.$unsubscribe("mempool", "mempool/transaction", this._onMempoolTransaction),
+    this.$unsubscribe("blockchain", "stakeweight", this._onStakeWeight),
+    this.$unsubscribe("blockchain", "feerate", this._onFeeRate),
+    this.$unsubscribe("blockchain", "netstats", this._netStats)
   }
 };
 </script>

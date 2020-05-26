@@ -1,7 +1,16 @@
 <template>
   <div class="container">
     <Panel width="100%" title="Block List">
-      <table>
+      <div class="animation" v-if="loading">
+        <div class="loader">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+      <table v-else>
         <thead>
           <tr>
             <td>Height</td>
@@ -31,7 +40,15 @@
           </tr>
         </tbody>
       </table>
-      <pagination :getLink="getLink" :currentPage="currentPage" :pages="pages"/>
+      <!--
+      <form action="/block" method="GET" class="date-pagination" v-on:submit="" >
+        <div class="date-pagination-wrapper" >
+          <input ref="input" type="date" name="date" v-model="date" class="date-pagination-input" min="2020-04-17" max="today" />
+          <button class="date-pagination-button" type="submit" >Go</button>
+        </div>
+      </form>
+      -->
+      <DatePagination :setdate="date" :submit="submit"/>
     </Panel>
   </div>
 </template>
@@ -40,20 +57,14 @@ import Panel from "../../components/panel";
 import Block from "@/models/block";
 import { RequestError } from "@/services/metrixinfo-api";
 import { scrollIntoView } from "@/utils/dom";
-import Pagination from "../../components/pagination";
+import DatePagination from "@/components/date-pagination";
 
-function formatUTCTimestamp(date) {
-  let yyyy = date.getUTCFullYear().toString();
-  let mm = (date.getUTCMonth() + 1).toString().padStart(2, "0");
-  let dd = date
-    .getUTCDate()
-    .toString()
-    .padStart(2, "0");
-  return yyyy + "-" + mm + "-" + dd;
+function formatUTCTimestamp(t) {
+  return t.getUTCFullYear().toString() + "-" + (t.getUTCMonth() + 1).toString().padStart(2, "0") + "-" + t.getUTCDate().toString().padStart(2, "0")
 }
 
 export default {
-  components: { Panel, Pagination },
+  components: { Panel, DatePagination },
   head() {
     return {
       title: this.$t("block.list.block_list")
@@ -62,20 +73,17 @@ export default {
   data() {
     return {
       list: [],
-      currentPage: Number(this.$route.query.page || 1),
-      date: ""
+      date: "",
+      loading: !1
     };
   },
   async asyncData({ req, query, redirect, error }) {
-    let date = query.date && new Date(query.date);
+    let d = query.date && new Date(query.date);
     try {
-      let list = await Block.getRecentBlocks({
-        params: {
-          count: 20
-        },
+      let list = await Block.getBlocksByDate(d, {
         ip: req && req.ip
       });
-      return { list };
+      return { list, date: formatUTCTimestamp(d ? new Date(d) : new Date)};
     } catch (err) {
       if (err instanceof RequestError) {
         error({ statusCode: err.code, message: err.message });
@@ -87,32 +95,65 @@ export default {
   computed: {
     blockchain() {
       return this.$store.state.blockchain;
+    },
+    today: function() {
+      var t = new Date
+        , e = t.getFullYear()
+        , n = t.getMonth() + 1 < 10 ? "0".concat(t.getMonth() + 1) : t.getMonth() + 1
+        , r = t.getDate() < 10 ? "0".concat(t.getDate()) : t.getDate();
+        return "".concat(e, "-").concat(n, "-").concat(r)
+    }
+  },
+  methods: {
+    submit: function(e) {
+      var t = new Date(e.target[0].value);
+      this.$router.push({
+        name: "block",
+          query: {
+            date: formatUTCTimestamp(t)
+          }
+      });
+    },
+    onBlock: function(t) {
+      t.transactionCount = t.tx.length;
+      var e = Date.parse(this.date + "T00:00:00") / 1e3;
+      t.timestamp >= e && t.timestamp < e + 86400 && this.list.unshift(t)
     }
   },
   watch: {
-    // async "blockchain.height"(height) {
-    //   if (height === this.list[0].height + 1) {
-    //     let block = await Block.get(height);
-    //     let todayTimestamp = Date.parse(this.date + "T00:00:00") / 1000;
-    //     if (
-    //       block.timestamp >= todayTimestamp &&
-    //       block.timestamp < todayTimestamp + 60 * 60 * 24
-    //     ) {
-    //       this.list.unshift({
-    //         hash: block.hash,
-    //         height: block.height,
-    //         timestamp: block.timestamp,
-    //         interval: block.interval,
-    //         size: block.size,
-    //         transactionCount: block.transactions.length,
-    //         miner: block.miner,
-    //         reward: block.reward
-    //       });
-    //     }
-    //   } else {
-    //     this.list = await Block.getBlocksByDate(this.date);
-    //   }
-    //}
+    async "blockchain.height"(height) {
+      if (height === this.list[0].height + 1) {
+        let block = await Block.get(height);
+        let todayTimestamp = Date.parse(this.date + "T00:00:00") / 1000;
+        if (
+          block.timestamp >= todayTimestamp &&
+          block.timestamp < todayTimestamp + 60 * 60 * 24
+        ) {
+          this.list.unshift({
+            hash: block.hash,
+            height: block.height,
+            timestamp: block.timestamp,
+            interval: block.interval,
+            size: block.size,
+            transactionCount: block.transactions.length,
+            miner: block.miner,
+            reward: block.reward
+          });
+        }
+      } else {
+         this.list = await Block.getBlocksByDate(this.date);
+      }
+    }
+  },
+  async beforeRouteUpdate(to, from, next) { 
+    this.loading = !0;
+    let getDate = to.query.date && new Date(to.query.date);
+    let list = await Block.getBlocksByDate(getDate);
+
+    this.list = list;
+    this.loading = !1;
+    this.date = formatUTCTimestamp(getDate);
+    next();
   }
 };
 </script>

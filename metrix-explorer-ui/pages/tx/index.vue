@@ -1,7 +1,16 @@
 <template>
   <div class="container">
     <Panel class="panel-main margin" width="100%" title="Transaction List">
-      <table>
+      <div class="animation" v-if="loading">
+        <div class="loader">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+      <table v-else>
         <thead>
           <tr>
             <td>ID</td>
@@ -101,15 +110,23 @@ export default {
           1 === this.currentPage && (this.totalCount = n,
           this.transactions = e)
         },
+        onMempoolTransaction: function(t) {
+          1 === this.currentPage && (++this.totalCount,
+          this.transactions.unshift(t))
+        }
   },
   mounted(){
       this._onLatestTransactions = this.onLatestTransactions.bind(this),
-      this.$subscribe("transaction", "latest-transactions", this._onLatestTransactions)
+      this._onMempoolTransaction = this.onMempoolTransaction.bind(this),
+      this.$subscribe("transaction", "latest-transactions", this._onLatestTransactions),
+      this.$subscribe("mempool", "mempool/transaction", this._onMempoolTransaction)
   },
   beforeDestroy() {
-      this.$unsubscribe("transaction", "latest-transactions", this._onLatestTransactions)
+      this.$unsubscribe("transaction", "latest-transactions", this._onLatestTransactions),
+      this.$unsubscribe("mempool", "mempool/transaction", this._onMempoolTransaction)
   },
   async beforeRouteUpdate(to, from, next) { 
+      this.loading = !0;
       let page = Number(to.query.page || 1);
       let { totalCount, transactions } = await Transaction.getTxList({
         params: {
@@ -125,6 +142,7 @@ export default {
         });
         return;
       }
+      this.loading = !1;
       this.transactions = transactions;
       this.currentPage = page;
       next();

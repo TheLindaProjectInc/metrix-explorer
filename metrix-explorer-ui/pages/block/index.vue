@@ -40,14 +40,6 @@
           </tr>
         </tbody>
       </table>
-      <!--
-      <form action="/block" method="GET" class="date-pagination" v-on:submit="" >
-        <div class="date-pagination-wrapper" >
-          <input ref="input" type="date" name="date" v-model="date" class="date-pagination-input" min="2020-04-17" max="today" />
-          <button class="date-pagination-button" type="submit" >Go</button>
-        </div>
-      </form>
-      -->
       <DatePagination :setdate="date" :submit="submit"/>
     </Panel>
   </div>

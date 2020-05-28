@@ -1,6 +1,15 @@
 <template>
   <div>
-    <table>
+    <div class="animation" v-if="loading">
+      <div class="loader">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+    <table v-else>
       <thead>
         <tr>
           <td>Transaction id</td>
@@ -36,6 +45,7 @@ export default {
     return {
       totalCount: 0,
       transactions: [],
+      loading: !1,
       currentPage: Number(this.$route.query.page || 1)
     };
   },
@@ -85,6 +95,7 @@ export default {
     }
   },
   async beforeRouteUpdate(to, from, next) {
+    this.loading = !0;
     let page = Number(to.query.page || 1);
     let { totalCount, transactions } = await Address.getBalanceTransactions(
       this.id,
@@ -100,6 +111,7 @@ export default {
       return;
     }
     this.transactions = transactions;
+    this.loading = !1;
     this.currentPage = page;
     next();
     scrollIntoView(this.$refs.list);

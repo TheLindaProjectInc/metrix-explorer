@@ -3,7 +3,7 @@
     <table>
       <thead>
         <tr>
-          <td>ID</td>
+          <td>Rank</td>
           <td>Address</td>
           <td>Balance</td>
           <td>Percentage</td>
@@ -85,6 +85,11 @@ export default {
     },
     pages() {
       return Math.ceil(this.totalCount / 100);
+    }
+  },
+  methods: {
+    getLink(page) {
+      return { name: "rich-list", query: { page } };
     }
   }
 };

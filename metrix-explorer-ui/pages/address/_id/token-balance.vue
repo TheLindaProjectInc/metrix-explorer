@@ -11,7 +11,16 @@
     </form>
     <div ref="list">
       <Pagination v-if="pages > 1" :pages="pages" :currentPage="currentPage" :getLink="getLink" />
-      <table class="table is-fullwidth is-bordered is-striped">
+      <div class="animation" v-if="loading">
+        <div class="loader">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+      <table v-else class="table is-fullwidth is-bordered is-striped">
         <thead>
           <tr v-if="responsive.isTablet">
             <th>{{ $t('address.timestamp') }}</th>
@@ -107,6 +116,7 @@
       return {
         totalCount: 0,
         transactions: [],
+        loading: !1,
         currentPage: Number(this.$route.query.page || 1),
         selectedToken: ''
       }
@@ -167,6 +177,7 @@
       }
     },
     async beforeRouteUpdate(to, from, next) {
+      this.loading = !0;
       let page = Number(to.query.page || 1)
       let token = to.query.token
       let {totalCount, transactions} = await Address.getTokenBalanceTransactions(
@@ -182,8 +193,9 @@
         })
         return
       }
-      this.transactions = transactions
-      this.currentPage = page
+      this.transactions = transactions;
+      this.loading = !1;
+      this.currentPage = page;
       if (!token) {
         this.selectedToken = ''
       }

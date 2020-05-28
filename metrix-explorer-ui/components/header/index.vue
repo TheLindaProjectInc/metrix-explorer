@@ -37,7 +37,7 @@
             <nuxt-link to="/contract/tokens">Token Overview</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/">Token Transactions</nuxt-link>
+            <nuxt-link to="/contract/deal_list">Token Transactions</nuxt-link>
           </li>
         </ul>
       </div>
@@ -51,7 +51,7 @@
         </div>
         <ul>
           <li>
-            <a href="https://chart.metrix.info/"  target="_Blank">Charts</a>
+            <a href="/"  target="_Blank">Charts</a>
           </li>
           <li>
             <nuxt-link to="/misc/biggest-miners">Biggest Miners</nuxt-link>

@@ -23,7 +23,7 @@
           </tr>
         </tbody>
       </table>
-      <pagination :getLink="getLink" :currentPage="currentPage" :pages="pages" />
+      <pagination v-if="pages > 1" :getLink="getLink" :currentPage="currentPage" :pages="pages" />
     </Panel>
   </div>
 </template>
@@ -45,6 +45,7 @@ export default {
     return {
       totalCount: 0,
       tokens: [],
+      loading: !1,
       currentPage: Number(this.$route.query.page || 1)
     };
   },
@@ -81,6 +82,7 @@ export default {
     }
   },
   async beforeRouteUpdate(to, from, next) {
+    this.loading = !0;
     let page = Number(to.query.page || 1);
     let { totalCount, tokens } = await Contract.listTokens({
       page: page - 1,
@@ -95,6 +97,7 @@ export default {
       return;
     }
     this.tokens = tokens;
+    this.loading = !1;
     this.currentPage = page;
     next();
     scrollIntoView(this.$refs.section);

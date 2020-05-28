@@ -45,7 +45,16 @@
 
     <div class="deal-detail">
       <Panel width="100%" title="Staking Rankings">
-        <table>
+        <div class="animation" v-if="loading">
+          <div class="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+        <table v-else>
           <thead>
             <tr>
               <td>Rank</td>
@@ -69,7 +78,7 @@
             </tr>
           </tbody>
         </table>
-        <pagination />
+        <Pagination :getLink="getLink" :currentPage="currentPage" :pages="pages"/>
       </Panel>
     </div>
   </div>
@@ -91,6 +100,7 @@ export default {
     return {
       totalCount: 0,
       list: [],
+      loading: !1,
       currentPage: Number(this.$route.query.page || 1),
       netStakeWeight: 0
     };
@@ -142,6 +152,7 @@ export default {
     }
   },
   async beforeRouteUpdate(to, from, next) {
+    this.loading = !0;
     let page = Number(to.query.page || 1);
     let { totalCount, list } = await Misc.biggestMiners({
       from: (page - 1) * 100,
@@ -156,6 +167,7 @@ export default {
       return;
     }
     this.list = list;
+    this.loading = !1;
     this.currentPage = page;
     next();
     scrollIntoView(this.$refs.section);

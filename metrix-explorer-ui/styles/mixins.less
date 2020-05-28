@@ -30,3 +30,52 @@
 .break-word {
     word-break: break-all
 }
+
+.animation {
+    width: 100%;
+    height: 450px;
+    background: @white;
+    text-align: center;
+    .loader {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: @metrix-blue;
+      border-radius: 100%;
+      margin-left: 10px;
+      animation: slide 1s infinite;
+    }
+    .dot:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+    .dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    .dot:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+    .dot:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+    .dot:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+  
+    @keyframes slide {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.3;
+        transform: scale(2);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  }

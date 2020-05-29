@@ -4,12 +4,7 @@
       <Navigator />
     </header>
     <div class="background">
-      <div class="main-container">
-        <template v-if="$route.path !== '/'">
-          <Breadcrumb />
-        </template>
-      </div>
-      <nuxt />
+       <nuxt />
     </div>
     <MyAddresses class="my-addresses" />
     <footer>
@@ -58,25 +53,32 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-
   min-height: 100vh;
-  background: @metrix-blue;
+  background: #f5f6f8;
 }
+
 .header-container {
-  padding: 0 75px;
+  padding: 0 5rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 auto;
+  background: @metrix-blue;
 }
-.main-container {
-  width: .size(1600px)[];
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
+
+@media only screen and (max-width: 1024px) {
+  .header-container {
+    padding: 0 1rem;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .background {
+    margin: 0;
+  }
 }
+
 .container {
-  width: .size(1600px)[];
+  width: 1200px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -84,7 +86,7 @@ export default {
 }
 
 .background {
-  background-color: #f5f6f8;
+  margin-top: 2.8rem;
 }
 
 .my-addresses {

@@ -47,7 +47,7 @@
     </Panel>
 
     <div class="deal-detail">
-      <Panel class="panel-main">
+      <Panel class="panel-main margin" >
         <div class="panel-title">
           <div class="logo">
             <span style="font-size: 16px;">Transaction Details</span>

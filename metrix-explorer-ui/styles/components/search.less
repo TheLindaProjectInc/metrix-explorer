@@ -6,10 +6,10 @@
 }
 
 .input {
-    width: 555px;
-    height: 37px;
+    width: 31.4rem;
+    height: 2.4rem;
     box-sizing: border-box;
-    padding: 10px 50px 10px 20px;
+    padding: .7rem 3.4rem .7rem 1rem;
     background: @white;
     color: @input;
     border: 2px solid transparent;
@@ -18,10 +18,33 @@
 
 input[type=text]:focus {
     outline: none;
-    border: 1px solid @white;
 }
 
 input::placeholder {
     color: @placeholder;
     font-size: 14px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .search {
+        box-sizing:border-box;
+        padding: 1.5rem 1rem;
+        width: 100%;
+
+        .input {
+            width: 100%;
+        }
+
+        .search-btn {
+            right: 2rem;
+            top: 2rem
+        }
+
+        .searchfouce-btn {
+            right: 2rem;
+            top: 2rem;
+        }
+
+    }
+
 }

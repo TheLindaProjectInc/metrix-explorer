@@ -22,16 +22,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="{id, outputValue, fees, confirmations} of transactions">
+          <tr v-for="{id, timestamp, outputValue, fees, isCoinbase, isCoinstake, confirmations} of transactions">
             <td class="metrix-link break-word monospace">
               <nuxt-link :to="{name: 'tx-id', params: {id: id}}">{{id | format(15,6)}}</nuxt-link>
             </td>
             <td>
-
+            {{ timestamp | timestamp }}
             </td>
             <td class="monospace">{{outputValue | metrix(4)}} MRX</td>
             <td class="monospace">{{fees | metrix(4)}}</td>
-            <td></td>
+            <td v-if="isCoinbase">Coinbase</td>
+            <td v-else-if="isCoinstake">Coinstake</td>
+            <td v-else></td>
             <td>{{confirmations}}</td>
           </tr>
         </tbody>

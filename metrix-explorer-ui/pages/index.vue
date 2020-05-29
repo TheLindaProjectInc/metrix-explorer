@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="notification">
+    <div class="notification" style="margin-top: -40px;">
       <i></i>
       <p>2020 METRIX ANNOUCEMENTS</p>
       <p>06-05-2020 still broken</p>

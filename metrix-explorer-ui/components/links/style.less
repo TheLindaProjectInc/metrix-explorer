@@ -1,4 +1,4 @@
-.address-link, .block-link, .transaction-link {
+.address-link, .block-link, .transaction-link, .mrx-link {
   position: relative;
   > .clipboard {
     position: absolute;
@@ -14,4 +14,31 @@
   &:not(:hover) > .clipboard {
     display: none;
   }
+
+  &:not(.plain) {
+    color: @metrix-link;
+  }
+
+  .ellipsis {
+    position: relative;
+    display: inline-block;
+    width: 1em;
+    overflow: hidden;
+    text-indent: 2em;
+  }
+
+  .ellipsis:after{
+    content: "";
+    position: absolute;
+    display: block;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 2px;
+    border-radius: 1px;
+    background-color: currentColor;
+    box-shadow: -.3em 0 currentColor,0 0 currentColor,.3em 0 currentColor
+  }
+
 }

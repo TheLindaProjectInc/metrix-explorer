@@ -1,9 +1,5 @@
 @import '../../styles/main.less';
 
-.margin {
-    margin-bottom: 8.25rem
-}
-
 .panel-main {
     width: 100%;
     background: @white;
@@ -206,6 +202,24 @@
                 cursor: pointer;
                 background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABXUlEQVQ4T6XSvUrDUBQH8P+5VmhJih+QYONWlzbioi9QwU10keLgC7g4OehQaBcHxcHVJxCKk1+ToA+guNTEOgRclLYgStoi0uRII9VW0tDgXe/5/+45917CPxcF5e2qniWXJ+UJ86BfXV+gUUsnALphhkYkliSldOaHBAB6nhmFdogIp5JiLA8MtE9npufuALeEHtdK5l/kpwNvXlCSmZMkkARjoaeYcMkuLCKyGGzZrdi5pt02PaBe1YsAsiEf5E5WjVkPsCt6gQj5MAADxbhqrP6OEAIhwqGkGOveBXefOlgnvCur5nYn1wO8Pc2MRWLOa9Aon/bH6PiU9e4LNCvTKy7xcRDgOLw4kjAvfIF6Td8HYzMIINCOpN7n/IFq+gqgTHuTGScM2mPm1hBhA4S17xBfy6o57wvYL6kMhMgMC+coqpTL3Z00aqk5ZrEVITcXVR4efYEw/6BT+wUqt3wRnw51AwAAAABJRU5ErkJggg==) no-repeat;
                 background-size: contain
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .panel-main {
+        .panel-title {
+            .logo {
+                i {
+                    display: none!important;
+                }
+                span {
+                    margin: 0;
+                }
+            }
+            .expand {
+                display: none;
             }
         }
     }

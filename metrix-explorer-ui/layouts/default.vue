@@ -65,23 +65,6 @@ export default {
   background: @metrix-blue;
 }
 
-@media only screen and (max-width: 1024px) {
-  .container {
-    margin-top: 3.8rem;
-    width: 100%;
-  }
-
-  .header-container {
-    padding: 0 1rem;
-    box-sizing: border-box;
-    width: 100%;
-  }
-
-  .background {
-    margin: 0;
-  }
-}
-
 .container {
   width: 1200px;
   display: flex;
@@ -104,6 +87,23 @@ export default {
   @media (min-width: 769px) {
     bottom: 2em;
     right: 2em;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .container {
+    margin-top: 3.8rem;
+    width: 100%;
+  }
+
+  .header-container {
+    padding: 0 1rem;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .background {
+    margin: 0;
   }
 }
 </style>

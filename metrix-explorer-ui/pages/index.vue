@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="notification" style="margin-top: -40px;">
-      <i></i>
+      <i class="metrix-icon" />
       <p>2020 METRIX ANNOUCEMENTS</p>
       <p>06-05-2020 still broken</p>
     </div>
@@ -13,67 +13,73 @@
             <div class="icons">
               <i :class="`icon-base icon-${item.img}`"></i>
             </div>
-            <p :class="index === 0||index===4 ? 'word' :'word border'">{{item.describe}}</p>
-            <p class="number">{{item.number}}</p>
+            <div class="content">
+              <p :class="index === 0||index===4 ? 'word' :'word border'">{{item.describe}}</p>
+              <p class="number">{{item.number}}</p>
+            </div>
           </div>
         </div>
       </div>
     </Panel>
 
-    <div class="block-deal">
-      <Panel title="Block" width="590px" height="720px" icon="icon-block" link="/block">
-        <table class="block-table">
-          <thead>
-            <tr>
-              <td class="td-block">Block</td>
-              <td class="td-address">Address</td>
-              <td class="td-deal">TX Count</td>
-              <td class="td-award">Block Reward</td>
-              <td class="td-time">Time</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="block in recentBlocks">
-              <td>
-                <nuxt-link :to="{name: 'block-id', params: {id: block.height}}">{{block.height}}</nuxt-link>
-              </td>
-              <td>
-                <nuxt-link
-                  :to="{name: 'address-id', params: {id: block.miner}}"
-                >{{block.miner | format(8,9)}}</nuxt-link>
-              </td>
-              <td>{{block.transactionCount}}</td>
-              <td>{{block.reward | metrix(4) }} MRX</td>
-              <td>
-                <FromNow :timestamp="block.timestamp" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="section block-deal">
+      <Panel class="subsection margin" title="Block" icon="icon-block" link="/block">
+        <div class="block-table" v-for="block in recentBlocks">
+          <div class="block-id">
+            <nuxt-link class="mrx-link break-word monospace" :to="{name: 'block-id', params: {id: block.height}}">{{block.height}}</nuxt-link>
+          </div>
+          <div class="block-content">
+            <div class="block-info">
+              <div class="block-miner">
+                <span class="title">Miner</span>
+                <span class="info">
+                  <nuxt-link class="mrx-link break-word monospace" :to="{name: 'address-id', params: {id: block.miner}}">
+                    {{block.miner | format(8,9)}}
+                  </nuxt-link>
+                </span>
+              </div>
+              <div class="block-count-time">
+                <div class="block-count">
+                  <span class="title">TX Count</span>
+                  <span class="info">{{block.transactionCount}}</span>
+                </div>
+                <div class="block-time">
+                  <span class="title">Time</span>
+                  <span class="info">
+                    <FromNow :timestamp="block.timestamp" />
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="block-reward">
+              <div>
+                <span class="title">Reward</span>
+                <span class="info monospace">{{block.reward | metrix(4) }} MRX</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </Panel>
-      <Panel title="Transactions" width="590px" height="720px" icon="icon-deal" link="/tx">
-        <table class="deal-table">
-          <thead>
-            <tr>
-              <td class="td-hash">TX ID</td>
-              <td class="td-trade">Value</td>
-              <td class="td-time">Time</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="transaction in recentTransactions" :key="transaction.id">
-              <td>
-                <nuxt-link
-                  :to="{name: 'tx-id', params: {id: transaction.id}}"
-                >{{transaction.id | format(10,15)}}</nuxt-link>
-              </td>
-              <td>{{ transaction.outputValue | metrix(4) }} MRX</td>
-              <td>
+      <Panel class="subsection margin" title="Transactions" icon="icon-deal" link="/tx">
+        <div class="deal-table" v-for="transaction in recentTransactions" :key="transaction.id">
+          <div class="deal-id">
+            <nuxt-link class="mrx-link break-word monospace"
+              :to="{name: 'tx-id', params: {id: transaction.id}}"
+            >{{transaction.id | format(18,18)}}</nuxt-link>
+          </div>
+          <div class="deal-time-volume">
+            <div class="deal-time">
+              <span class="title">Time</span>
+              <span class="info">
                 <FromNow :timestamp="transaction.timestamp" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              </span>
+            </div>
+            <div class="deal-value">
+              <span class="title">Value</span>
+              <span class="info monospace">{{ transaction.outputValue | metrix(4) }} MRX</span>
+            </div>
+          </div>
+        </div>
       </Panel>
     </div>
   </div>

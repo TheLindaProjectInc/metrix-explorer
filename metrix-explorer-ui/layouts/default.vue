@@ -66,6 +66,11 @@ export default {
 }
 
 @media only screen and (max-width: 1024px) {
+  .container {
+    margin-top: 3.8rem;
+    width: 100%;
+  }
+
   .header-container {
     padding: 0 1rem;
     box-sizing: border-box;

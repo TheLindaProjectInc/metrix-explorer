@@ -1,4 +1,16 @@
 
+.toggler {
+    color: @metrix-link;
+    .time {
+        float: left;
+    }
+    .icon {
+    margin-left: .5rem;
+    margin-top: .05rem;
+    float: left;
+    }
+}
+
 table {
     thead {
         tr {
@@ -71,6 +83,70 @@ table {
 
                 a {
                     color: @metrix-link;
+                }
+            }
+        }
+    }
+}
+
+.block-table {
+    display: none;
+}
+
+@media only screen and (max-width: 1024px) {
+    table {
+        display: none;
+    }
+
+    .block-table {
+        display: flex;
+        border-bottom: 1px solid #f5f7f9;
+        height: 4.5rem;
+        padding: 1.5rem 0;
+
+        .block-id {
+            a {
+                width: 7rem;
+                height: 2.3rem;
+                font-size: 1.3rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 1.65rem;
+                border: 1px solid #e2eef8;
+                border-radius: 2px;
+                cursor: pointer;
+                background: #fff;
+            }
+        }
+        .block-id:hover{
+            color: @metrix-blue;
+        }
+        .block-content{
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            height: 6.5rem;
+
+            .block-miner {
+                color: #8d9fae;
+            }
+            .block-info {
+                display: flex;
+                align-items: center;
+
+                .block-info-item {
+                    display: flex;
+                    align-items: center;
+                    .title {
+                        color: #8d9fae;
+                    }
+                    .content {
+                        margin-left: .5rem;
+                    }
+                }
+                .block-info-item:nth-child(2) {
+                    margin-left: .5rem;
                 }
             }
         }

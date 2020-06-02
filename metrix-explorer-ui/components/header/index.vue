@@ -8,37 +8,37 @@
       <nav class="nav-list">
         <div class="nav-item">
           <div>
-            <nuxt-link to="/block" class="nav-item-main">
+            <span class="nav-item-main">
               Blockchain
               <span class="triangle"></span>
-            </nuxt-link>
+            </span>
           </div>
           <ul>
             <li>
-              <nuxt-link to="/block">Block</nuxt-link>
+              <nuxt-link @click.native="unfold" to="/block">Block</nuxt-link>
             </li>
             <li>
-              <nuxt-link to="/tx">Transaction</nuxt-link>
+              <nuxt-link @click.native="unfold" to="/tx">Transaction</nuxt-link>
             </li>
             <li>
-              <nuxt-link to="/misc/rich-list">Rich List</nuxt-link>
+              <nuxt-link @click.native="unfold" to="/misc/rich-list">Rich List</nuxt-link>
             </li>
           </ul>
         </div>
 
         <div class="nav-item">
           <div>
-            <nuxt-link to="/contract/tokens" class="nav-item-main">
+            <span class="nav-item-main">
               Tokens
               <span class="triangle"></span>
-            </nuxt-link>
+            </span>
           </div>
           <ul>
             <li>
-              <nuxt-link to="/contract/tokens">Token Overview</nuxt-link>
+              <nuxt-link @click.native="unfold" to="/contract/tokens">Token Overview</nuxt-link>
             </li>
             <li>
-              <nuxt-link to="/contract/deal_list">Token Transactions</nuxt-link>
+              <nuxt-link @click.native="unfold" to="/contract/deal_list">Token Transactions</nuxt-link>
             </li>
           </ul>
         </div>
@@ -52,19 +52,19 @@
           </div>
           <ul>
             <li>
-              <a href="/"  target="_Blank">Charts</a>
+              <a @click.native="unfold" href="/"  target="_Blank">Charts</a>
             </li>
             <li>
-              <nuxt-link to="/misc/biggest-miners">Biggest Miners</nuxt-link>
+              <nuxt-link @click.native="unfold" to="/misc/biggest-miners">Biggest Miners</nuxt-link>
             </li>
             <li>
-              <nuxt-link to="/misc/api">Browser API</nuxt-link>
+              <nuxt-link @click.native="unfold" to="/misc/api">Browser API</nuxt-link>
             </li>
             <li>
-              <a href="https://testnet.metrixcoin.com/"  target="_Blank">Testnet Explorer</a>
+              <a @click.native="unfold" href="https://testnet.metrixcoin.com/"  target="_Blank">Testnet Explorer</a>
             </li>
             <li>
-              <nuxt-link to="/misc/toolbox">Toolbox</nuxt-link>
+              <nuxt-link @click.native="unfold" to="/misc/toolbox">Toolbox</nuxt-link>
             </li>
           </ul>
         </div>
@@ -101,6 +101,11 @@ export default {
   data() {
     return {
       fold: !1
+    }
+  },
+  methods: {
+    unfold() {
+      this.fold = !this.fold;
     }
   }
 };

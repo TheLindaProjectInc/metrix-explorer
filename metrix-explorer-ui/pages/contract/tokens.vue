@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Panel title="Token List" width="100%">
+    <Panel title="Token List" width="100%" class="margin">
       <table>
         <thead>
           <tr>
@@ -23,7 +23,7 @@
           </tr>
         </tbody>
       </table>
-      <pagination v-if="pages > 1" :getLink="getLink" :currentPage="currentPage" :pages="pages" />
+      <Pagination :getLink="getLink" :currentPage="currentPage" :pages="pages" />
     </Panel>
   </div>
 </template>

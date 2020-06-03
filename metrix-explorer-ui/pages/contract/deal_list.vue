@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Panel width="100%" title="Token">
+    <Panel width="100%" title="Token" class="margin">
       <table>
         <thead>
           <tr>

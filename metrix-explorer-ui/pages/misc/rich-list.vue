@@ -1,5 +1,5 @@
 <template>
-  <Panel width="100%" title="Rich List">
+  <Panel width="100%" title="Rich List" class="margin">
     <table>
       <thead>
         <tr>

@@ -136,6 +136,11 @@ export default {
           number: 0
         },
         {
+          img: "txValue",
+          describe: "TX Volume Last 24hr (MRX)",
+          number: 0
+        },
+        {
           img: "send",
           describe: "Supply",
           number: 0
@@ -216,15 +221,16 @@ export default {
       this.feeRate = feeRate;
     },
     async netStats() {
-
+      let dailyStats = this.dailyTransactions[this.dailyTransactions.length - 1];
       var time = new Date(this.recentBlocks[0].timestamp *1000);
 
       this.icons[0].number = (this.recentBlocks[0].height).toLocaleString();
       this.icons[1].number = ('0' + time.getHours()).slice(-2) + ':' + ('0' + time.getMinutes()).slice(-2) + ':' + ('0' + time.getSeconds()).slice(-2);
       this.icons[2].number = this.feeRate;
-      this.icons[3].number = (+(this.dailyTransactions[this.dailyTransactions.length - 1].transactionCount) + +(this.dailyTransactions[this.dailyTransactions.length - 1].contractTransactionCount)).toLocaleString();
-      this.icons[4].number = (this.supply).toLocaleString();
-      this.icons[5].number = Math.round(this.netStakeWeight / 1e8).toLocaleString();
+      this.icons[3].number = (+(dailyStats.transactionCount) + +(dailyStats.contractTransactionCount)).toLocaleString();
+      this.icons[4].number = Math.round(dailyStats.transactionVolume / 1e8).toLocaleString()
+      this.icons[5].number = (this.supply).toLocaleString();
+      this.icons[6].number = Math.round(this.netStakeWeight / 1e8).toLocaleString();
     },
     onRecentTransactions: function(t) {
       this.recentTransactions = t
@@ -369,7 +375,7 @@ export default {
         xAxis: [
           {
             type: "category",
-            boundaryGap: !1,
+            boundaryGap: !0,
             axisLine: {
               lineStyle: {
                   color: "#ACACAC"
@@ -388,7 +394,9 @@ export default {
           {
             splitLine: { 
               show: !0,
-              lineStyle: "dotted"
+              lineStyle: {
+                type: "dotted"
+              }
             },
             axisTick: {
               show: !1
@@ -469,7 +477,7 @@ export default {
           reward: block.reward
         });
         this.recentBlocks.pop();
-        thts.netStats();
+        this.netStats();
       } else {
         this.recentBlocks = await Block.getRecentBlocks();
       }
@@ -478,24 +486,22 @@ export default {
 
   mounted() {
     this.renderDailyTransactionsChart();
+    this.netStats();
     this._onMempoolTransaction = this.onMempoolTransaction.bind(this),
     this._onStakeWeight = this.onStakeWeight.bind(this),
     this._onFeeRate = this.onFeeRate.bind(this),
-    this._netStats = this.netStats.bind(this),
     this._onRecentTransactions = this.onRecentTransactions.bind(this),
 
     this.$subscribe("transaction", "recent-transactions", this._onRecentTransactions),
     this.$subscribe("mempool", "mempool/transaction", this._onMempoolTransaction),
     this.$subscribe("blockchain", "stakeweight", this._onStakeWeight),
-    this.$subscribe("blockchain", "feerate", this._onFeeRate),
-    this.$subscribe("blockchain", "netstats", this._netStats)
+    this.$subscribe("blockchain", "feerate", this._onFeeRate)
   },
   beforeDestroy() {
     this.$unsubscribe("transaction", "recent-transactions", this._onRecentTransactions),
     this.$unsubscribe("mempool", "mempool/transaction", this._onMempoolTransaction),
     this.$unsubscribe("blockchain", "stakeweight", this._onStakeWeight),
-    this.$unsubscribe("blockchain", "feerate", this._onFeeRate),
-    this.$unsubscribe("blockchain", "netstats", this._netStats)
+    this.$unsubscribe("blockchain", "feerate", this._onFeeRate)
   }
 };
 </script>

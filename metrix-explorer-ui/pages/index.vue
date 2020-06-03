@@ -1,10 +1,12 @@
 <template>
   <div class="container">
+  <!--
     <div class="notification" style="margin-top: -40px;">
       <i class="metrix-icon" />
       <p>2020 METRIX ANNOUCEMENTS</p>
       <p>06-05-2020 still broken</p>
     </div>
+    -->
 
     <Panel title="Network Overview" icon="icon-global" noMargin="true" :toggle="true" :expand="this.isExpand" @toggle-expand="isExpand = !isExpand" >
       <div class="detail" :class="{collapse: !this.isExpand}">
@@ -21,6 +23,17 @@
         </div>
       </div>
     </Panel>
+
+    <div class="section chart">
+      <div class="subsection chart-deal chart-frame">
+        <div class="sub-title">Transactions Last 30 Days (MRX)</div>
+        <div class="chart-info" ref="daily-transactions"></div>
+      </div>
+      <div class="subsection chart-deal chart-frame">
+        <div class="sub-title">Transaction Volume Last 30 Days (MRX)</div>
+        <div class="chart-info" ref="daily-transaction-volume"></div>
+      </div>
+    </div>
 
     <div class="section block-deal">
       <Panel class="subsection margin" title="Block" icon="icon-block" link="/block">
@@ -166,6 +179,7 @@ export default {
         Misc.dailyTransactions({ ip: req && req.ip }),
         Misc.blockInterval({ ip: req && req.ip })
       ]);
+       dailyTransactions = dailyTransactions.slice(-31, -1);
       return {
         recentBlocks,
         recentTransactions,
@@ -215,7 +229,22 @@ export default {
     onRecentTransactions: function(t) {
       this.recentTransactions = t
     },
+    metrix: function(t) {
+        var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : null;
+        if (null == e) {
+            var s = t.toString().padStart(9, "0");
+            return this.addAmountDelimiters((s.slice(0, -8) + "." + s.slice(-8)).replace(/\.?0*$/g, ""))
+        }
+        return this.addAmountDelimiters((t / 1e8).toFixed(e))
+    },
+    addAmountDelimiters: function(t) {
+        return t.replace(/^(\d{1,3})((\d{3})*)(\.\d+|)$/g, (function(t, e, n, r, o) {
+            return e + n.replace(/(\d{3})/g, ",$1") + o
+        }
+        ))
+    },
     async renderDailyTransactionsChart() {
+      var d = this;
       const [echarts] = await Promise.all([
         import("echarts/lib/echarts"),
         import("echarts/lib/chart/bar"),
@@ -225,6 +254,7 @@ export default {
         import("echarts/lib/component/dataZoom")
       ]);
       let chart = echarts.init(this.$refs["daily-transactions"]);
+      let chart2 = echarts.init(this.$refs["daily-transaction-volume"]);
       chart.setOption({
         tooltip: {
           trigger: "axis",
@@ -238,49 +268,56 @@ export default {
         },
         grid: {
           top: "6%",
-          left: 0,
-          right: "4%",
-          bottom: "3%",
-          containLabel: true
+          left: "2%",
+          right: "2%",
+          bottom: 0,
+          containLabel: !0
         },
         xAxis: [
           {
             type: "category",
-            boundaryGap: false,
-            data: [
-              "01",
-              "02",
-              "03",
-              "04",
-              "05",
-              "06",
-              "07",
-              "08",
-              "09",
-              "10",
-              "11",
-              "12",
-              "13",
-              "14"
-            ]
+            boundaryGap: !1,
+            axisLine: {
+              lineStyle: {
+                  color: "#ACACAC"
+              }
+            },
+            axisTick: {
+              show: !1
+            },
+            data: this.dailyTransactions.map((function(t) {
+                return t.time.split("T")[0].substring(5, t.length)
+            }
+            ))
           }
         ],
         yAxis: [
           {
-            splitLine: { show: false },
-            type: "value"
+            splitLine: { 
+              show: !0,
+              lineStyle: "dotted"
+            },
+            axisTick: {
+              show: !1
+            },
+            type: "value",
+            axisLine: {
+              lineStyle: {
+                  color: "#ACACAC"
+              }
+            }
           }
         ],
         series: [
           {
-            name: "TX's",
+            name: "TX Count",
             type: "line",
             stack: "Total",
             color: "#5197D5",
-            showSymbol: false,
+            showSymbol: !1,
             label: {
               normal: {
-                show: false,
+                show: !1,
                 position: "top"
               }
             },
@@ -301,12 +338,115 @@ export default {
                     color: "#ffffff"
                   }
                 ],
-                global: false
+                global: !1
               }
             },
-            data: this.dailyTransactions
-              .slice(-15, -1)
-              .map(item => item.transactionCount)
+            data: this.dailyTransactions.map((function(t) {
+                return t.transactionCount
+            }
+            ))
+          }
+        ]
+      });
+      chart2.setOption({
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "line",
+            axis: "auto",
+            label: {
+              backgroundColor: "#6a7985"
+            }
+          }
+        },
+        grid: {
+          top: "6%",
+          left: "2%",
+          right: "2%",
+          bottom: 0,
+          containLabel: !0
+        },
+        xAxis: [
+          {
+            type: "category",
+            boundaryGap: !1,
+            axisLine: {
+              lineStyle: {
+                  color: "#ACACAC"
+              }
+            },
+            axisTick: {
+              show: !1
+            },
+            data: this.dailyTransactions.map((function(t) {
+                return t.time.split("T")[0].substring(5, t.length)
+            }
+            ))
+          }
+        ],
+        yAxis: [
+          {
+            splitLine: { 
+              show: !0,
+              lineStyle: "dotted"
+            },
+            axisTick: {
+              show: !1
+            },
+            type: "value",
+            axisLine: {
+              lineStyle: {
+                  color: "#ACACAC"
+              }
+            },
+            axisLabel: {
+              formatter: function(t) {
+                  switch (!0) {
+                  case t >= 1e15:
+                      return t % 1e15 > 0 ? (t / 1e15).toFixed(1) + "q" : t / 1e15 + "q";
+                  case t >= 1e12:
+                      return t % 1e12 > 0 ? (t / 1e12).toFixed(1) + "t" : t / 1e12 + "t";
+                  case t >= 1e9:
+                      return t % 1e9 > 0 ? (t / 1e9).toFixed(1) + "b" : t / 1e9 + "b";
+                  case t >= 1e6:
+                      return t % 1e6 > 0 ? (t / 1e6).toFixed(1) + "m" : t / 1e6 + "m";
+                  case t >= 1e3:
+                      return t % 1e3 > 0 ? (t / 1e3).toFixed(1) + "k" : t / 1e3 + "k";
+                  default:
+                      return t
+                  }
+              }
+            }
+          }
+        ],
+        series: [
+          {
+            name: "TX Volume (MRX)",
+            type: "bar",
+            stack: "Total",
+            color: "#5197D5",
+            showSymbol: !1,
+            label: {
+              normal: {
+                show: !1,
+                position: "top"
+              }
+            },
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0,0,0,1,[{
+                        offset: 0,
+                        color: "#7acbff"
+                    }, {
+                        offset: 1,
+                        color: "#f4fbff"
+                    }])
+                }
+            },
+            data: this.dailyTransactions.map((function(t) {
+                return Number(d.metrix(t.transactionVolume, 0).replace(/,/g, ""))
+            }
+            ))
           }
         ]
       });

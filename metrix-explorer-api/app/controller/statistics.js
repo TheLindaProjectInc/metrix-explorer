@@ -4,10 +4,11 @@ class StatisticsController extends Controller {
   async dailyTransactions() {
     const {app, ctx} = this
     let dailyTransactions = JSON.parse(await app.redis.hget(app.name, 'daily-transactions') || '[]')
-    ctx.body = dailyTransactions.map(({timestamp, transactionsCount, contractTransactionsCount}) => ({
+    ctx.body = dailyTransactions.map(({timestamp, transactionsCount, contractTransactionsCount, transactionVolume}) => ({
       time: new Date(timestamp * 1000),
       transactionCount: transactionsCount,
-      contractTransactionCount: contractTransactionsCount
+      contractTransactionCount: contractTransactionsCount,
+      transactionVolume: transactionVolume
     }))
   }
 

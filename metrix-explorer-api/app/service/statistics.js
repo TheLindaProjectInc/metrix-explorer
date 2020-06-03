@@ -8,16 +8,18 @@ class StatisticsService extends Service {
       SELECT
         FLOOR(header.timestamp / 86400) AS date,
         SUM(block.transactions_count) AS transactionsCount,
-        SUM(block.contract_transactions_count) AS contractTransactionsCount
-      FROM header, block
-      WHERE header.height = block.height
+        SUM(block.contract_transactions_count) AS contractTransactionsCount,
+        SUM(transaction_output.value) AS transactionVolume
+      FROM header, block, transaction_output
+      WHERE header.height = block.height and block.height = transaction_output.block_height
       GROUP BY date
       ORDER BY date ASC
     `, {type: db.QueryTypes.SELECT, transaction: this.ctx.state.transaction})
-    return result.map(({date, transactionsCount, contractTransactionsCount}) => ({
+    return result.map(({date, transactionsCount, contractTransactionsCount, transactionVolume}) => ({
       timestamp: date * 86400,
       transactionsCount,
-      contractTransactionsCount
+      contractTransactionsCount,
+      transactionVolume
     }))
   }
 

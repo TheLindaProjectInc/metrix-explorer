@@ -1,11 +1,13 @@
 <template>
   <div class="footer-wrapper">
     <div class="footer-container">
+      <p class="footer-title">About Us</p>
       <div class="footer-main">
         <div class="footer-info">
           <span>Metrixcoin.info is the official blockchain explorer of Metrixcoin, providing blocks, addresses, transactions, contracts and staking queries and statistics service.</span>
         </div>
         <div class="footer-dispose">
+          <!--
           <div class="footer-change-language">
             <span>Language:</span>
             <div class="select">
@@ -26,9 +28,10 @@
               </ul>
             </div>
           </div>
+          -->
           <div class="footer-cancat">
             <span>Contact details：</span>
-            <a href="" target="_blank">@metrix.info</a>
+            <a href="mailto:support@metrixcoin.com" target="_blank">support@metrixcoin.com</a>
           </div>
         </div>
       </div>

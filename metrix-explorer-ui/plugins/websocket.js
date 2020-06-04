@@ -3,7 +3,7 @@ import io from 'socket.io-client'
 
 export default function ({ app }) {
   let ws = io(
-    'wss:' + process.env.metrixinfoWSBase,
+    'ws:' + process.env.metrixinfoWSBase,
     { transports: ['websocket'] }
   )
   ws.on('tip', tip => app.store.commit('blockchain/height', tip.height))

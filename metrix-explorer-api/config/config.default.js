@@ -14,6 +14,10 @@ exports.security = {
   csrf: {enable: false}
 }
 
+exports.cors = {
+  origin: '*'  // Access-Control-Allow-Origin: *
+}
+
 exports.middleware = ['ratelimit']
 
 exports.redis = {

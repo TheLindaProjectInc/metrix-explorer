@@ -13,7 +13,7 @@
     <tbody>
       <tr v-for="item in transactions">
         <td>
-          <nuxt-link :to="{name: 'tx-id', params: {id: item.id}}">{{item.id| format(10,10)}}</nuxt-link>
+          <nuxt-link :to="{name: 'tx-id', params: {id: item.id}}">{{item.id| format(15,6)}}</nuxt-link>
         </td>
         <td>
           <FromNow :timestamp="item.timestamp" />

@@ -464,7 +464,9 @@ export default {
   watch: {
     async "blockchain.height"(height) {
       if (height === this.recentBlocks[0].height + 1) {
-        let block = await Block.get(height);
+        let [ block, recentTransactions ] = await Promise.all([
+        Block.get(height),
+        Transaction.getRecentTransactions()]);
         this.recentBlocks.unshift({
           hash: block.hash,
           height: block.height,
@@ -475,6 +477,7 @@ export default {
           miner: block.miner,
           reward: block.reward
         });
+        this.recentTransactions = recentTransactions;
         this.recentBlocks.pop();
         this.netStats();
       } else {

@@ -74,7 +74,7 @@
                     </div>
                     <div class="utxo-type">
                       <span class="key">Type</span>
-                      <span class="value"></span>
+                      <span class="value">{{input.scriptSig.type}}</span>
                     </div>
                     <div class="utxo-script">
                       <span class="key">Script</span>
@@ -101,7 +101,7 @@
                     </div>
                     <div class="utxo-type">
                       <span class="key">Type</span>
-                      <span class="value"></span>
+                      <span class="value">{{output.scriptPubKey.type}}</span>
                     </div>
                     <div class="utxo-script">
                       <span class="key">Script</span>

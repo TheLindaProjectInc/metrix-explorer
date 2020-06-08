@@ -90,8 +90,8 @@
               <td v-else>-</td>
               <td v-if="transaction.isCoinbase">Coinbase</td>
               <td v-else-if="transaction.isCoinstake">Coinstake</td>
-              <td v-else-if="transaction.inputs[0].address === '0000000000000000000000000000000000000089' || 
-              transaction.inputs[0].address === '0000000000000000000000000000000000000088'">DGP Contract</td>
+              <td v-else-if="transaction.inputs[0].address === '0000000000000000000000000000000000000090' || 
+              transaction.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</td>
               <td v-else>MRX Transfer</td>
             </tr>
           </tbody>

@@ -48,8 +48,8 @@
               <div class="item-fee">{{tx.fees | metrix(4)}}</div>
               <div class="item-type" v-if="tx.isCoinbase">Coinbase</div>
               <div class="item-type" v-else-if="tx.isCoinstake">Coinstake</div>
-              <div class="item-type" v-else-if="tx.inputs[0].address === '0000000000000000000000000000000000000089' || 
-                tx.inputs[0].address === '0000000000000000000000000000000000000088'">DGP Contract</div>
+              <div class="item-type" v-else-if="tx.inputs[0].address === '0000000000000000000000000000000000000090' || 
+                tx.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
               <div class="item-type" v-else>MRX Transfer</div>
               <div class="item-confirm">{{tx.confirmations}}</div>
           </div>
@@ -73,8 +73,8 @@
                 <div class="title">Type</div>
                 <div class="content" v-if="tx.isCoinbase">Coinbase</div>
                 <div class="content" v-else-if="tx.isCoinstake">Coinstake</div>
-                <div class="content" v-else-if="tx.inputs[0].address === '0000000000000000000000000000000000000089' || 
-                  tx.inputs[0].address === '0000000000000000000000000000000000000088'">DGP Contract</div>
+                <div class="content" v-else-if="tx.inputs[0].address === '0000000000000000000000000000000000000090' || 
+                  tx.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
                 <div class="content" v-else>MRX Transfer</div>
               </div>
               <div class="item">

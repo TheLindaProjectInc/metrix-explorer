@@ -72,16 +72,17 @@ export default {
       if (height <= 5000) {
         return height * 20000;
       }
-      let supply = 1e16;
-      let reward = 4e8;
-      let interval = 985500;
-      height -= 5000;
-      let halvings = 0;
-      while (halvings < 7 && height > interval) {
-        supply += interval * (reward >>> halvings++);
-        height -= interval;
-      }
-      return supply + height * (reward >>> halvings);
+      let supply = 3e18;
+      //let reward = 4e8;
+      //let interval = 985500;
+      //height -= 5000;
+      //let halvings = 0;
+      //while (halvings < 7 && height > interval) {
+      //  supply += interval * (reward >>> halvings++);
+      //  height -= interval;
+      //}
+      //return supply + height * (reward >>> halvings);
+      return supply;
     },
     pages() {
       return Math.ceil(this.totalCount / 100);

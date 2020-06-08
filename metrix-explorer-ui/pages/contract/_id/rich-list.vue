@@ -59,7 +59,7 @@ export default {
           page: Math.ceil(totalCount / 100)
         });
       }
-      console.log(list);
+      //console.log(list);
       return { totalCount, list };
     } catch (err) {
       if (err instanceof RequestError) {

@@ -161,7 +161,7 @@ export default {
   async asyncData({ req, params, error }) {
     try {
       let transaction = await Transaction.get(params.id, { ip: req && req.ip });
-      console.log(transaction);
+      //console.log(transaction);
       return {
         id: transaction.id,
         hash: transaction.hash,

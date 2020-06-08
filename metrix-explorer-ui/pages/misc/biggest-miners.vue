@@ -119,7 +119,7 @@ export default {
       if (page > 1 && totalCount <= (page - 1) * 100) {
         redirect("/misc/biggest-miners", { page: Math.ceil(totalCount / 100) });
       }
-      console.log(list);
+      //console.log(list);
       return { totalCount, list, netStakeWeight };
     } catch (err) {
       if (err instanceof RequestError) {

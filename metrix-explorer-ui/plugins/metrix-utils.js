@@ -51,7 +51,7 @@ Vue.component('FromNow', {
     return createElement(this.tag, moment(this.timestamp * 1000).fromNow())
   },
   mounted() {
-    console.log(this.timestamp)
+    //console.log(this.timestamp)
     this.$interval = setInterval(() => this.$forceUpdate(), 1000)
   },
   beforeDestroy() {

@@ -463,7 +463,6 @@ export default {
 
   watch: {
     async "blockchain.height"(height) {
-      console.log(height);
       if (height === this.recentBlocks[0].height + 1) {
         let block = await Block.get(height);
         this.recentBlocks.unshift({

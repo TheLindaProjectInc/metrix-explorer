@@ -6,7 +6,6 @@
           <td>Rank</td>
           <td>Address</td>
           <td>Balance</td>
-          <td>TX Count</td>
           <td>Percentage</td>
         </tr>
       </thead>
@@ -17,12 +16,11 @@
             <nuxt-link :to="{name: 'address-id', params: {id: item.address}}">{{item.address}}</nuxt-link>
           </td>
           <td>{{ item.balance | mrc20(mrc20.decimals) }} {{ mrc20.symbol }}</td>
-          <td></td>
           <td>{{ (Number(item.balance) / Number(mrc20.totalSupply) * 100).toFixed(4) + '%' }}</td>
         </tr>
       </tbody>
     </table>
-    <Pagination />
+    <Pagination :getLink="getLink" :currentPage="currentPage" :pages="pages" />
   </div>
 </template>
 <script>

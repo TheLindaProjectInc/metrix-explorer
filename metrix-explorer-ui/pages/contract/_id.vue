@@ -1,12 +1,16 @@
 <template>
   <div class="container">
-    <Panel :title="this.title" width="100%" noMargin="true">
+    <Panel title="Contract Overview" width="100%" noMargin="true">
       <div class="address-info">
         <div class="address-info-left list">
           <ul>
+            <li class="border">
+              <div class="item-title">Contract Address</div>
+              <div class="item-info">{{addressHex}}</div>
+            </li>
             <li>
-              <div class="item-title">Token Name</div>
-              <div class="item-info">{{ mrc20.name }}</div>
+              <div class="item-title">Total Received</div>
+              <div class="item-info">{{ totalReceived | metrix }} MRX</div>
             </li>
             <li class="border">
               <div class="item-title">Total Supply</div>
@@ -14,10 +18,6 @@
                 {{ mrc20.totalSupply | mrc20(mrc20.decimals, true) }}
                 {{ mrc20.symbol || $t('contract.token.tokens') }}
               </div>
-            </li>
-            <li class="border">
-              <div class="item-title">Contract Address</div>
-              <div class="item-info">{{addressHex}}</div>
             </li>
             <li>
               <div class="item-title"></div>
@@ -28,20 +28,16 @@
         <div class="address-info-right list">
           <ul>
             <li>
-              <div class="item-title">Rank</div>
-              <div class="item-info"></div>
-            </li>
-            <li>
               <div class="item-title">TX Count</div>
               <div class="item-info">{{ transactionCount }}</div>
             </li>
             <li>
-              <div class="item-title">Total Received</div>
-              <div class="item-info">{{ totalReceived | metrix }} MRX</div>
-            </li>
-            <li>
               <div class="item-title">Total Sent</div>
               <div class="item-info">{{ totalSent | metrix }} MRX</div>
+            </li>
+            <li>
+              <div class="item-title">MRC20 Token</div>
+              <div class="item-info">{{ mrc20.name }} ({{ mrc20.symbol }})</div>
             </li>
           </ul>
         </div>

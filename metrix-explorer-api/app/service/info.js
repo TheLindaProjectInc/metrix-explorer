@@ -6,13 +6,15 @@ class InfoService extends Service {
     let stakeWeight = JSON.parse(await this.app.redis.hget(this.app.name, 'stakeweight')) || 0
     let feeRate = JSON.parse(await this.app.redis.hget(this.app.name, 'feerate')).find(item => item.blocks === 10).feeRate || 0.004
     let dgpInfo = JSON.parse(await this.app.redis.hget(this.app.name, 'dgpinfo')) || {}
+    let blockchainInfo = JSON.parse(await this.app.redis.hget(this.app.name, 'blockchaininfo')) || {}
     return {
       height,
       supply: this.getTotalSupply(),
       ...this.app.chain.name === 'mainnet' ? {circulatingSupply: this.getCirculatingSupply()} : {},
       netStakeWeight: Math.round(stakeWeight),
       feeRate,
-      dgpInfo
+      dgpInfo,
+      blockchainInfo
     }
   }
 
@@ -86,6 +88,15 @@ class InfoService extends Service {
       maxBlockSize: info.maxblocksize,
       minGasPrice: info.mingasprice,
       blockGasLimit: info.blockgaslimit
+    }
+  }
+
+  async getBlockChainInfo() {
+    let client = new this.app.metrixinfo.rpc(this.app.config.metrixinfo.rpc)
+    let info = await client.getblockchaininfo()
+    return {
+      moneysupply: info.moneysupply,
+      difficulty: info.difficulty
     }
   }
 }

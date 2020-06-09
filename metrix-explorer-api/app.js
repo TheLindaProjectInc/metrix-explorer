@@ -54,6 +54,13 @@ module.exports = app => {
     namespace.to('blockchain').emit('dgpinfo', dgpInfo)
   })
 
+  app.messenger.on('update-blockchaininfo', async () => {
+    let ctx = app.createAnonymousContext()
+    let bcInfo = await ctx.service.info.getBlockChainInfo()
+    await app.redis.hset(app.name, 'blockchaininfo', JSON.stringify(bcInfo))
+    namespace.to('blockchain').emit('blockchaininfo', bcInfo)
+  })
+
   app.messenger.on('blockchain-info', info => {
     app.blockchainInfo = info
   })

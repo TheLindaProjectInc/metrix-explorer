@@ -165,6 +165,7 @@ export default {
       recentTransactions: [],
       netStakeWeight: 0,
       feeRate: 0,
+      blockchainInfo: [],
       dailyTransactions: [],
       isExpand: !1
     };
@@ -174,7 +175,7 @@ export default {
       let [
         recentBlocks,
         recentTransactions,
-        { netStakeWeight, feeRate, supply },
+        { netStakeWeight, feeRate, supply, blockchainInfo},
         dailyTransactions,
         blockInterval
       ] = await Promise.all([
@@ -191,6 +192,7 @@ export default {
         netStakeWeight,
         supply,
         feeRate,
+        blockchainInfo,
         dailyTransactions,
         blockInterval
       };
@@ -229,8 +231,10 @@ export default {
       this.icons[2].number = this.feeRate;
       this.icons[3].number = (+(dailyStats.transactionCount) + +(dailyStats.contractTransactionCount)).toLocaleString();
       this.icons[4].number = Math.round(dailyStats.transactionVolume / 1e8).toLocaleString()
-      this.icons[5].number = (this.supply).toLocaleString();
+      this.icons[5].number = (this.blockchainInfo.moneysupply).toLocaleString();
       this.icons[6].number = Math.round(this.netStakeWeight / 1e8).toLocaleString();
+      this.icons[8].number = Math.round(this.blockchainInfo.difficulty).toLocaleString();
+
     },
     onRecentTransactions: function(t) {
       this.recentTransactions = t

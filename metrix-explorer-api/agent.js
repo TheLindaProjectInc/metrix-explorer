@@ -15,6 +15,7 @@ module.exports = function(agent) {
       agent.messenger.sendToApp('new-block', block)
       agent.messenger.sendRandom('update-stakeweight')
       agent.messenger.sendRandom('update-dgpinfo')
+      agent.messenger.sendRandom('update-blockchaininfo')
       agent.messenger.sendRandom('socket/block-tip', block)
     })
     io.on('reorg', block => {
@@ -58,5 +59,6 @@ module.exports = function(agent) {
     agent.messenger.sendRandom('update-stakeweight')
     agent.messenger.sendRandom('update-feerate')
     agent.messenger.sendRandom('update-dgpinfo')
+    agent.messenger.sendRandom('update-blockchaininfo')
   })
 }

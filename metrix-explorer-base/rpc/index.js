@@ -120,6 +120,7 @@ const callspec = {
   estimatesmartfee: 'int',
   getcontractcode: '',
   getdgpinfo: '',
+  getblockchaininfo: '',
   getstorage: '',
   gettransactionreceipt: '',
   listcontracts: 'int int',

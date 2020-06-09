@@ -3,8 +3,8 @@
     <Panel title="Contract Overview" width="100%" noMargin="true">
       <div class="address-info">
         <div class="address-info-left list">
-          <ul>
-            <li class="border">
+          <ul class="border">
+            <li>
               <div class="item-title">Contract Address</div>
               <div class="item-info">{{addressHex}}</div>
             </li>
@@ -12,16 +12,12 @@
               <div class="item-title">Total Received</div>
               <div class="item-info">{{ totalReceived | metrix }} MRX</div>
             </li>
-            <li class="border">
+            <li>
               <div class="item-title">Total Supply</div>
               <div class="item-info">
                 {{ mrc20.totalSupply | mrc20(mrc20.decimals, true) }}
                 {{ mrc20.symbol || $t('contract.token.tokens') }}
               </div>
-            </li>
-            <li>
-              <div class="item-title"></div>
-              <div class="item-info"></div>
             </li>
           </ul>
         </div>

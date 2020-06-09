@@ -38,7 +38,7 @@
               <nuxt-link @click.native="unfold" to="/contract/tokens">Token Overview</nuxt-link>
             </li>
             <li>
-              <nuxt-link @click.native="unfold" to="/contract/tx">Token Transactions</nuxt-link>
+              <nuxt-link @click.native="unfold" to="/mrc20/tx">Token Transactions</nuxt-link>
             </li>
           </ul>
         </div>

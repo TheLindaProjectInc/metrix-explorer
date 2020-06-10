@@ -31,7 +31,10 @@ class MRC20Controller extends Controller {
         blockHeight: transaction.blockHeight,
         blockHash: transaction.blockHash.toString('hex'),
         timestamp: transaction.timestamp,
+        confirmations: transaction.confirmations,
         token: {
+          address: transaction.token.address.toString('hex'),
+          addressHex: transaction.token.addressHex.toString('hex'),
           name: transaction.token.name,
           symbol: transaction.token.symbol,
           decimals: transaction.token.decimals

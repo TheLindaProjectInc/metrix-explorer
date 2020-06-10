@@ -493,6 +493,9 @@ class MRC20Service extends Service {
         evm_receipt.block_height AS blockHeight,
         header.hash AS blockHash,
         header.timestamp AS timestamp,
+        ((SELECT height FROM header ORDER BY height DESC LIMIT 1) - evm_receipt.block_height) AS confirmations,
+        contract.address_string AS address, 
+        contract.address AS addressHex,
         mrc20.name AS name,
         mrc20.symbol AS symbol,
         mrc20.decimals AS decimals,
@@ -507,6 +510,7 @@ class MRC20Service extends Service {
       INNER JOIN evm_receipt_log ON evm_receipt_log._id = list._id
       INNER JOIN evm_receipt ON evm_receipt._id = evm_receipt_log.receipt_id
       INNER JOIN mrc20 ON mrc20.contract_address = evm_receipt_log.address
+      INNER JOIN contract ON contract.address = evm_receipt_log.address
       INNER JOIN transaction ON transaction._id = evm_receipt.transaction_id
       INNER JOIN header ON header.height = evm_receipt.block_height
       ORDER BY list._id ${{raw: order}}
@@ -526,7 +530,10 @@ class MRC20Service extends Service {
           blockHeight: transaction.blockHeight,
           blockHash: transaction.blockHash,
           timestamp: transaction.timestamp,
+          confirmations: transaction.confirmations,
           token: {
+            address: transaction.address.toString('hex'),
+            addressHex: transaction.addressHex.toString('hex'),
             name: transaction.name.toString(),
             symbol: transaction.symbol.toString(),
             decimals: transaction.decimals

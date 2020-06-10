@@ -23,12 +23,31 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr v-for="tx of transactions">
+            <td>
+              <nuxt-link class="mrx-link break-word monospace" :to="{name: 'tx-id', params: {id: tx.transactionId}}">{{tx.transactionId | format(10,10)}}</nuxt-link>
+            </td>
+            <td>
+              <div class="item-time" v-if="timetoggle">
+                <FromNow :timestamp="tx.timestamp" />
+              </div>
+              <div class="item-time" v-else>
+                {{tx.timestamp | timestamp}}
+              </div>
+            </td>
+            <td>
+            {{tx.value | metrix(1)}} 
+            <nuxt-link class="mrx-link break-word monospace" :to="{name: 'contract-id', params: {id: tx.token.address}}">{{tx.token.symbol}}</nuxt-link>
+            </td>
+            <td>
+              <nuxt-link class="mrx-link break-word monospace" :to="{name: tx.fromHex ? 'contract-id' : 'address-id', params: {id: tx.from}}">{{tx.from | format(10,10)}}</nuxt-link>
+            </td>
+            <td>
+              <nuxt-link class="mrx-link break-word monospace" :to="{name: tx.toHex ? 'contract-id' : 'address-id', params: {id: tx.to}}">{{tx.to | format(10,10)}}</nuxt-link>
+            </td>
+            <td>
+            {{tx.confirmations + 1}}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -41,16 +60,18 @@
 import Vue from "vue";
 import Panel from "../../components/panel";
 import Pagination from "@/components/pagination";
+import { Responsive } from "@/plugins/mixins";
 import Contract from "@/models/contract";
-import Transaction from "@/models/transaction";
+import Mrc20 from "@/models/mrc20";
 import { RequestError } from "@/services/metrixinfo-api";
 import { scrollIntoView } from "@/utils/dom";
 
 export default {
   components: { Panel, Pagination},
+  mixins: [Responsive],
     head() {
     return {
-      title: this.$t("transaction.list")
+      title: this.$t("contract.transaction_list")
     };
   },
   data() {
@@ -61,7 +82,92 @@ export default {
       currentPage: Number(this.$route.query.page || 1),
       timetoggle: !1
     };
-  }
+  },
+  async asyncData({ req, query, redirect, error }) {
+    try {
+      query.page && !/^[1-9]\d*$/.test(query.page) && redirect("/mrc20/txs");
+      let l = Number(query.page || 1);
+      let { totalCount, transactions } = await Mrc20.getTxList({
+        params: {
+          limit: 20,
+          offset: 20 * (l - 1)
+        },
+        ip: req && req.ip
+      });
+      if (l > 1 && totalCount <= (l - 1) * 20) {
+        redirect("/mrc20/tx");
+      }
+      return { totalCount, transactions };
+    } catch (err) {
+      if (err instanceof RequestError) {
+        error({ statusCode: err.code, message: err.message });
+      } else {
+        error({ statusCode: 500, message: err.message });
+      }
+    }
+  },
+  computed: {
+    pages: function() {
+        return Math.ceil(this.totalCount / 20)
+    }
+  },
+  methods: {
+        getLink: function(t) {
+          return {
+              name: "/mrc20/tx",
+              query: {
+                  page: t
+              }
+          }
+        },
+        scrollToTop: function() {
+          return this.$refs.section
+        },
+        onTransaction: function(t) {
+          var n = t.totalCount
+            , e = t.transactions;
+          1 === this.currentPage && (this.totalCount = n,
+          this.transactions = e)
+        },
+        subscribeTransactions: function() {
+            this.$subscribe("address/" + this.id, "address/transaction", this._onTransaction),
+            this.$subscribedAddress = this.id
+        },
+        unsubscribeTransactions: function() {
+            this.$unsubscribe("address/" + this.id, "address/transaction", this._onTransaction)
+        }
+  },
+  mounted(){
+    this._onTransaction = this.onTransaction.bind(this),
+    this.subscribeTransactions()
+  },
+  beforeDestroy() {
+    this.unsubscribeTransactions()
+  },
+  async beforeRouteUpdate(to, from, next) { 
+      this.loading = !0;
+      let page = Number(to.query.page || 1);
+      let { totalCount, transactions } = await Mrc20.getTxList({
+        params: {
+          limit: 20,
+          offset: 20 * (page - 1)
+        }
+      });
+      this.totalCount = totalCount;
+      if (page > this.pages && this.pages > 1) {
+        this.$router.push({
+          name: "/mrc20/tx",
+          query: { page: Math.ceil(totalCount / 20) }
+        });
+        return;
+      }
+      this.loading = !1;
+      this.transactions = transactions;
+      this.currentPage = page;
+      next();
+      scrollIntoView(this.$refs.list);
+  },
+  scrollToTop: true
 };
 </script>
 

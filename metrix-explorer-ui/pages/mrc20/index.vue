@@ -106,5 +106,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import url("../../styles/pages/contract/tokens.less");
+@import url("../../styles/pages/mrc20/index.less");
 </style>

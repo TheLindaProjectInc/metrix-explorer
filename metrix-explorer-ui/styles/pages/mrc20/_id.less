@@ -2,35 +2,93 @@
     display: flex;
     align-items: center;
 
-    .list {
-        height: .size(165px)[];
-        width: 50%;
-        padding: .size(50px)[] 0 .size(55px)[] .size(35px)[];
-
-        ul {
-            li {
-                display: flex;
-                justify-content: space-between;
-                font-size: .size(16px)[];
-                padding: .size(9px)[] .size(155px)[] .size(9px)[] 0;
-                width: .size(585px)[];
-
-                .item-title {
-                    color: @font-gray;
-                }
-            }
-        }
-    }
-
     .border {
         border-right: 1px solid @font-gray;
         border-style: dashed;
     }
 
-    .list:nth-child(2) {
-        padding-left: .size(100px)[]
+    .list-left {
+        height: .size(165px)[];
+        width: 45%;
+        padding: 2.5rem 0 2.5rem 1.75rem;
+
+
+
+        ul {
+            li {
+                display: flex;
+                justify-content: space-between;
+                font-size: .9rem;
+                padding: 0.45rem 2rem 0.45rem 0;;
+                width: 29.25rem;
+                height: 1.25rem;
+
+                .item-title {
+                    color: @font-gray;
+                }
+
+                .item-info {
+                    word-break: break-all
+                }
+
+                .value {
+                    max-width: 60%;
+                    line-height: 1.2;
+                    text-align: right
+                }
+
+                .token-name {
+                    height: 1.5rem;
+                    width: 1.5rem;
+                    float: left;
+                    position: relative;
+                    top: -.25rem;
+                    margin-right: .4rem;
+                    background-size: 100% 100%;
+                }
+
+                .token-e0e57cff9ed38cc5cd79e79aa25a241d13d9ad5c {
+                    background-image: url(~assets/images/tokens/mrxt.png);
+                }
+            }
+        }
+    }
+
+    .list-right {
+        width: 55%;
+        padding: 2.5rem 0 2.5rem 1.5rem;
+
+        ul {
+            li {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.9rem;
+                padding: .45rem 2rem .45rem 0;;
+                width: 35.25rem;
+
+                .item-title {
+                    color: @font-gray;
+                }
+
+                .item-info {
+                    word-break: break-all
+                }
+
+                .value {
+                    max-width: 60%;
+                    line-height: 1.2;
+                    text-align: right
+                }
+            }
+        }
+    }
+
+    .list:nth-child(2){
+        padding-left: 75px;
     }
 }
-.address-detail{
-    margin-top:10px;
+
+.deal-detail {
+    margin-top: .size(10px)[];
+    width: 100%;
 }

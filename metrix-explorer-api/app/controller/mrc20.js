@@ -60,6 +60,7 @@ class MRC20Controller extends Controller {
         blockHeight: transaction.blockHeight,
         blockHash: transaction.blockHash.toString('hex'),
         timestamp: transaction.timestamp,
+        confirmations: transaction.confirmations,
         from: transaction.from,
         fromHex: transaction.fromHex && transaction.fromHex.toString('hex'),
         to: transaction.to,

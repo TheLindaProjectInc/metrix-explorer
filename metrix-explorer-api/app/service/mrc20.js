@@ -569,6 +569,7 @@ class MRC20Service extends Service {
         evm_receipt.block_height AS blockHeight,
         header.hash AS blockHash,
         header.timestamp AS timestamp,
+        ((SELECT height FROM header ORDER BY height DESC LIMIT 1) - evm_receipt.block_height) AS confirmations,
         list.topic2 AS topic2,
         list.topic3 AS topic3,
         list.data AS data
@@ -597,6 +598,7 @@ class MRC20Service extends Service {
           blockHeight: transaction.blockHeight,
           blockHash: transaction.blockHash,
           timestamp: transaction.timestamp,
+          confirmations: transaction.confirmations,
           ...from && typeof from === 'object' ? {from: from.hex.toString('hex'), fromHex: from.hex} : {from},
           ...to && typeof to === 'object' ? {to: to.hex.toString('hex'), toHex: to.hex} : {to},
           value: BigInt(`0x${transaction.data.toString('hex')}`)

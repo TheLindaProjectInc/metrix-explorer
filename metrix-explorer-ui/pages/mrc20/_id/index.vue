@@ -15,15 +15,16 @@
               </div>
             </div>
           </td>
+          <td>Value</td>
           <td>Sender</td>
-          <td>Gas (MRX)</td>
+          <td>Receiver</td>
           <td>Confirmations</td>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in transactions">
           <td>
-            <nuxt-link :to="{name: 'tx-id', params: {id: item.id}}">{{item.id| format(15,15)}}</nuxt-link>
+            <nuxt-link class="mrx-link break-word monospace" :to="{name: 'tx-id', params: {id: item.transactionId}}">{{item.transactionId| format(10,10)}}</nuxt-link>
           </td>
           <td v-if="timetoggle">
             <FromNow :timestamp="item.timestamp" />
@@ -32,10 +33,15 @@
             {{item.timestamp | timestamp}}
           </td>
           <td>
-            <nuxt-link class="mrx-link break-word monospace" :to="{name: 'address-id', params: {id: item.inputs[0].address}}">{{item.inputs[0].address | format(10,10)}}</nuxt-link>
+          {{item.value}}
           </td>
-          <td>{{item.fees | metrix(3)}}</td>
-          <td>{{item.confirmations}}</td>
+          <td>
+            <nuxt-link class="mrx-link break-word monospace" :to="{name: 'address-id', params: {id: item.from}}">{{item.from | format(10,10)}}</nuxt-link>
+          </td>
+          <td>
+            <nuxt-link class="mrx-link break-word monospace" :to="{name: 'address-id', params: {id: item.to}}">{{item.to | format(10,10)}}</nuxt-link>
+          </td>
+          <td>{{item.confirmations + 1 }}</td>
         </tr>
       </tbody>
     </table>
@@ -45,7 +51,7 @@
 
 <script>
 import Vue from "vue";
-import Contract from "@/models/contract";
+import Mrc20 from "@/models/mrc20";
 import Transaction from "@/models/transaction";
 import Pagination from "@/components/pagination";
 import { RequestError } from "@/services/metrixinfo-api";
@@ -70,7 +76,7 @@ export default {
         redirect(`/contract/${params.id}/`);
       }
       let page = Number(query.page || 1);
-      let { totalCount, transactions } = await Contract.getTransactions(
+      let { totalCount, transactions } = await Mrc20.getTransactions(
         params.id,
         { page: page - 1, pageSize: 20 },
         { ip: req && req.ip }
@@ -80,9 +86,9 @@ export default {
           page: Math.ceil(totalCount / 20)
         });
       }
-      transactions = await Transaction.getBrief(transactions, {
-        ip: req && req.ip
-      });
+      //transactions = await Transaction.getBrief(transactions, {
+      //  ip: req && req.ip
+      //});
       return {
         totalCount,
         transactions
@@ -156,7 +162,7 @@ export default {
   async beforeRouteUpdate(to, from, next) {
     this.unsubscribeTransactions();
     let page = Number(to.query.page || 1);
-    let { totalCount, transactions } = await Contract.getTransactions(this.id, {
+    let { totalCount, transactions } = await Mrc20.getTransactions(this.id, {
       page: page - 1,
       pageSize: 20
     });
@@ -169,7 +175,7 @@ export default {
       });
       return;
     }
-    this.transactions = await Transaction.getBrief(transactions);
+    //this.transactions = await Transaction.getBrief(transactions);
     this.currentPage = page;
     next();
     this.subscribeTransactions();

@@ -1,39 +1,44 @@
 <template>
   <div class="container">
-    <Panel title="Contract Overview" width="100%" noMargin="true">
+    <Panel title="Token Overview" width="100%" noMargin="true">
       <div class="address-info">
-        <div class="address-info-left list">
+        <div class="address-info list-left">
           <ul class="border">
             <li>
-              <div class="item-title">Contract Address</div>
-              <div class="item-info">{{addressHex}}</div>
-            </li>
-            <li>
-              <div class="item-title">Total Received</div>
-              <div class="item-info">{{ totalReceived | metrix }} MRX</div>
+              <div class="item-title">Name</div>
+              <div class="item-info">
+                <span class="token-name" :class="`token-${addressHex}`"></span>
+                {{mrc20.name}}
+              </div>
             </li>
             <li>
               <div class="item-title">Total Supply</div>
-              <div class="item-info">
+              <div class="item-info monospace">
                 {{ mrc20.totalSupply | mrc20(mrc20.decimals, true) }}
                 {{ mrc20.symbol || $t('contract.token.tokens') }}
               </div>
             </li>
+            <li>
+              <div class="item-title">Token Holders</div>
+              <div class="item-info monospace">
+                {{ mrc20.holders }}
+              </div>
+            </li>
           </ul>
         </div>
-        <div class="address-info-right list">
+        <div class="address-info list-right">
           <ul>
             <li>
+              <div class="item-title">Contract Address</div>
+              <div class="item-info">
+                <nuxt-link class="mrx-link break-word monospace" :to="{name:'contract-id',params:{id: address}}">{{ address }}</nuxt-link>
+              </div>
+            </li>
+            <li>
               <div class="item-title">TX Count</div>
-              <div class="item-info">{{ transactionCount }}</div>
+              <div class="item-info monospace">{{ mrc20.transactions }} </div>
             </li>
             <li>
-              <div class="item-title">Total Sent</div>
-              <div class="item-info">{{ totalSent | metrix }} MRX</div>
-            </li>
-            <li>
-              <div class="item-title">MRC20 Token</div>
-              <div class="item-info">{{ mrc20.name }} ({{ mrc20.symbol }})</div>
             </li>
           </ul>
         </div>
@@ -52,7 +57,7 @@ export default {
   components: { Panel },
   head() {
     return {
-      title: this.$t("blockchain.contract") + " " + this.id
+      title: this.$t("blockchain.token") + " " + this.id
     };
   },
   data() {
@@ -70,12 +75,12 @@ export default {
       transactionCount: 0,
       panelAddress: [
         {
-          link: "contract-id",
+          link: "mrc20-id",
           name: "Transaction List",
           id: this.$route.params.id
         },
         {
-          link: "contract-id-rich-list",
+          link: "mrc20-id-rich-list",
           name: "Rich List",
           id: this.$route.params.id
         }

@@ -6,6 +6,9 @@ class MRC20 {
     return MetrixinfoAPI.get('/mrc20/txs', options)
   }
 
+  static getTransactions(id, {page, pageSize}, options = {}) {
+    return MetrixinfoAPI.get(`/mrc20/${id}/txs`, {params: {page, pageSize}, ...options})
+  }
 }
 
 export default MRC20

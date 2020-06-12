@@ -21,7 +21,7 @@ export default {
         : createElement(
           'nuxt-link',
           {
-            class: ['break-word', 'monospace'],
+            class: ['mrx-link', 'break-word', 'monospace'],
             attrs: {to: {name: 'tx-id', params: {id: props.transaction}}}
           },
           slots().default || props.transaction.toString()
@@ -32,6 +32,7 @@ export default {
         string: (props.clipboard === true ? props.transaction : props.clipboard).toString()
       }}))
     }
+
     return createElement(
       'span',
       mergeProps(data, {class: 'transaction-link'}),

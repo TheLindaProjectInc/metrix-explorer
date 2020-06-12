@@ -1,10 +1,18 @@
 <template>
   <div>
-    <table>
-      <thead>
-        <tr>
-          <td>ID</td>
-          <td>
+      <div class="animation" v-if="loading">
+        <div class="loader">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+      <div class="table" v-else>
+        <div class="table-title">
+          <div class="item-id">ID</div>
+          <div class="item-time">
             <div class="toggler" @click="timetoggle = !timetoggle">
               <div class="time">Time</div>
               <div class="icon">
@@ -14,37 +22,86 @@
                 </svg>
               </div>
             </div>
-          </td>
-          <td>Value</td>
-          <td>Sender</td>
-          <td>Receiver</td>
-          <td>Confirmations</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in transactions">
-          <td>
-            <nuxt-link class="mrx-link break-word monospace" :to="{name: 'tx-id', params: {id: item.transactionId}}">{{item.transactionId| format(10,10)}}</nuxt-link>
-          </td>
-          <td v-if="timetoggle">
-            <FromNow :timestamp="item.timestamp" />
-          </td>
-          <td v-else>
-            {{item.timestamp | timestamp}}
-          </td>
-          <td>
-          {{item.value}}
-          </td>
-          <td>
-            <nuxt-link class="mrx-link break-word monospace" :to="{name: 'address-id', params: {id: item.from}}">{{item.from | format(10,10)}}</nuxt-link>
-          </td>
-          <td>
-            <nuxt-link class="mrx-link break-word monospace" :to="{name: 'address-id', params: {id: item.to}}">{{item.to | format(10,10)}}</nuxt-link>
-          </td>
-          <td>{{item.confirmations + 1 }}</td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+          <div class="item-value">Value</div>
+          <div class="item-sender">Sender</div>
+          <div class="item-receiver">Receiver</div>
+          <div class="item-confirmations">Confirmations</div>
+        </div>
+        <div class="table-body" v-for="item in transactions">
+          <div class="table-body-item">
+            <div class="item-id">
+              <nuxt-link class="mrx-link break-word monospace" :to="{name: 'tx-id', params: {id: item.transactionId}}">{{item.transactionId| format(10,10)}}</nuxt-link>
+            </div>
+            <div class="item-time" v-if="timetoggle">
+              <FromNow :timestamp="item.timestamp" />
+            </div>
+            <div class="item-time" v-else>
+              {{item.timestamp | timestamp}}
+            </div>
+            <div class="item-value">{{item.value}}</div>
+            <div class="item-sender">
+              <nuxt-link class="mrx-link break-word monospace" :to="{name: 'address-id', params: {id: item.from}}">{{item.from | format(9,9)}}</nuxt-link>
+            </div>
+            <div class="item-receiver">
+              <nuxt-link class="mrx-link break-word monospace" :to="{name: 'address-id', params: {id: item.to}}">{{item.to | format(9,9)}}</nuxt-link>
+            </div>
+            <div class="item-confirmations">
+              {{item.confirmations + 1 }}
+            </div>
+          </div>
+          <div class="mobile-body">
+            <div class="item">
+              <div class="title">
+                ID
+              </div>
+              <div class="content">
+                <nuxt-link class="mrx-link break-word monospace" :to="{name: 'tx-id', params: {id: item.transactionId}}">{{item.transactionId| format(10,10)}}</nuxt-link>
+              </div>
+            </div>
+            <div class="item">
+              <div class="title">
+                Time
+              </div>
+              <div class="content">
+                {{item.timestamp | timestamp}}
+              </div>
+            </div>
+            <div class="item">
+              <div class="title">
+                Value
+              </div>
+              <div class="content">
+                {{item.value}}
+              </div>
+            </div>
+            <div class="item">
+              <div class="title">
+                Sender
+              </div>
+              <div class="content">
+                <nuxt-link class="mrx-link break-word monospace" :to="{name: 'address-id', params: {id: item.from}}">{{item.from | format(9,9)}}</nuxt-link>
+              </div>
+            </div>
+            <div class="item">
+              <div class="title">
+                Receiver
+              </div>
+              <div class="content">
+                <nuxt-link class="mrx-link break-word monospace" :to="{name: 'address-id', params: {id: item.to}}">{{item.to | format(9,9)}}</nuxt-link>
+              </div>
+            </div>
+            <div class="item">
+              <div class="title">
+                Confirmations
+              </div>
+              <div class="content">
+                {{item.confirmations + 1 }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <Pagination :getLink="getLink" :currentPage="currentPage" :pages="pages" />
   </div>
 </template>
@@ -64,6 +121,7 @@ export default {
       totalCount: 0,
       transactions: [],
       currentPage: Number(this.$route.query.page || 1),
+      loading: !1,
       timetoggle: !1
     };
   },
@@ -160,6 +218,7 @@ export default {
     this.unsubscribeTransactions();
   },
   async beforeRouteUpdate(to, from, next) {
+    this.loading = !0;
     this.unsubscribeTransactions();
     let page = Number(to.query.page || 1);
     let { totalCount, transactions } = await Mrc20.getTransactions(this.id, {
@@ -177,6 +236,7 @@ export default {
     }
     //this.transactions = await Transaction.getBrief(transactions);
     this.currentPage = page;
+    this.loading = !1;
     next();
     this.subscribeTransactions();
     scrollIntoView(this.$refs["transaction-list"]);

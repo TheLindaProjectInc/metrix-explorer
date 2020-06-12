@@ -37,7 +37,7 @@
             </td>
             <td>
             {{tx.value | metrix(1)}} 
-            <nuxt-link class="mrx-link break-word monospace" :to="{name: 'contract-id', params: {id: tx.token.address}}">{{tx.token.symbol}}</nuxt-link>
+            <nuxt-link class="mrx-link break-word monospace" :to="{name: 'mrc20-id', params: {id: tx.token.address}}">{{tx.token.symbol}}</nuxt-link>
             </td>
             <td>
               <nuxt-link class="mrx-link break-word monospace" :to="{name: tx.fromHex ? 'contract-id' : 'address-id', params: {id: tx.from}}">{{tx.from | format(10,10)}}</nuxt-link>

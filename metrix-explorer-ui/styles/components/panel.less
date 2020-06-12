@@ -54,16 +54,14 @@
 
             ul {
                 display: flex;
-                font-size: 13.5px;
+                font-size: 0.9rem;
 
                 li {
                     display: flex;
-                    -webkit-box-align: center;
                     align-items: center;
-                    -webkit-box-pack: center;
                     justify-content: center;
-                    padding: 1.5px 12px;
-                    height: 25.5px;
+                    padding: .1rem .8rem;
+                    height: 1.7rem;
                     border: 1px solid @select-blue;
                     cursor: pointer;
                     a {
@@ -81,15 +79,15 @@
                     border-bottom-right-radius: 5px;
                 }
 
-                .active {
-                    background: @select-blue;
-                    a {
-                        color: @white;
-                    }
-                }
-
                 .border {
                     border-left: hidden;
+                }
+            }
+
+            .active {
+                background: @select-blue;
+                a {
+                    color: @white;
                 }
             }
         }
@@ -223,6 +221,39 @@
             }
             .expand {
                 display: none;
+            }
+
+            .tabs {
+                padding: 0;
+            }
+
+            .select {
+                width: 100%;
+                margin-left: 0;
+                ul {
+                    width: 100%;
+                    padding: 0 1rem;
+                    box-sizing: border-box;
+                    height: 3.2rem;
+                    display: flex;
+                    flex: 1;
+
+                    li {
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: .5rem;
+                    }
+                }
+
+                .active {
+                    border-bottom: 1px solid @metrix-blue;
+                    a {
+                        background: @select-blue;
+                        color: @white;
+                    }
+                }
             }
         }
     }

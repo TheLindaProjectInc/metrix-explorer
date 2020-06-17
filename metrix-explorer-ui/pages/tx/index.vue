@@ -31,8 +31,8 @@
           <div class="table-body-item">
               <div class="item-id">
                 <div class="spread" @click="collapsed(tx.id)">
-                  <svg data-v-3bd48ccb="" t="1589358527313" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4641" width="18" height="18" class="icon">
-                    <path data-v-3bd48ccb="" d="M821 563.2H566.2v254.9c0 28.1-22.8 51-51 51-28.1 0-51-22.8-51-51V563.2H209.4c-28.1 0-51-22.8-51-51 0-28.1 22.8-51 51-51h254.8V206.4c0-28.1 22.8-51 51-51s51 22.8 51 51v254.9H821c28.2 0 51 22.8 51 51 0 28.1-22.8 50.9-51 50.9z" p-id="4642" fill="#5197D5">
+                  <svg t="1589358527313" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4641" width="18" height="18" class="icon">
+                    <path d="M821 563.2H566.2v254.9c0 28.1-22.8 51-51 51-28.1 0-51-22.8-51-51V563.2H209.4c-28.1 0-51-22.8-51-51 0-28.1 22.8-51 51-51h254.8V206.4c0-28.1 22.8-51 51-51s51 22.8 51 51v254.9H821c28.2 0 51 22.8 51 51 0 28.1-22.8 50.9-51 50.9z" p-id="4642" fill="#5197D5">
                     </path>
                   </svg>
                 </div>
@@ -83,7 +83,7 @@
               </div>
               <div class="arrow-icon" @click="collapsed(tx.id)" >
                 <svg :class="{down : opened.includes(tx.id)}" t="1589364875852" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5522" width="24" height="24" class="icon">
-                  <path data-v-3bd48ccb="" d="M340.992 820.736c11.776 11.776 31.232 11.776 43.008 3.072l287.232-287.232c8.704-11.264 11.264-25.088 6.656-35.84-0.512-2.56-5.12-7.68-8.704-12.288L385.536 205.312c-11.776-14.848-30.72-14.848-42.496-3.072-11.776 11.776-11.776 30.72 0 42.496l265.216 268.288-267.264 264.192c-11.776 12.288-12.288 31.232 0 43.52z" fill="#5197D5" p-id="5523">
+                  <path d="M340.992 820.736c11.776 11.776 31.232 11.776 43.008 3.072l287.232-287.232c8.704-11.264 11.264-25.088 6.656-35.84-0.512-2.56-5.12-7.68-8.704-12.288L385.536 205.312c-11.776-14.848-30.72-14.848-42.496-3.072-11.776 11.776-11.776 30.72 0 42.496l265.216 268.288-267.264 264.192c-11.776 12.288-12.288 31.232 0 43.52z" fill="#5197D5" p-id="5523">
                   </path>
                 </svg>
               </div>
@@ -112,7 +112,7 @@
                 </div>
                 <div class="utxo-list">
                   <div class="summary-item">
-                    Inputs ({{ tx.outputs.length }})&nbsp;
+                    Outputs ({{ tx.outputs.length }})&nbsp;
                     <span class="monospace">{{tx.outputValue | metrix(8)}} MRX</span>
                   </div>
                   <div class="utxo" v-for="output in tx.outputs">

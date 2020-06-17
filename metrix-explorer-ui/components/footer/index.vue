@@ -4,7 +4,7 @@
       <p class="footer-title">About Us</p>
       <div class="footer-main">
         <div class="footer-info">
-          <span>Metrixcoin.info is the official blockchain explorer of Metrixcoin, providing blocks, addresses, transactions, contracts and staking queries and statistics service.</span>
+          <span>Explorer.metrixcoin.com is the official blockchain explorer of Metrixcoin, providing blocks, addresses, transactions, contracts and staking queries statistics service.</span>
         </div>
         <div class="footer-dispose">
           <!--

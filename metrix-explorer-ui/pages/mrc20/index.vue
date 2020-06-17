@@ -15,7 +15,8 @@
           <tr v-for="(item,index) in tokens">
             <td>{{index+1}}</td>
             <td>
-              <nuxt-link :to="{name:'contract-id',params:{id:item.addressHex}}">{{item.name}}</nuxt-link>
+              <span class="token-name" :class="`token-${item.addressHex}`"></span>
+              <nuxt-link class="mrx-link" :to="{name:'mrc20-id',params:{id:item.address}}">{{item.name}}</nuxt-link>
             </td>
             <td>{{item.totalSupply | mrc20(item.decimals, true)}}</td>
             <td>{{item.transactions}}</td>

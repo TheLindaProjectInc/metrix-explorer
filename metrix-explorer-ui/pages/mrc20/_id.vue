@@ -2,7 +2,7 @@
   <div class="container">
     <Panel title="Token Overview" width="100%" noMargin="true">
       <div class="address-info">
-        <div class="address-info list-left">
+        <div class="address-info-left list">
           <ul class="border">
             <li>
               <div class="item-title">Name</div>
@@ -26,7 +26,7 @@
             </li>
           </ul>
         </div>
-        <div class="address-info list-right">
+        <div class="address-info-right list">
           <ul>
             <li>
               <div class="item-title">Contract Address</div>

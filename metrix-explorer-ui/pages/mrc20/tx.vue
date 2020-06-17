@@ -51,6 +51,42 @@
           </tr>
         </tbody>
       </table>
+      <div class="contractTx-table" v-for="tx of transactions">
+        <div class="contractTx-id">
+          <div class="content">
+            <nuxt-link class="mrx-link break-word monospace" :to="{name: 'tx-id', params: {id: tx.transactionId}}">{{tx.transactionId | format(15,15)}}</nuxt-link>
+          </div>
+        </div>
+        <div class="contractTx-info" >
+          <div class="contractTx-info-item">
+            <div class="title">Time</div>
+            <div class="content">{{tx.timestamp | timestamp}}</div>
+          </div>
+          <div class="contractTx-info-item">
+            <div class="title">Value</div>
+            <div class="content">
+              {{tx.value | metrix(1)}} 
+              <nuxt-link class="mrx-link break-word monospace" :to="{name: 'mrc20-id', params: {id: tx.token.address}}">{{tx.token.symbol}}</nuxt-link>
+            </div>
+          </div>
+        </div>
+        <div class="contractTx-info" >
+          <div class="contractTx-info-item">
+            <div class="title">Receiver</div>
+            <div class="content">
+              <nuxt-link class="mrx-link break-word monospace" :to="{name: tx.fromHex ? 'contract-id' : 'address-id', params: {id: tx.from}}">{{tx.from | format(10,10)}}</nuxt-link>
+            </div>
+          </div>
+        </div>
+        <div class="contractTx-info" >
+          <div class="contractTx-info-item">
+            <div class="title">Sender</div>
+            <div class="content">
+              <nuxt-link class="mrx-link break-word monospace" :to="{name: tx.toHex ? 'contract-id' : 'address-id', params: {id: tx.to}}">{{tx.to | format(10,10)}}</nuxt-link>
+            </div>
+          </div>
+        </div>
+      </div>
       <Pagination :getLink="getLink" :currentPage="currentPage" :pages="pages" />
     </Panel>
   </div>

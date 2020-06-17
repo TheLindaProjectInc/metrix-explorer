@@ -1,38 +1,39 @@
 <template>
   <div class="container">
-    <div class="panel-main">
-      <div class="panel-title">
-        <div class="logo">
-          <span style="font-size: 16px;">Address Overview</span>
-        </div>
-        <div class="star">
-          <div class="icon">
-          </div>
-          <p>Subscribe</p>
-        </div>
-      </div>
+    <Panel width="100%" title="Address Overview" noMargin="true">
       <div class="address-info">
         <div class="list">
           <ul class="border">
             <li>
               <div class="item-title">Address</div>
-              <div class="item-info address-item monospace">{{id}}</div>
+              <div class="item-info">
+                <nuxt-link class="mrx-link monospace break-word" :to="{name: 'address-id', params: {id: id}}">{{id}}</nuxt-link>
+              </div>
             </li>
             <li>
               <div class="item-title">Metrix Balance</div>
-              <div class="item-info monospace">{{ balance | metrix }} MRX</div>
+              <div class="item-info monospace">{{ balance | metrix(8) }} MRX</div>
             </li>
+            <li>
+              <div class="item-title">Unconfirmed Balance</div>
+              <div class="item-info monospace">{{ unconfirmed | metrix(8) }} MRX</div>
+            </li>            
             <li >
-              <div class="item-title">Mining Amount</div>
-              <div class="item-info monospace">{{ staking | metrix }} MRX</div>
+              <div class="item-title">Staking Balance</div>
+              <div class="item-info monospace">{{ staking | metrix(8) }} MRX</div>
             </li>
             <li>
-              <div class="item-title">Token Balance</div>
-              <div class="item-info monospace"></div>
-            </li>
-            <li>
-              <div class="item-title">Optional</div>
-              <div class="item-info monospace"></div>
+              <div class="item-title">Token Balances</div>
+              <div class="item-info monospace">
+                <div v-if="mrc20Balances.length > 0" v-for="token in mrc20Balances">
+                  {{token.balance | metrix }} 
+                  <nuxt-link class="mrx-link break-word monospace" :to="{name: 'mrc20-id', params: {id: token.address}}">{{token.symbol}}</nuxt-link>
+                </div>
+                <div v-if="mrc721Balances.length > 0" v-for="token in mrc721Balances">
+                  {{token.balance | metrix }} 
+                  <nuxt-link class="mrx-link break-word monospace" :to="{name: 'mrc721-id', params: {id: token.address}}">{{token.symbol}}</nuxt-link>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
@@ -47,17 +48,21 @@
               <div class="item-info monospace">{{ transactionCount }}</div>
             </li>
             <li>
+              <div class="item-title">Blocks Mined</div>
+              <div class="item-info monospace">{{ blocksMined }}</div>
+            </li>            
+            <li>
               <div class="item-title">Total Received</div>
-              <div class="item-info monospace">{{ totalReceived | metrix }} MRX</div>
+              <div class="item-info monospace">{{ totalReceived | metrix(8) }} MRX</div>
             </li>
             <li>
               <div class="item-title">Total Sent</div>
-              <div class="item-info monospace">{{ totalSent | metrix }} MRX</div>
+              <div class="item-info monospace">{{ totalSent | metrix(8) }} MRX</div>
             </li>
           </ul>
         </div>
       </div>
-    </div>
+    </Panel>
     <Panel :address="address" class="address-detail panel-main margin">
       <nuxt-child></nuxt-child>
     </Panel>
@@ -95,6 +100,11 @@ export default {
         {
           link: "address-id-balance",
           name: "Balance Change",
+          id: this.$route.params.id
+        },
+        {
+          link: "address-id-token-balance",
+          name: "Token Balance Change",
           id: this.$route.params.id
         }
       ]

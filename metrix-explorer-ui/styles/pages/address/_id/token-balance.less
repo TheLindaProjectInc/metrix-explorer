@@ -1,3 +1,12 @@
+.select-token {
+    display: flex;
+    flex-flow: wrap;
+    margin-bottom: 1em;
+    .radio {
+      margin-right: 1em;
+    }
+}
+
 table {
     thead {
         tr {
@@ -11,27 +20,19 @@ table {
 
             td:nth-child(1) {
                 padding: .size(30px) [] 0 .size(20px) [] .size(30px) [];
-                width: .size(410px)[];
+                width: 30%;
             }
 
             td:nth-child(2) {
-                width: .size(200px)[];
+                width: 40%;
             }
 
             td:nth-child(3) {
-                width: .size(250px)[];
+                width: 20%;
             }
 
             td:nth-child(4) {
-                width: .size(280px)[];
-            }
-
-            td:nth-child(5) {
-                width: .size(260px)[];
-            }
-
-            td:nth-child(6) {
-                width: .size(150px)[];
+                width: 10%;
             }
         }
     }
@@ -40,12 +41,13 @@ table {
         tr {
             td {
                 font-size: .size(20px) [];
-            }
-            td:nth-child(1) {
-                padding: .size(30px) [] 0 .size(20px) [] .size(30px) [];
                 a {
                     color: @metrix-blue;
                 }
+            }
+
+            td:nth-child(1) {
+                padding: .size(30px) [] 0 .size(20px) [] .size(30px) [];
             }
         }
     }

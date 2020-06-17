@@ -23,15 +23,15 @@
       <table v-else class="table is-fullwidth is-bordered is-striped">
         <thead>
           <tr v-if="responsive.isTablet">
-            <th>{{ $t('address.timestamp') }}</th>
             <th>{{ $t('address.transaction_id') }}</th>
+            <th>{{ $t('address.timestamp') }}</th>
             <th>{{ $t('address.token_balances') }}</th>
             <th>{{ $t('address.changes') }}</th>
           </tr>
           <template v-else>
             <tr>
-              <th>{{ $t('address.timestamp') }}</th>
               <th>{{ $t('address.transaction_id') }}</th>
+              <th>{{ $t('address.timestamp') }}</th>
             </tr>
             <tr>
               <th>{{ $t('address.token_balances') }}</th>
@@ -42,10 +42,10 @@
         <tbody>
           <template v-for="{id, timestamp, tokens} in transactions">
             <tr v-if="responsive.isTablet">
-              <td>{{ timestamp | timestamp }}</td>
               <td>
                 <TransactionLink :transaction="id" />
               </td>
+              <td>{{ timestamp | timestamp }}</td>
               <td class="monospace">
                 <div v-for="{addressHex, name, symbol, decimals, balance} in tokens">
                   {{ balance.replace('-', '') | mrc20(decimals) }}
@@ -68,10 +68,10 @@
             </tr>
             <template v-else>
               <tr>
-                <td>{{ timestamp | timestamp }}</td>
                 <td>
                   <TransactionLink :transaction="id" />
                 </td>
+                <td>{{ timestamp | timestamp }}</td>
               </tr>
               <tr>
                 <td class="monospace">
@@ -207,15 +207,5 @@
 </script>
 
 <style lang="less" scoped>
-  .select-token {
-    display: flex;
-    flex-flow: wrap;
-    margin-bottom: 1em;
-    .radio {
-      margin-right: 1em;
-    }
-  }
-  .pagination {
-    padding: 1em;
-  }
+@import url("../../../styles/pages/address/_id/token-balance.less");
 </style>

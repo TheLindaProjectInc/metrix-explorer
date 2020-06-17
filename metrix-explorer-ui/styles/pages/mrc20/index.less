@@ -2,51 +2,118 @@ table {
     thead {
         tr {
             td {
-                font-size: .size(22px) [];
+                font-size: .9rem;
                 color: @font-gray;
                 background: @white;
                 position: sticky;
                 top: 0;
+                z-index: 2;
             }
 
-            td:nth-child(1) {
-                padding: .size(30px) [] 0 .size(20px) [] .size(30px) [];
-                width: .size(65px)[];
+            td:first-child {
+                padding: 1.5rem 0 1rem 1.5rem;
+                width: 6.25rem;
             }
 
             td:nth-child(2) {
-                width: .size(430px)[];
+                width: 21.5rem;
             }
 
             td:nth-child(3) {
-                width: .size(430px)[];
+                width: 26.5rem;
+                text-align: right;
+                padding-right: 13rem;
             }
 
             td:nth-child(4) {
-                width: .size(370px)[];
+                width: 18.5rem;
             }
 
             td:nth-child(5) {
-                width: .size(240px)[];
+                width: 12rem;
             }
         }
     }
 
     tbody {
         tr {
+            text-align: left;
+
             td {
-                font-size: .size(20px) [];
+                font-size: 1rem;
+                height: 1rem;
+                box-sizing: border-box;
             }
 
-            td:nth-child(1) {
-                padding: .size(30px) [] 0 .size(20px) [] .size(30px) [];
+            td:first-child {
+                padding: 1.5rem 0 1rem 1.5rem;
             }
 
             td:nth-child(2) {
-                >a {
-                    color: @metrix-blue
+                .token-name {
+                    height: 1.5rem;
+                    width: 1.5rem;
+                    float: left;
+                    position: relative;
+                    top: -.25rem;
+                    margin-right: .4rem;
+                    background-size: 100% 100%;
+                }
+
+                .token-e0e57cff9ed38cc5cd79e79aa25a241d13d9ad5c {
+                    background-image: url(~assets/images/tokens/mrxt.png);
+                }
+            }
+
+            td:nth-child(3) {
+                box-sizing: border-box;
+                word-break: break-word;
+                text-align: right;
+                padding-right: 13rem;
+                width: 26.5rem;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .container {
+        width: 100%;
+    }
+
+    table {
+        thead {
+            tr {
+
+                td:first-child {
+                    padding: 1.5rem;
+                    width: auto;
+                }
+
+                td:nth-child(2) {
+                    width: 40%;
+                }
+
+                td:nth-child(3) {
+                    padding-right: 1rem;
                 }
             }
         }
+
+        tbody {
+            tr {
+                td:nth-child(3) {
+                    padding: 0 1rem 0 0;
+                }
+            }
+        }
+    }
+
+    table thead tr td:nth-child(4), table thead tr td:nth-child(5), table tbody tr td:nth-child(4), table tbody tr td:nth-child(5) {
+        display: none;
+    }
+
+    .margin {
+        margin-bottom: 1rem;
     }
 }

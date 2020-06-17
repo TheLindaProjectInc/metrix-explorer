@@ -105,7 +105,7 @@ export default {
   },
   methods: {
     unfold() {
-      this.fold = !this.fold;
+      this.fold = false;
     }
   }
 };

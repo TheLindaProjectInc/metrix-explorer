@@ -5,23 +5,20 @@
     .border {
         border-right: 1px solid @font-gray;
         border-style: dashed;
+        padding-right: 2rem;
     }
 
-    .list-left {
-        height: .size(165px)[];
-        width: 45%;
-        padding: 2.5rem 0 2.5rem 1.75rem;
-
-
+    .list {
+        padding: 2.5rem 0 2.75rem 1.75rem;
 
         ul {
             li {
                 display: flex;
                 justify-content: space-between;
                 font-size: .9rem;
-                padding: 0.45rem 2rem 0.45rem 0;;
-                width: 29.25rem;
+                padding: 0.45rem 2rem 0.45rem 0;
                 height: 1.25rem;
+                width: 100%;
 
                 .item-title {
                     color: @font-gray;
@@ -54,41 +51,42 @@
         }
     }
 
-    .list-right {
-        width: 55%;
-        padding: 2.5rem 0 2.5rem 1.5rem;
-
-        ul {
-            li {
-                display: flex;
-                justify-content: space-between;
-                font-size: 0.9rem;
-                padding: .45rem 2rem .45rem 0;;
-                width: 35.25rem;
-
-                .item-title {
-                    color: @font-gray;
-                }
-
-                .item-info {
-                    word-break: break-all
-                }
-
-                .value {
-                    max-width: 60%;
-                    line-height: 1.2;
-                    text-align: right
-                }
-            }
-        }
+    .list:first-child {
+        width: 45%
     }
 
     .list:nth-child(2){
-        padding-left: 75px;
+        width: 49%;
     }
+
 }
 
 .deal-detail {
     margin-top: .size(10px)[];
     width: 100%;
+}
+
+@media only screen and (max-width: 1024px) {
+
+    .address-info {
+        display: block;
+        padding: 1rem;
+
+        .border {
+            padding-right: 0;
+        }
+
+        .list {
+            width: 100%!important;
+            padding: 0;
+
+            ul {
+                border: none;
+
+                li {
+                    padding: .5rem 0;
+                }
+            }
+        }
+    }
 }

@@ -39,7 +39,7 @@
         </div>
       </div>
     </Panel>
-    <Panel width="100%" :address="panelAddress" class="address-detail">
+    <Panel width="100%" :address="panelAddress" class="address-detail margin">
       <nuxt-child :mrc20="mrc20"></nuxt-child>
     </Panel>
   </div>

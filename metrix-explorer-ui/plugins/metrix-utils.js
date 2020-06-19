@@ -18,6 +18,7 @@ Vue.filter('metrix', (satoshis, precision = null) => {
 
 Vue.filter('mrc20', (amount, decimals = 0, showDecimals = false) => {
   if (decimals === 0) {
+    amount = addAmountDelimiters(amount.toString())
     return amount
   }
   let s = amount.toString().padStart(decimals + 1, '0')

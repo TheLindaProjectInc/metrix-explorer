@@ -56,7 +56,7 @@
           </div>
         </div>
         <div class="transaction">
-          <div class="detail">
+          <div class="detail tx-detail">
             <div class="utxo-list input-list">
               <div class="summary-item">
                 Inputs ({{inputs.length}})&nbsp;
@@ -98,7 +98,7 @@
               <div class="utxo" v-for="output in outputs">
                 <div class="is-pulled-left">
                   <div class="utxo-address">
-                    <nuxt-link class="mrx-link break-work monospace" v-if="output.address" :to="{name: 'address-id', params: {id: output.address}}">{{output.address}}</nuxt-link>
+                    <nuxt-link class="mrx-link break-work monospace" v-if="output.address" :to="{name: (output.addressHex ? 'contract-id' : 'address-id'), params: {id: (output.addressHex ? output.addressHex : output.address)}}">{{output.addressHex ? output.addressHex : output.address}}</nuxt-link>
                     <span v-else>Empty Output</span>
                   </div>
                   <div class="utxo-type">
@@ -113,8 +113,114 @@
                 </div>
                 <div class="is-pulled-right">
                   <div class="utxo-value monospace">
-                    {{output.value | metrix(8)}}
-                    <span class="symbol">MRX</span>
+                    <div v-if="output.scriptPubKey.type === 'evm_call_sender'">Contract Call</div>
+                    <div v-else>{{output.value | metrix(8)}}
+                      <span class="symbol">MRX</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="detail gasrefund" v-if="refundValue > 0">
+            <div class="utxo-list">
+              <div class="utxo">
+                <div class="is-pulled-left">
+                  <div class="utxo-address">Gas refund</div>
+                </div>
+              </div>
+            </div>
+            <div class="utxo-list">
+              <div class="utxo">
+                <div class="is-pulled-left">
+                  <div class="utxo-address">
+                    <nuxt-link class="mrx-link break-work monospace" :to="{name: 'address-id', params: {id: inputs[0].address}}">{{ inputs[0].address }}</nuxt-link>
+                  </div>
+                </div>
+                <div class="is-pulled-right">
+                  <div class="utxo-value monospace">
+                    {{refundValue | metrix(8)}} MRX
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="detail mrc-detail" v-if="mrc20TokenTransfers" v-for="mrc20 in mrc20TokenTransfers">
+            <div class="utxo-list input-list">
+              <div class="utxo">
+                <div class="is-pulled-left">
+                  <div class="utxo-address">
+                    <nuxt-link class="mrx-link break-work monospace" :to="{name: 'address-id', params: {id: mrc20.from }}">{{ mrc20.from }}</nuxt-link>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="utxo-list">
+              <div class="utxo">
+                <div class="is-pulled-left">
+                  <div class="utxo-address">
+                    <nuxt-link class="mrx-link break-work monospace" :to="{name: 'address-id', params: {id: mrc20.to }}">{{ mrc20.to }}</nuxt-link>
+                  </div>
+                </div>
+                <div class="is-pulled-right">
+                  <div class="utxo-value monospace">
+                    {{mrc20.value | mrc20 }} 
+                    <nuxt-link class="mrx-link break-work monospace" :to="{name: 'mrc20-id', params: {id: mrc20.address }}">{{ mrc20.symbol }}</nuxt-link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div v-for="output in outputs">
+            <div class="receipt-list" v-if="output.receipt &&  !(output.address === '0000000000000000000000000000000000000089' || output.address === '0000000000000000000000000000000000000090')">
+              <div class="receipt">
+                <div class="receipt-item">
+                  <div class="info-title">
+                    Sender
+                  </div>
+                  <div class="info-value">
+                    {{ output.receipt.sender }}
+                  </div>
+                </div>
+                <div class="receipt-item">
+                  <div class="info-title">
+                    Contract Address
+                  </div>
+                  <div class="info-value">
+                    {{ output.receipt.contractAddress }}
+                  </div>
+                </div>
+                <div class="receipt-item">
+                  <div class="info-title">
+                    Gas Used
+                  </div>
+                  <div class="info-value monospace">
+                    {{ output.receipt.gasUsed | mrc20 }}
+                  </div>
+                </div>
+                <div class="receipt-item">
+                  <div class="info-title">
+                    Event Logs
+                  </div>
+                  <div class="info-value">
+                    <ul class="event-log" v-for="log in output.receipt.logs">
+                      <li class="event-log-item">
+                        <span class="key">Address</span>
+                          <nuxt-link class="mrx-link break-work monospace" :to="{name: 'contract-id', params: {id: log.address }}">{{ log.address }}</nuxt-link>
+                      </li>
+                      <li class="event-log-item">
+                        <span class="key">Topic</span>
+                        <ul class="topic-list monospace">
+                          <li class="topic" v-for="item in log.topics">
+                            {{ item }}
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="event-log-item">
+                        <span class="key">Data</span>
+                        <span class="event-log-data monospace">{{ log.data }}</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>

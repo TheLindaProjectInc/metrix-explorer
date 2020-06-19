@@ -36,7 +36,7 @@
               </div>
             </td>
             <td>
-            {{tx.value | metrix(1)}} 
+            {{ tx.value | mrc20(tx.token.decimals) }} 
             <nuxt-link class="mrx-link break-word monospace" :to="{name: 'mrc20-id', params: {id: tx.token.address}}">{{tx.token.symbol}}</nuxt-link>
             </td>
             <td>
@@ -65,7 +65,7 @@
           <div class="contractTx-info-item">
             <div class="title">Value</div>
             <div class="content">
-              {{tx.value | metrix(1)}} 
+              {{tx.value | mrc20(tx.token.decimals) }} 
               <nuxt-link class="mrx-link break-word monospace" :to="{name: 'mrc20-id', params: {id: tx.token.address}}">{{tx.token.symbol}}</nuxt-link>
             </div>
           </div>

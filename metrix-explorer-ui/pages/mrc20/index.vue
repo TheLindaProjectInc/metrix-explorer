@@ -18,7 +18,7 @@
               <span class="token-name" :class="`token-${item.addressHex}`"></span>
               <nuxt-link class="mrx-link" :to="{name:'mrc20-id',params:{id:item.address}}">{{item.name}}</nuxt-link>
             </td>
-            <td>{{item.totalSupply | mrc20(item.decimals, true)}}</td>
+            <td>{{item.totalSupply | mrc20(item.decimals)}}</td>
             <td>{{item.transactions}}</td>
             <td>{{item.holders}}</td>
           </tr>

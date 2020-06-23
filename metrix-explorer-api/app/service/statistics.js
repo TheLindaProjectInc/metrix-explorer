@@ -37,6 +37,17 @@ class StatisticsService extends Service {
     return result.map(({blockInterval, count}) => ({interval: blockInterval, count, percentage: count / total}))
   }
 
+  async getBlockInterval24hStatistics() {
+    const db = this.ctx.model
+    const {sql} = this.ctx.helper
+    let blockInterval24 = await db.query(sql`
+      SELECT AVG(header.timestamp - prev_header.timestamp) AS blockInterval FROM header 
+      INNER JOIN header prev_header ON prev_header.height = header.height - 1 
+      WHERE header.height > (select height from header where timestamp > (UNIX_TIMESTAMP() - 86400) limit 1);
+    `, {type: db.QueryTypes.SELECT, transaction: this.ctx.state.transaction})
+    return blockInterval24
+  }
+
   async getAddressGrowth() {
     const db = this.ctx.model
     const {Address} = db

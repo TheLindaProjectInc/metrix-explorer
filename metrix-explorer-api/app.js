@@ -30,6 +30,13 @@ module.exports = app => {
     await app.redis.hset(app.name, 'block-interval', JSON.stringify(blockInterval))
   })
 
+  app.messenger.on('update-block-interval24h', async () => {
+    let ctx = app.createAnonymousContext()
+    let blockInterval24h = await ctx.service.statistics.getBlockInterval24hStatistics()
+    await app.redis.hset(app.name, 'block-interval24h', JSON.stringify(blockInterval24h))
+    namespace.to('blockchain').emit('block-interval24h', blockInterval24h)
+  })
+
   app.messenger.on('update-address-growth', async () => {
     let ctx = app.createAnonymousContext()
     let addressGrowth = await ctx.service.statistics.getAddressGrowth()

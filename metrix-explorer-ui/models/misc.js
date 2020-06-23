@@ -13,6 +13,10 @@ class Misc {
     return MetrixinfoAPI.get('/stats/block-interval', options)
   }
 
+  static blockInterval24h(options = {}) {
+    return MetrixinfoAPI.get('/stats/block-interval24h', options)
+  }
+
   static coinstake(options = {}) {
     return MetrixinfoAPI.get('/stats/coinstake', options)
   }

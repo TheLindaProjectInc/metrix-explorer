@@ -18,6 +18,12 @@ class StatisticsController extends Controller {
     ctx.body = blockInterval
   }
 
+  async blockInterval24h() {
+    const {app, ctx} = this
+    let blockInterval24h = JSON.parse(await app.redis.hget(app.name, 'block-interval24h') || '[]')
+    ctx.body = blockInterval24h
+  }
+
   async addressGrowth() {
     const {app, ctx} = this
     let addressGrowth = JSON.parse(await app.redis.hget(app.name, 'address-growth') || '[]')

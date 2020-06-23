@@ -204,6 +204,7 @@ module.exports = app => {
 
   router.get('/stats/daily-transactions', controller.statistics.dailyTransactions)
   router.get('/stats/block-interval', controller.statistics.blockInterval)
+  router.get('/stats/block-interval24h', controller.statistics.blockInterval24h)
   router.get('/stats/address-growth', controller.statistics.addressGrowth)
 
   io.route('subscribe', io.controller.default.subscribe)

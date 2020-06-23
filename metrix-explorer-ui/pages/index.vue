@@ -152,7 +152,7 @@ export default {
         },
         {
           img: "distance",
-          describe: "Block Interval",
+          describe: "Block Interval (Seconds)",
           number: 0
         },
         {
@@ -177,13 +177,13 @@ export default {
         recentTransactions,
         { netStakeWeight, feeRate, supply, blockchainInfo},
         dailyTransactions,
-        blockInterval
+        blockInterval24h
       ] = await Promise.all([
         Block.getRecentBlocks({ ip: req && req.ip }),
         Transaction.getRecentTransactions({ ip: req && req.ip }),
         Misc.info({ ip: req && req.ip }),
         Misc.dailyTransactions({ ip: req && req.ip }),
-        Misc.blockInterval({ ip: req && req.ip })
+        Misc.blockInterval24h({ ip: req && req.ip })
       ]);
        dailyTransactions = dailyTransactions.slice(-31, -1);
       return {
@@ -194,7 +194,7 @@ export default {
         feeRate,
         blockchainInfo,
         dailyTransactions,
-        blockInterval
+        blockInterval24h
       };
     } catch (err) {
       if (err instanceof RequestError) {
@@ -233,6 +233,7 @@ export default {
       this.icons[4].number = Math.round(dailyStats.transactionVolume / 1e8).toLocaleString()
       this.icons[5].number = Math.round(this.blockchainInfo.moneysupply).toLocaleString();
       this.icons[6].number = Math.round(this.netStakeWeight / 1e8).toLocaleString();
+      this.icons[7].number = parseFloat(this.blockInterval24h[0].blockInterval).toFixed(2);
       this.icons[8].number = Math.round(this.blockchainInfo.difficulty).toLocaleString();
 
     },

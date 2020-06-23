@@ -44,12 +44,21 @@
             <div class="item-time" v-else>
               {{tx.timestamp | timestamp}}
             </div>
-            <div class="item-value">{{tx.outputValue | metrix(4)}} MRX</div>
+            <div class="item-value" v-if="tx.mrc20TokenTransfers">
+              <div v-for="mrc20 in tx.mrc20TokenTransfers">
+                {{mrc20.value | mrc20(mrc20.decimals)}} 
+                <nuxt-link class="mrx-link break-word monospace" :to="{name: 'mrc20-id', params: {id: mrc20.addressHex}}">{{mrc20.symbol}}</nuxt-link>
+              </div>
+            </div>
+            <div class="item-value" v-else>
+              {{tx.outputValue | metrix(4)}} MRX
+            </div>
             <div class="item-fee">{{tx.fees | metrix(4)}}</div>
             <div class="item-type" v-if="tx.isCoinbase">Coinbase</div>
             <div class="item-type" v-else-if="tx.isCoinstake">Coinstake</div>
             <div class="item-type" v-else-if="tx.inputs[0].address === '0000000000000000000000000000000000000090' || 
               tx.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
+            <div class="item-type" v-else-if="tx.mrc20TokenTransfers">Token Transfer</div>
             <div class="item-type" v-else>MRX Transfer</div>
             <div class="item-confirm">{{tx.confirmations}}</div>
           </div>
@@ -63,7 +72,15 @@
             </div>
             <div class="item">
               <div class="title">Value</div>
-              <div class="content">{{tx.outputValue | metrix(4)}} MRX</div>
+              <div class="content" v-if="tx.mrc20TokenTransfers">
+                <div v-for="mrc20 in tx.mrc20TokenTransfers">
+                  {{mrc20.value | mrc20(mrc20.decimals)}} 
+                  <nuxt-link class="mrx-link break-word monospace" :to="{name: 'mrc20-id', params: {id: mrc20.addressHex}}">{{mrc20.symbol}}</nuxt-link>
+                </div>
+              </div>
+              <div class="content" v-else>
+                {{tx.outputValue | metrix(4)}} MRX
+              </div>
             </div>
             <div class="item">
               <div class="title">Fee</div>
@@ -75,6 +92,7 @@
               <div class="content" v-else-if="tx.isCoinstake">Coinstake</div>
               <div class="content" v-else-if="tx.inputs[0].address === '0000000000000000000000000000000000000090' || 
                 tx.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
+              <div class="content" v-else-if="tx.mrc20TokenTransfers">Token Transfer</div>
               <div class="content" v-else>MRX Transfer</div>
             </div>
             <div class="item">
@@ -147,6 +165,32 @@
                     <div class="is-pulled-right">
                       <div class="utxo-value monospace">
                         {{tx.refundValue | metrix(8)}} MRX
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="detail mrc-detail" v-if="tx.mrc20TokenTransfers" v-for="mrc20 in tx.mrc20TokenTransfers">
+                <div class="utxo-list input-list">
+                  <div class="utxo">
+                    <div class="is-pulled-left">
+                      <div class="utxo-address">
+                        <nuxt-link class="mrx-link break-work monospace" :to="{name: 'address-id', params: {id: mrc20.from }}">{{ mrc20.from }}</nuxt-link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="utxo-list">
+                  <div class="utxo">
+                    <div class="is-pulled-left">
+                      <div class="utxo-address">
+                        <nuxt-link class="mrx-link break-work monospace" :to="{name: 'address-id', params: {id: mrc20.to }}">{{ mrc20.to }}</nuxt-link>
+                      </div>
+                    </div>
+                    <div class="is-pulled-right">
+                      <div class="utxo-value monospace">
+                        {{mrc20.value | mrc20(mrc20.decimals,true) }} 
+                        <nuxt-link class="mrx-link break-work monospace" :to="{name: 'mrc20-id', params: {id: mrc20.address }}">{{ mrc20.symbol }}</nuxt-link>
                       </div>
                     </div>
                   </div>

@@ -29,64 +29,64 @@
         </div>
         <div class="table-body" v-for="tx of transactions">
           <div class="table-body-item">
-              <div class="item-id">
-                <div class="spread" @click="collapsed(tx.id)">
-                  <svg t="1589358527313" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4641" width="18" height="18" class="icon">
-                    <path d="M821 563.2H566.2v254.9c0 28.1-22.8 51-51 51-28.1 0-51-22.8-51-51V563.2H209.4c-28.1 0-51-22.8-51-51 0-28.1 22.8-51 51-51h254.8V206.4c0-28.1 22.8-51 51-51s51 22.8 51 51v254.9H821c28.2 0 51 22.8 51 51 0 28.1-22.8 50.9-51 50.9z" p-id="4642" fill="#5197D5">
-                    </path>
-                  </svg>
-                </div>
-                <nuxt-link class="mrx-link break-word monospace" :to="{name: 'tx-id', params: {id: tx.id}}">{{tx.id | format(10,10)}}</nuxt-link>
-              </div>
-              <div class="item-time" v-if="timetoggle">
-                <FromNow :timestamp="tx.timestamp" />
-              </div>
-              <div class="item-time" v-else>
-                {{tx.timestamp | timestamp}}
-              </div>
-              <div class="item-value">{{tx.outputValue | metrix(4)}} MRX</div>
-              <div class="item-fee">{{tx.fees | metrix(4)}}</div>
-              <div class="item-type" v-if="tx.isCoinbase">Coinbase</div>
-              <div class="item-type" v-else-if="tx.isCoinstake">Coinstake</div>
-              <div class="item-type" v-else-if="tx.inputs[0].address === '0000000000000000000000000000000000000090' || 
-                tx.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
-              <div class="item-type" v-else>MRX Transfer</div>
-              <div class="item-confirm">{{tx.confirmations}}</div>
-          </div>
-          <div class="mobile-body">
-              <div class="item">
-                <nuxt-link class="mrx-link break-word monospace" :to="{name: 'tx-id', params: {id: tx.id}}">{{tx.id | format(10,10)}}</nuxt-link>
-              </div>
-              <div class="item">
-                <div class="title">Time</div>
-                <div class="content">{{tx.timestamp | timestamp}}</div>
-              </div>
-              <div class="item">
-                <div class="title">Value</div>
-                <div class="content">{{tx.outputValue | metrix(4)}} MRX</div>
-              </div>
-              <div class="item">
-                <div class="title">Fee</div>
-                <div class="content">{{tx.fees | metrix(4)}} MRX</div>
-              </div>
-              <div class="item">
-                <div class="title">Type</div>
-                <div class="content" v-if="tx.isCoinbase">Coinbase</div>
-                <div class="content" v-else-if="tx.isCoinstake">Coinstake</div>
-                <div class="content" v-else-if="tx.inputs[0].address === '0000000000000000000000000000000000000090' || 
-                  tx.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
-                <div class="content" v-else>MRX Transfer</div>
-              </div>
-              <div class="item">
-                <div class="title">Confirmations</div>
-                <div class="content">{{tx.confirmations}}</div>
-              </div>
-              <div class="arrow-icon" @click="collapsed(tx.id)" >
-                <svg :class="{down : opened.includes(tx.id)}" t="1589364875852" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5522" width="24" height="24" class="icon">
-                  <path d="M340.992 820.736c11.776 11.776 31.232 11.776 43.008 3.072l287.232-287.232c8.704-11.264 11.264-25.088 6.656-35.84-0.512-2.56-5.12-7.68-8.704-12.288L385.536 205.312c-11.776-14.848-30.72-14.848-42.496-3.072-11.776 11.776-11.776 30.72 0 42.496l265.216 268.288-267.264 264.192c-11.776 12.288-12.288 31.232 0 43.52z" fill="#5197D5" p-id="5523">
+            <div class="item-id">
+              <div class="spread" @click="collapsed(tx.id)">
+                <svg t="1589358527313" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4641" width="18" height="18" class="icon">
+                  <path d="M821 563.2H566.2v254.9c0 28.1-22.8 51-51 51-28.1 0-51-22.8-51-51V563.2H209.4c-28.1 0-51-22.8-51-51 0-28.1 22.8-51 51-51h254.8V206.4c0-28.1 22.8-51 51-51s51 22.8 51 51v254.9H821c28.2 0 51 22.8 51 51 0 28.1-22.8 50.9-51 50.9z" p-id="4642" fill="#5197D5">
                   </path>
                 </svg>
               </div>
+              <nuxt-link class="mrx-link break-word monospace" :to="{name: 'tx-id', params: {id: tx.id}}">{{tx.id | format(10,10)}}</nuxt-link>
+            </div>
+            <div class="item-time" v-if="timetoggle">
+              <FromNow :timestamp="tx.timestamp" />
+            </div>
+            <div class="item-time" v-else>
+              {{tx.timestamp | timestamp}}
+            </div>
+            <div class="item-value">{{tx.outputValue | metrix(4)}} MRX</div>
+            <div class="item-fee">{{tx.fees | metrix(4)}}</div>
+            <div class="item-type" v-if="tx.isCoinbase">Coinbase</div>
+            <div class="item-type" v-else-if="tx.isCoinstake">Coinstake</div>
+            <div class="item-type" v-else-if="tx.inputs[0].address === '0000000000000000000000000000000000000090' || 
+              tx.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
+            <div class="item-type" v-else>MRX Transfer</div>
+            <div class="item-confirm">{{tx.confirmations}}</div>
+          </div>
+          <div class="mobile-body">
+            <div class="item">
+              <nuxt-link class="mrx-link break-word monospace" :to="{name: 'tx-id', params: {id: tx.id}}">{{tx.id | format(10,10)}}</nuxt-link>
+            </div>
+            <div class="item">
+              <div class="title">Time</div>
+              <div class="content">{{tx.timestamp | timestamp}}</div>
+            </div>
+            <div class="item">
+              <div class="title">Value</div>
+              <div class="content">{{tx.outputValue | metrix(4)}} MRX</div>
+            </div>
+            <div class="item">
+              <div class="title">Fee</div>
+              <div class="content">{{tx.fees | metrix(4)}} MRX</div>
+            </div>
+            <div class="item">
+              <div class="title">Type</div>
+              <div class="content" v-if="tx.isCoinbase">Coinbase</div>
+              <div class="content" v-else-if="tx.isCoinstake">Coinstake</div>
+              <div class="content" v-else-if="tx.inputs[0].address === '0000000000000000000000000000000000000090' || 
+                tx.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
+              <div class="content" v-else>MRX Transfer</div>
+            </div>
+            <div class="item">
+              <div class="title">Confirmations</div>
+              <div class="content">{{tx.confirmations}}</div>
+            </div>
+            <div class="arrow-icon" @click="collapsed(tx.id)" >
+              <svg :class="{down : opened.includes(tx.id)}" t="1589364875852" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5522" width="24" height="24" class="icon">
+                <path d="M340.992 820.736c11.776 11.776 31.232 11.776 43.008 3.072l287.232-287.232c8.704-11.264 11.264-25.088 6.656-35.84-0.512-2.56-5.12-7.68-8.704-12.288L385.536 205.312c-11.776-14.848-30.72-14.848-42.496-3.072-11.776 11.776-11.776 30.72 0 42.496l265.216 268.288-267.264 264.192c-11.776 12.288-12.288 31.232 0 43.52z" fill="#5197D5" p-id="5523">
+                </path>
+              </svg>
+            </div>
           </div>
           <div class="table-body-detail" v-if="opened.includes(tx.id)">
             <div class="transaction collapsed">
@@ -124,6 +124,29 @@
                     <div class="is-pulled-right">
                       <div class="utxo monospace">
                         {{output.value | metrix(8)}} MRX
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="detail gasrefund" v-if="tx.refundValue > 0">
+                <div class="utxo-list">
+                  <div class="utxo">
+                    <div class="is-pulled-left">
+                      <div class="utxo-address">Gas refund</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="utxo-list">
+                  <div class="utxo">
+                    <div class="is-pulled-left">
+                      <div class="utxo-address">
+                        <nuxt-link class="mrx-link break-work monospace" :to="{name: 'address-id', params: {id: tx.inputs[0].address}}">{{ tx.inputs[0].address }}</nuxt-link>
+                      </div>
+                    </div>
+                    <div class="is-pulled-right">
+                      <div class="utxo-value monospace">
+                        {{tx.refundValue | metrix(8)}} MRX
                       </div>
                     </div>
                   </div>

@@ -1,3 +1,100 @@
+.toggler {
+    color: @metrix-link;
+    .time {
+        float: left;
+    }
+    .icon {
+    margin-left: .5rem;
+    margin-top: .05rem;
+    float: left;
+    }
+}
+
+.mobile-body {
+    display: none;
+}
+
+.table {
+
+    .table-title, .table-body .table-body-item {
+        display: flex;
+        padding: 1rem 2rem;
+    }
+
+    .item-id {
+        width: 35%;
+        display: flex;
+        align-items: center;
+    }
+
+    .item-time {
+        width: 20%;
+    }
+
+    .item-balance {
+        width: 25%;
+    }
+
+    .item-amount {
+        width: 20%;
+    }
+
+}
+
+@media only screen and (max-width: 1024px) {
+    .table {
+        .table-title {
+            display: none;  
+        }
+        .table-body {
+            .table-body-item {
+                display: none;  
+            }
+        }
+        .mobile-body {
+            margin: 1rem;
+            border-bottom: 1px solid #f2f2f2;
+            position: relative;
+            display: block;
+
+            .item {
+                display: flex;
+                -webkit-box-align: center;
+                align-items: center;
+                margin: 1rem 0;
+
+                .title {
+                    color: #8d9fae;
+                    margin-right: 1rem;
+                }
+
+                .content {
+                    margin-right: 1rem;
+                }
+            }
+
+            .arrow-icon {
+                position: absolute;
+                top: 25%;
+                right: 5%;
+
+                .down {
+                    transform: rotate(90deg)
+                }
+
+                svg {
+                    transition: all .2s
+                }
+            }
+        }
+
+        .table-body-detail {
+            margin: 1rem;
+            padding: 0
+        }
+    }
+}
+
 table {
     thead {
         tr {

@@ -39,7 +39,7 @@
             <div class="item-time" v-else>
               {{item.timestamp | timestamp}}
             </div>
-            <div class="item-value">{{item.value}}</div>
+            <div class="item-value">{{item.value | mrc20(mrc20.decimals, true) }}</div>
             <div class="item-sender">
               <nuxt-link class="mrx-link break-word monospace" :to="{name: 'address-id', params: {id: item.from}}">{{item.from | format(9,9)}}</nuxt-link>
             </div>
@@ -72,7 +72,7 @@
                 Value
               </div>
               <div class="content">
-                {{item.value}}
+                {{item.value | mrc20(mrc20.decimals, true)}}
               </div>
             </div>
             <div class="item">
@@ -131,7 +131,7 @@ export default {
   async asyncData({ req, params, query, redirect, error }) {
     try {
       if (query.page && !/^[1-9]\d*$/.test(query.page)) {
-        redirect(`/contract/${params.id}/`);
+        redirect(`/mrc20/${params.id}/`);
       }
       let page = Number(query.page || 1);
       let { totalCount, transactions } = await Mrc20.getTransactions(
@@ -140,7 +140,7 @@ export default {
         { ip: req && req.ip }
       );
       if (page > 1 && totalCount <= (page - 1) * 20) {
-        redirect(`/contract/${params.id}/`, {
+        redirect(`/mrc20/${params.id}/`, {
           page: Math.ceil(totalCount / 20)
         });
       }
@@ -228,7 +228,7 @@ export default {
     this.totalCount = totalCount;
     if (page > this.pages && this.pages > 1) {
       this.$router.push({
-        name: "contract-id",
+        name: "mrc20-id",
         params: { id: this.id },
         query: { page: Math.ceil(totalCount / 20) }
       });

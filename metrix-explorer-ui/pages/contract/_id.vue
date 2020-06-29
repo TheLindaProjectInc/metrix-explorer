@@ -39,7 +39,8 @@
         </div>
       </div>
     </Panel>
-    <Panel width="100%" :address="panelAddress" class="address-detail margin">
+    <!-- <Panel width="100%" :address="panelAddress" class="address-detail margin"> -->
+    <Panel width="100%" title="Transaction List" class="address-detail margin">
       <nuxt-child :mrc20="mrc20"></nuxt-child>
     </Panel>
   </div>
@@ -72,11 +73,6 @@ export default {
         {
           link: "contract-id",
           name: "Transaction List",
-          id: this.$route.params.id
-        },
-        {
-          link: "contract-id-rich-list",
-          name: "Rich List",
           id: this.$route.params.id
         }
       ]

@@ -1,6 +1,15 @@
 <template>
   <div>
-    <table>
+    <div class="animation" v-if="loading">
+      <div class="loader">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+    <table v-else>
       <thead>
         <tr>
           <td>Rank</td>
@@ -13,7 +22,7 @@
         <tr v-for="(item,index) in list">
           <td>{{index+1}}</td>
           <td>
-            <nuxt-link :to="{name: 'address-id', params: {id: item.address}}">{{item.address}}</nuxt-link>
+            <nuxt-link class="mrx-link break-word monospace" :to="{name: 'address-id', params: {id: item.address}}">{{item.address}}</nuxt-link>
           </td>
           <td>{{ item.balance | mrc20(mrc20.decimals) }} {{ mrc20.symbol }}</td>
           <td>{{ (Number(item.balance) / Number(mrc20.totalSupply) * 100).toFixed(4) + '%' }}</td>
@@ -35,7 +44,8 @@ export default {
     return {
       totalCount: 0,
       list: [],
-      currentPage: Number(this.$route.query.page || 1)
+      currentPage: Number(this.$route.query.page || 1),
+      loading: !1
     };
   },
   props: {
@@ -85,6 +95,7 @@ export default {
     }
   },
   async beforeRouteUpdate(to, from, next) {
+    this.loading = !0;
     let page = Number(to.query.page || 1);
     let { totalCount, list } = await Contract.richList(this.id, {
       page: page - 1,
@@ -99,6 +110,7 @@ export default {
       });
       return;
     }
+    this.loading = !1;
     this.list = list;
     this.currentPage = page;
     next();

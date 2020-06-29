@@ -1,6 +1,15 @@
 <template>
   <Panel width="100%" title="Rich List" class="margin">
-    <table>
+    <div class="animation" v-if="loading">
+      <div class="loader">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+    <table v-else>
       <thead>
         <tr>
           <td>Rank</td>
@@ -12,7 +21,7 @@
       <tbody>
         <tr v-for="({address, balance}, index) of list">
           <td>{{ 100 * (currentPage - 1) + index + 1 }}</td>
-          <td><nuxt-link :to="{name:'address-id',params:{id:address}}"> {{address}}</nuxt-link></td>
+          <td><nuxt-link class="mrx-link break-word monospace" :to="{name:'address-id',params:{id:address}}"> {{address}}</nuxt-link></td>
           <td>{{ balance | metrix(8) }}</td>
           <td>{{ (balance / totalSupply * 100).toFixed(4) + '%' }}</td>
         </tr>
@@ -38,7 +47,8 @@ export default {
     return {
       totalCount: 0,
       list: [],
-      currentPage: Number(this.$route.query.page || 1)
+      currentPage: Number(this.$route.query.page || 1),
+      loading: !1
     };
   },
   async asyncData({ req, query, redirect, error }) {
@@ -92,7 +102,28 @@ export default {
     getLink(page) {
       return { name: "rich-list", query: { page } };
     }
-  }
+  },
+  async beforeRouteUpdate(to, from, next) { 
+      this.loading = !0;
+      let page = Number(to.query.page || 1);
+      let { totalCount, list } = await Misc.richList(
+        { from: (page - 1) * 100, to: page * 100 },
+        { ip: req && req.ip }
+      );
+      this.totalCount = totalCount;
+      if (page > this.pages && this.pages > 1) {
+        this.$router.push({
+          name: "/misc/rich-list",
+          query: { page: Math.ceil(totalCount / 100) }
+        });
+        return;
+      }
+      this.loading = !1;
+      this.list = list;
+      this.currentPage = page;
+      next();
+      scrollIntoView(this.$refs.list);
+  },
 };
 </script>
 <style lang="less" scoped>

@@ -1,34 +1,31 @@
-
 table {
     thead {
         tr {
             td {
-                font-size: .size(22px) [];
+                font-size: .9rem;
                 color: @font-gray;
                 background: @white;
                 position: sticky;
                 top: 0;
+                z-index: 2;
             }
 
             td:nth-child(1) {
-                padding: .size(30px) [] 0 .size(20px) [] .size(30px) [];
-                width: .size(205px)[];
+                padding: 1.5rem 2.5rem 1rem .5rem;;
+                width: 5.75rem;
+                text-align: center;
             }
 
             td:nth-child(2) {
-                width: .size(700px)[];
+                width: 32.25rem;
             }
 
             td:nth-child(3) {
-                width: .size(400px)[];
+                width: 31rem;
             }
 
             td:nth-child(4) {
-                width: .size(300px)[];
-            }
-
-            td:nth-child(5) {
-                width: .size(170px)[];
+                width: 6.5rem;
             }
         }
     }
@@ -36,16 +33,50 @@ table {
     tbody {
         tr {
             td {
-                font-size: .size(20px) [];
+                font-size: .9rem;
             }
 
             td:nth-child(1) {
-                padding: .size(30px) [] 0 .size(20px) [] .size(30px) [];
+                padding: 1.5rem 2.5rem 1rem .5rem;
+                text-align: center;
             }
+        }
+    }
+}
 
-            td:nth-child(2) {
-                >a {
-                    color: @metrix-blue
+@media only screen and (max-width: 1024px) {
+    table {
+        width: 100%;
+        thead {
+            tr {
+                td:first-child {
+                    width: 20%;
+                    box-sizing: border-box;
+                }
+
+                td:nth-child(2) {
+                    width: 50%;
+                }
+
+                td:nth-child(3) {
+                    width: 30%;
+                }
+
+                td:nth-child(4) {
+                    display: none;
+                }
+            }   
+        }
+
+        tbody {
+            tr {
+                td:first-child {
+                    padding: 1.5rem 2.5rem 1rem .5rem;
+                    text-align: center;
+                }
+
+                td:nth-child(4) {
+                    display: none;
                 }
             }
         }

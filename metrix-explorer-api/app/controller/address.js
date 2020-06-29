@@ -219,7 +219,7 @@ class AddressController extends Controller {
     let {totalCount, transactions} = await ctx.service.balance.getBalanceHistory(ctx.state.address.addressIds)
     ctx.body = {
       totalCount,
-      transactions: transactions.map(tx => ({
+      transactions: transactions != null ? transactions.map(tx => ({
         id: tx.id.toString('hex'),
         ...tx.block ? {
           blockHash: tx.block.hash.toString('hex'),
@@ -228,7 +228,7 @@ class AddressController extends Controller {
         } : {},
         amount: tx.amount.toString(),
         balance: tx.balance.toString()
-      }))
+      })) : []
     }
   }
 

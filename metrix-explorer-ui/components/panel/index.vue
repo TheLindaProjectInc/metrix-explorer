@@ -30,7 +30,7 @@
         </div>
       </template>
       <template v-if="tokens.length > 0">
-        <div class="token-select">
+        <div class="token-select" :class="{'enabled': !($route.matched.some(route => route.name === 'address-id-token-balance'))}">
           <select name="option" @change="$emit('selectedtoken', $event.target.value)">
             <option disabled="disabled">Select...</option>
             <option selected="ALL">ALL</option>

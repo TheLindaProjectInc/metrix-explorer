@@ -332,7 +332,7 @@ export default {
       this.subscribeAddress(address);
     }
     this.$subscribedAddresses = this.addresses;
-    console.log("transactions:", this.transactions);
+    //console.log("transactions:", this.transactions);
   },
   beforeDestroy() {
     for (let address of this.$subscribedAddresses) {

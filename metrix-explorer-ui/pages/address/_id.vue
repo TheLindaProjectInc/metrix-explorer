@@ -63,7 +63,7 @@
         </div>
       </div>
     </Panel>
-    <Panel :address="address" class="address-detail panel-main margin">
+    <Panel :address="address" class="address-detail panel-main margin" :tokens="mrc20Balances" @selectedtoken="selectedToken($event)" >
       <nuxt-child></nuxt-child>
     </Panel>
   </div>
@@ -107,7 +107,8 @@ export default {
           name: "Token Balance Change",
           id: this.$route.params.id
         }
-      ]
+      ],
+      currentToken: "ALL"
     };
   },
   async asyncData({ req, params, query, redirect, error }) {
@@ -148,6 +149,31 @@ export default {
     },
     removeMyAddress(address) {
       this.$store.commit("address/my-addresses/remove", address);
+    },
+    selectedToken(token) {
+      this.currentToken = token
+    }
+  },
+  watch: {
+    currentToken: function(e) {
+        if (e === "ALL") {
+          this.$router.push({
+              name: "address-id-token-balance",
+              params: {
+                  id: this.id
+              }
+          })
+        } else {
+          this.$router.push({
+              name: "address-id-token-balance",
+              params: {
+                  id: this.id
+              }, 
+              query: {
+                token : e
+              }
+          })
+        }
     }
   }
 };

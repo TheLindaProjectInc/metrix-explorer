@@ -29,12 +29,26 @@
           <i class="arrow"></i>
         </div>
       </template>
+      <template v-if="tokens.length > 0">
+        <div class="token-select">
+          <select name="option" @change="$emit('selectedtoken', $event.target.value)">
+            <option disabled="disabled">Select...</option>
+            <option selected="ALL">ALL</option>
+            <option v-for="token in tokens" :value="token.addressHex">{{token.symbol}}</option>
+          </select>
+        </div>
+      </template>
     </div>
     <slot></slot>
   </div>
 </template>
 <script>
 export default {
+  data () {
+    return {
+      currentToken : "ALL"
+    }
+  },
   props: {
     width: {
       type: String,
@@ -73,6 +87,10 @@ export default {
       default: ""
     },
     address: {
+      type: Array,
+      default: () => []
+    },
+    tokens: {
       type: Array,
       default: () => []
     }

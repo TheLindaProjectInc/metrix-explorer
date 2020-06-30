@@ -1,14 +1,5 @@
 <template>
   <div>
-    <form class="select-token" @submit.prevent>
-      <label class="radio">
-        <input type="radio" value="" v-model="selectedToken"> All
-      </label>
-      <label v-for="token in tokens" class="radio">
-        <input type="radio" :value="token.addressHex" v-model="selectedToken">
-        {{ token.name }} ({{ token.symbol }})
-      </label>
-    </form>
     <div ref="list">
       <Pagination v-if="pages > 1" :pages="pages" :currentPage="currentPage" :getLink="getLink" />
       <div class="animation" v-if="loading">
@@ -121,9 +112,6 @@
         selectedToken: ''
       }
     },
-    props: {
-      tokens: {type: Array, required: true}
-    },
     async asyncData({req, params, query, redirect, error}) {
       try {
         if (query.page && !/^[1-9]\d*$/.test(query.page)) {
@@ -132,7 +120,7 @@
         let page = Number(query.page || 1)
         let {totalCount, transactions} = await Address.getTokenBalanceTransactions(
           params.id,
-          {page: page - 1, pageSize: 100, tokens: query.tokens},
+          {page: page - 1, pageSize: 100, tokens: query.token},
           {ip: req && req.ip}
         )
         if (page > 1 && totalCount <= (page - 1) * 100) {
@@ -165,15 +153,6 @@
             ...this.selectedToken ? {token: this.selectedToken} : {}
           }
         }
-      }
-    },
-    watch: {
-      selectedToken(value, oldValue) {
-        this.$router.push({
-          name: 'address-id-token-balance',
-          params: {id: this.id},
-          ...(this.selectedToken ? {query: {token: this.selectedToken}} : {})
-        })
       }
     },
     async beforeRouteUpdate(to, from, next) {

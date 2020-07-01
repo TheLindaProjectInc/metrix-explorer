@@ -170,40 +170,42 @@
 
 .receipt-item {
     display: flex;
-    margin-bottom: .7rem
-}
+    margin-bottom: .7rem;
 
-.receipt-item .info-title {
-    width: 7rem
-}
+    .info-title {
+        width: 7rem;
+    }
 
-.receipt-item .info-value {
-    max-width: 72ch;
-    color: rgba(0,0,0,.6);
-    word-break: break-all
-}
+    .info-value {
+        max-width: 72ch;
+        color: rgba(0,0,0,.6);
+        word-break: break-all;
+    }
 
-.receipt-item .info-value code {
-    white-space: pre-wrap
-}
+    .info-value {
 
-.receipt-item .info-value .event-log-item {
-    display: flex;
-    margin-bottom: .7rem
-}
+        code {
+            white-space: pre-wrap;
+        }
 
-.receipt-item .info-value .event-log-item .key {
-    width: 60px
-}
+        .event-log-item {
+            display: flex;
+            margin-bottom: .7rem;
 
-.receipt-item .info-value .event-log-item .data-info:not(:last-child),.receipt-item .info-value .event-log-item .topic:not(:last-child) {
-    margin-bottom: .3rem
+            .key {
+                width: 60px;
+            }
+            
+            .data-info:not(:last-child), .topic:not(:last-child) {
+                margin-bottom: .3rem
+            }
+            
+            .event-log-data {
+                width: 64ch;
+            }
+        }
+    }
 }
-
-.receipt-item .info-value .event-log-item .event-log-data {
-    width: 64ch
-}
-
 
 @media only screen and (max-width: 1024px) {
 
@@ -259,6 +261,25 @@
                     background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiI+PHBhdGggZGF0YS1uYW1lPSImZ3Q7IOaLt+i0nSIgZD0iTTE2IDMyYTE2IDE2IDAgMTExNi0xNiAxNi4wMjEgMTYuMDIxIDAgMDEtMTYgMTZ6bTYuMi0xNi4ybC03LjUtOC40Ny0yLjMgMS45NiA1LjkgNi41OS01LjMgNS45NCAxLjcgMi42MiA3LjUtOC40N3YtLjE3eiIgZmlsbD0iIzUxOTdkNSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+) no-repeat 50%;
                     background-size: 100% 100%;
                     margin: 1rem;
+                }
+            }
+
+            .receipt-list {
+
+                .receipt {
+                    padding: 0;
+
+                    .receipt-item {
+                        justify-content: space-between;
+
+                        .info-value {
+                            .event-log {
+                                .event-log-data {
+                                    width: auto;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

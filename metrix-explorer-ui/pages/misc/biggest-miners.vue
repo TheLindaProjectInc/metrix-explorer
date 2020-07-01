@@ -5,8 +5,12 @@
         <div class="block-info-left list">
           <ul>
             <li class="border">
+              <div class="item-title">Block Height</div>
+              <div class="item-info">{{ blockchain.height }}</div>
+            </li>
+            <li class="border">
               <div class="item-title">Total Supply</div>
-              <div class="item-info"></div>
+              <div class="item-info">{{ supply }}</div>
             </li>
             <li class="border">
               <div class="item-title">Network weight</div>
@@ -14,25 +18,21 @@
             </li>
             <li class="border">
               <div class="item-title">Difficulty</div>
-              <div class="item-info"></div>
-            </li>
-            <li class="border">
-              <div class="item-title">Annual ROI</div>
-              <div
-                class="item-info"
-              >{{ (reward * 365 * 675 / this.netStakeWeight * 100).toFixed(2) }}%</div>
+              <div class="item-info">{{ difficulty }}</div>
             </li>
           </ul>
         </div>
         <div class="block-info-right list">
           <ul>
-            <li>
-              <div class="item-title">Block Time</div>
-              <div class="item-info"></div>
+            <li class="border">
+              <div class="item-title">Annual ROI</div>
+              <div
+                class="item-info"
+              >{{ (reward * 365 / this.netStakeWeight * 100).toFixed(2) }}%</div>
             </li>
             <li>
-              <div class="item-title">Block Reward</div>
-              <div class="item-info"></div>
+              <div class="item-title">Block Time</div>
+              <div class="item-info">{{ blockInterval }}</div>
             </li>
             <li>
               <div class="item-title">Annual Inflation</div>
@@ -61,7 +61,6 @@
               <td>Address</td>
               <td>Blocks Mined</td>
               <td>Percentage</td>
-              <td>Total Rewards(MRX)</td>
               <td>Balance</td>
             </tr>
           </thead>
@@ -72,8 +71,12 @@
                 <nuxt-link :to="{name: 'address-id', params: {id: item.address}}">{{item.address}}</nuxt-link>
               </td>
               <td>{{item.blocks}}</td>
-              <td>{{ (item.blocks / posBlocks * 100).toFixed(4) + '%' }}</td>
-              <td></td>
+              <td v-if="item.blocks > blockchain.height - 5000">
+                {{ ((item.blocks - 5000) / posBlocks * 100).toFixed(4) + '%' }}
+              </td>
+              <td v-else>
+                {{ (item.blocks / posBlocks * 100).toFixed(4) + '%' }}
+              </td>
               <td>{{ item.balance | metrix(8) }}</td>
             </tr>
           </tbody>
@@ -102,7 +105,10 @@ export default {
       list: [],
       loading: !1,
       currentPage: Number(this.$route.query.page || 1),
-      netStakeWeight: 0
+      netStakeWeight: 0,
+      difficulty: 0,
+      supply: 0,
+      blockInterval: 0
     };
   },
   async asyncData({ req, query, redirect, error }) {
@@ -115,12 +121,17 @@ export default {
         { from: (page - 1) * 100, to: page * 100 },
         { ip: req && req.ip }
       );
-      let { netStakeWeight } = await Misc.info({ ip: req && req.ip });
+      let { netStakeWeight, blockchainInfo } = await Misc.info({ ip: req && req.ip });
       if (page > 1 && totalCount <= (page - 1) * 100) {
         redirect("/misc/biggest-miners", { page: Math.ceil(totalCount / 100) });
       }
+      let difficulty = Math.round(blockchainInfo.difficulty).toLocaleString();
+      let supply = Math.round(blockchainInfo.moneysupply).toLocaleString();
+
+      let blockInterval24h = await Misc.blockInterval24h({ ip: req && req.ip });
+      let blockInterval = parseFloat(blockInterval24h[0].blockInterval).toFixed(2);
       //console.log(list);
-      return { totalCount, list, netStakeWeight };
+      return { totalCount, list, netStakeWeight, difficulty, supply, blockInterval};
     } catch (err) {
       if (err instanceof RequestError) {
         error({ statusCode: err.code, message: err.message });
@@ -141,9 +152,18 @@ export default {
     },
     reward() {
       let height = this.blockchain.height - 5001;
-      let interval = 985500;
-      let halvings = Math.floor(height / interval);
-      return halvings === 7 ? 0 : 4e8 >>> halvings;
+      let blocksPerYear = 350640;
+      let rewardPercent = 10;
+      if (height > 2 * 12 * blocksPerYear){
+        rewardPercent /= 2
+      }
+      if (height > 4 * 12 * blocksPerYear){
+        rewardPercent /= 2
+      }
+      if (height > 8 * 12 * blocksPerYear){
+        rewardPercent /= 1
+      }
+      return rewardPercent;
     }
   },
   methods: {

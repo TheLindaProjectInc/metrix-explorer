@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div ref="list">
+    <div ref="list" v-if="transactions.length > 0">
       <Pagination v-if="pages > 1" :pages="pages" :currentPage="currentPage" :getLink="getLink" />
       <div class="animation" v-if="loading">
         <div class="loader">
@@ -88,6 +88,10 @@
         </div>
       </div>
       <Pagination :getLink="getLink" :currentPage="currentPage" :pages="pages" />
+    </div>
+    <div class="nodata" v-else>
+      <div class="nodata-img" />
+      <p class="nodata-info">No Data</p>
     </div>
   </div>
 </template>

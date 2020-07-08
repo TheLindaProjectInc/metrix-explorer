@@ -21,7 +21,7 @@ export default {
         : createElement(
           'nuxt-link',
           {
-            class: ['mrx-link', 'break-word', 'monospace'],
+            class: ['break-word', 'monospace'],
             attrs: {to: {name: 'tx-id', params: {id: props.transaction}}}
           },
           slots().default || props.transaction.toString()

@@ -324,7 +324,7 @@ export default {
             name: "TX Count",
             type: "line",
             stack: "Total",
-            color: "#5197D5",
+            color: "#510457",
             showSymbol: !1,
             label: {
               normal: {
@@ -342,7 +342,7 @@ export default {
                 colorStops: [
                   {
                     offset: 0,
-                    color: "#5197D5"
+                    color: "#510457"
                   },
                   {
                     offset: 1,
@@ -437,7 +437,7 @@ export default {
             name: "TX Volume (MRX)",
             type: "bar",
             stack: "Total",
-            color: "#5197D5",
+            color: "#510457",
             showSymbol: !1,
             label: {
               normal: {
@@ -449,10 +449,10 @@ export default {
                 normal: {
                     color: new echarts.graphic.LinearGradient(0,0,0,1,[{
                         offset: 0,
-                        color: "#7acbff"
+                        color: "#510457"
                     }, {
                         offset: 1,
-                        color: "#f4fbff"
+                        color: "#f6c8fa"
                     }])
                 }
             },

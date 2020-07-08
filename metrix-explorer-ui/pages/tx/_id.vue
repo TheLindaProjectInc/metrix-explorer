@@ -12,7 +12,7 @@
             <li>
               <div class="item-title">ID</div>
               <div class="item-info monospace">
-                <TransactionLink :transaction="id" :plain="true" :clipboard="true"  />
+                <TransactionLink :transaction="id" :plain="true" :clipboard="true" />
               </div>
             </li>
             <li v-if="blockHeight">
@@ -164,7 +164,7 @@
                 </div>
                 <div class="is-pulled-right">
                   <div class="utxo-value monospace">
-                    {{mrc20.value | mrc20 }} 
+                    {{mrc20.value | mrc20(mrc20.decimals) }} 
                     <nuxt-link class="mrx-link break-work monospace" :to="{name: 'mrc20-id', params: {id: mrc20.address }}">{{ mrc20.symbol }}</nuxt-link>
                   </div>
                 </div>

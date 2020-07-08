@@ -50,15 +50,15 @@
               <span class="triangle"></span>
             </span>
           </div>
-          <ul>
+          <ul><!--
             <li>
               <a @click.native="unfold" href="/"  target="_Blank">Charts</a>
             </li>
             <li>
               <nuxt-link @click.native="unfold" to="/misc/biggest-miners">Biggest Miners</nuxt-link>
-            </li>
+            </li>-->
             <li>
-              <nuxt-link @click.native="unfold" to="https://github.com/TheLindaProjectInc/metrix-explorer/tree/master/metrix-explorer-api">Explorer API</nuxt-link>
+              <a @click.native="unfold" href="https://github.com/TheLindaProjectInc/metrix-explorer/tree/master/metrix-explorer-api">Explorer API</a>
             </li>
             <li>
               <a @click.native="unfold" href="https://testnet.metrixcoin.com/"  target="_Blank">Testnet Explorer</a>

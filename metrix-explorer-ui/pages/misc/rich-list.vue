@@ -47,6 +47,7 @@ export default {
     return {
       totalCount: 0,
       list: [],
+      info: [],
       currentPage: Number(this.$route.query.page || 1),
       loading: !1
     };
@@ -64,7 +65,8 @@ export default {
       if (page > 1 && totalCount <= (page - 1) * 100) {
         redirect("/misc/rich-list", { page: Math.ceil(totalCount / 100) });
       }
-      return { totalCount, list };
+      let info = await Misc.info({ ip: req && req.ip });
+      return { totalCount, list, info};
     } catch (err) {
       if (err instanceof RequestError) {
         error({ statusCode: err.code, message: err.message });
@@ -78,20 +80,7 @@ export default {
       return this.$store.state.blockchain;
     },
     totalSupply() {
-      let height = this.blockchain.height;
-      if (height <= 5000) {
-        return height * 20000;
-      }
-      let supply = 3e18;
-      //let reward = 4e8;
-      //let interval = 985500;
-      //height -= 5000;
-      //let halvings = 0;
-      //while (halvings < 7 && height > interval) {
-      //  supply += interval * (reward >>> halvings++);
-      //  height -= interval;
-      //}
-      //return supply + height * (reward >>> halvings);
+      let supply = this.info.blockchainInfo.moneysupply * 1e8;
       return supply;
     },
     pages() {

@@ -58,7 +58,7 @@
               <nuxt-link @click.native="unfold" to="/misc/biggest-miners">Biggest Miners</nuxt-link>
             </li>
             <li>
-              <nuxt-link @click.native="unfold" to="/misc/api">Browser API</nuxt-link>
+              <nuxt-link @click.native="unfold" to="https://github.com/TheLindaProjectInc/metrix-explorer/tree/master/metrix-explorer-api">Explorer API</nuxt-link>
             </li>
             <li>
               <a @click.native="unfold" href="https://testnet.metrixcoin.com/"  target="_Blank">Testnet Explorer</a>

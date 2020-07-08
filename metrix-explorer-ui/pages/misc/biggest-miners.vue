@@ -71,6 +71,7 @@
                 <nuxt-link :to="{name: 'address-id', params: {id: item.address}}">{{item.address}}</nuxt-link>
               </td>
               <td>{{item.blocks}}</td>
+              
               <td v-if="item.blocks > blockchain.height - 5000">
                 {{ ((item.blocks - 5000) / posBlocks * 100).toFixed(4) + '%' }}
               </td>

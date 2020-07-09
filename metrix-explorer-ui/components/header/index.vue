@@ -63,9 +63,11 @@
             <li>
               <a @click.native="unfold" href="https://testnet.metrixcoin.com/"  target="_Blank">Testnet Explorer</a>
             </li>
+            <!--
             <li>
               <nuxt-link @click.native="unfold" to="/misc/toolbox">Toolbox</nuxt-link>
             </li>
+            -->
           </ul>
         </div>
 

@@ -98,7 +98,8 @@
               <div class="utxo" v-for="output in outputs">
                 <div class="is-pulled-left">
                   <div class="utxo-address">
-                    <nuxt-link class="mrx-link break-work monospace" v-if="output.address" :to="{name: (output.addressHex ? 'contract-id' : 'address-id'), params: {id: (output.addressHex ? output.addressHex : output.address)}}">{{output.addressHex ? output.addressHex : output.address}}</nuxt-link>
+                    <nuxt-link class="mrx-link break-work monospace" v-if="output.address === '0000000000000000000000000000000000000089' || output.address === '0000000000000000000000000000000000000090'" :to="{name: 'address-id', params: {id: output.address}}">{{output.address}}</nuxt-link>
+                    <nuxt-link class="mrx-link break-work monospace" v-else-if="output.address" :to="{name: (output.addressHex ? 'contract-id' : 'address-id'), params: {id: (output.addressHex ? output.addressHex : output.address)}}">{{output.addressHex ? output.addressHex : output.address}}</nuxt-link>
                     <span v-else>Empty Output</span>
                   </div>
                   <div class="utxo-type">

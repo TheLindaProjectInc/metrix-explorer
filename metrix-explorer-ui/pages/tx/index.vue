@@ -196,6 +196,32 @@
                   </div>
                 </div>
               </div>
+              <div class="detail mrc-detail" v-if="tx.mrc721TokenTransfers" v-for="mrc721 in tx.mrc721TokenTransfers">
+                <div class="utxo-list input-list">
+                  <div class="utxo">
+                    <div class="is-pulled-left">
+                      <div class="utxo-address">
+                        <nuxt-link class="mrx-link break-work monospace" :to="{name: 'address-id', params: {id: mrc721.from }}">{{ mrc721.from }}</nuxt-link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="utxo-list">
+                  <div class="utxo">
+                    <div class="is-pulled-left">
+                      <div class="utxo-address">
+                        <nuxt-link class="mrx-link break-work monospace" :to="{name: 'address-id', params: {id: mrc721.to }}">{{ mrc721.to }}</nuxt-link>
+                      </div>
+                    </div>
+                    <div class="is-pulled-right">
+                      <div class="utxo-value monospace">
+                        {{mrc721.value | mrc20(mrc721.decimals) }} 
+                        <nuxt-link class="mrx-link break-work monospace" :to="{name: 'mrc20-id', params: {id: mrc721.address }}">{{ mrc721.symbol }}</nuxt-link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

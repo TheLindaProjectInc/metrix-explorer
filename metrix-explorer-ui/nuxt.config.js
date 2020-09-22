@@ -4,7 +4,7 @@ export default {
   mode: 'universal',
   loading: "@/components/loading",
   head: {
-    titleTemplate: '%s - metrix.info',
+    titleTemplate: '%s - explorer.metrixcoin.com',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui' }
@@ -20,10 +20,10 @@ export default {
       config.plugins.push(new webpack.DefinePlugin({
         'process.env.metrixinfoAPIBase': JSON.stringify(process.env.METRIXINFO_API_BASE
           || process.env[isServer ? 'METRIXINFO_API_BASE_SERVER' : 'METRIXINFO_API_BASE_CLIENT']
-          || 'https://metrix.info/api/'),
+          || 'https://explorer.metrixcoin.com/api/'),
         'process.env.metrixinfoWSBase': JSON.stringify(process.env.METRIXINFO_WS_BASE
           || process.env.METRIXINFO_API_BASE_WS
-          || '//metrix.info/'),
+          || '//explorer.metrixcoin.com/'),
         'process.env.network': JSON.stringify(process.env.METRIX_NETWORK || 'mainnet')
       }))
     },

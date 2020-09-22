@@ -49,10 +49,10 @@ exports.io = {
 
 exports.sequelize = {
   dialect: 'mysql',
-  database: 'metrixinfo',
+  database: 'metrix-explorer',
   host: 'localhost',
   port: 3306,
-  username: 'metrixinfo',
+  username: 'metrix-explorer',
   password: ''
 }
 
@@ -61,7 +61,7 @@ exports.metrix = {
 }
 
 exports.metrixinfo = {
-  path: path.resolve('..', 'metrixinfo'),
+  path: path.resolve('..', 'metrix-explorer-base'),
   port: 3001,
   rpc: {
     protocol: 'http',

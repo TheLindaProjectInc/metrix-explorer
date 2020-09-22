@@ -1,6 +1,6 @@
 {
-  "version": "0.0.1",
-  "chain": "testnet",
+  "version": "1.0.0",
+  "chain": "mainnet",
   "services": [
     "db",
     "p2p",

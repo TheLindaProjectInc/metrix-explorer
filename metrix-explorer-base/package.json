@@ -1,7 +1,7 @@
 {
   "name": "metrixinfo",
   "private": true,
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "scripts": {
     "dev": "bin/metrixinfo-node.js start",

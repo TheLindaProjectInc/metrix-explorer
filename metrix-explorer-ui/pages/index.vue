@@ -108,7 +108,7 @@ export default {
   components: { Panel },
   head() {
     return {
-      title: "metrix.info",
+      title: "Metrixcoin Explorer",
       titleTemplate: null
     };
   },

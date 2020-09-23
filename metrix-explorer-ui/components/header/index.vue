@@ -1,7 +1,7 @@
 <template>
   <div class="nav-container">
     <nuxt-link to="/" class="anchor">
-      <span class="metrix-icon metrix-icon--metrix"></span>
+      <!-- <span class="metrix-icon metrix-icon--metrix"></span> -->
       <span class="title">explorer.metrixcoin.com</span>
     </nuxt-link>
     <div :class="{fold: fold}">

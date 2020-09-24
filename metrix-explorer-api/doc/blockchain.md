@@ -20,7 +20,7 @@ GET /info
   "supply": 101603844,
   "circulatingSupply": 95853844,
   "netStakeWeight": 1095728543244388,
-  "feeRate": 0.00401787,
+  "feeRate": 10,
   "dgpInfo": {
     "maxBlockSize": 2000000,
     "minGasPrice": 40,

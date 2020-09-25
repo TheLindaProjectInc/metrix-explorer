@@ -337,13 +337,18 @@ export default {
       let netIncome = 0;
 
       for (let input of inputs){
-        if (input.address === id) {
-          inputValue += parseInt(input.value);
+        if (input.address) {
+          if (input.address === id) {
+            inputValue += parseInt(input.value);
+          }
         }
       }
+
       for (let output of outputs) {
-        if (output.address === id){
-          outputValue =+ parseInt(output.value);
+        if (output.address) {
+          if (output.address === id){
+            outputValue += parseInt(output.value);
+          }
         }
       }
 

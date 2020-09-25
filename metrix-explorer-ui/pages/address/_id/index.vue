@@ -51,14 +51,18 @@
             </div>
           </div>
           <div class="item-income" v-else>
-            {{item.outputValue - item.inputValue | metrix(3)}}
+            {{ incomeCalc(id, item.inputs, item.outputs, item.refundValue) | metrix(3)}}
+            <!-- {{item.outputValue - item.inputValue | metrix(3)}} -->
           </div>
-          <div class="item-type" v-if="item.isCoinbase">Coinbase</div>
+          <div class="item-type" >{{ typeChecker(item, id) }}</div>
+          <!-- <div class="item-type" v-if="item.isCoinbase">Coinbase</div>
           <div class="item-type" v-else-if="item.isCoinstake">Coinstake</div>
           <div class="item-type" v-else-if="item.inputs[0].address === '0000000000000000000000000000000000000090' || 
           item.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
           <div class="item-type" v-else-if="item.mrc20TokenTransfers">Token Transfer</div>
-          <div class="item-type" v-else>MRX Transfer</div>
+          <div class="item-type" v-else-if="checkReceiveAddress(id, item.outputs)">MRX Receive</div>
+          <div class="item-type" v-else-if="checkSendAddress(id, item.inputs)">MRX Send</div>
+          <div class="item-type" v-else>MRX Transfer</div> -->
           <div class="item-confirmations">
             {{item.confirmations}}
           </div>
@@ -91,17 +95,21 @@
               </div>
             </div>
             <div class="content" v-else>
-              {{item.outputValue - item.inputValue | metrix(3)}}
+              <!-- {{item.outputValue - item.inputValue | metrix(3)}} -->
+              {{ incomeCalc(id, item.inputs, item.outputs, item.refundValue) | metrix(3)}}
             </div>
             <div class="title">
               Type
             </div>
-            <div class="content" v-if="item.isCoinbase">Coinbase</div>
+            <div class="content">{{ typeChecker(item, id) }}</div>
+            <!-- <div class="content" v-if="item.isCoinbase">Coinbase</div>
             <div class="content" v-else-if="item.isCoinstake">Coinstake</div>
             <div class="content" v-else-if="item.inputs[0].address === '0000000000000000000000000000000000000090' || 
             item.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
             <div class="content" v-else-if="item.mrc20TokenTransfers">Token Transfer</div>
-            <div class="content" v-else>MRX Transfer</div>
+            <div class="content" v-else-if="checkReceiveAddress(id, item.outputs)">MRX Receive</div>
+            <div class="content" v-else-if="checkSendAddress(id, item.inputs)">MRX Send</div>
+            <div class="content" v-else>MRX Transfer</div> -->
           </div>
           <div class="item">
             <div class="title">
@@ -307,6 +315,58 @@ export default {
     }
   },
   methods: {
+    typeChecker(transaction, id){
+      let type = "";
+
+      if (transaction.isCoinbase) { type = "Coinbase" }
+      else if (transaction.isCoinstake) { type = "Coinstake" }
+      else if (transaction.inputs[0].address === '0000000000000000000000000000000000000090' || 
+          transaction.inputs[0].address === '0000000000000000000000000000000000000089') { type = "DGP Contract" }
+      else if (transaction.mrc20TokenTransfers) { type = "Token Transfer" }
+      else if (this.checkSendAddress(id, transaction.inputs)) { type = "MRX Send" }
+      else if (!this.checkSendAddress(id, transaction.inputs)) { type = "MRX Receive" }
+      else {
+        type = "MRX Transfer";
+      }
+
+      return type;
+    },
+    incomeCalc(id, inputs, outputs, refundValue) {
+      let inputValue = 0;
+      let outputValue = 0;
+      let netIncome = 0;
+
+      for (let input of inputs){
+        if (input.address === id) {
+          inputValue += parseInt(input.value);
+        }
+      }
+      for (let output of outputs) {
+        if (output.address === id){
+          outputValue =+ parseInt(output.value);
+        }
+      }
+
+
+      if (inputs[0].address === id && refundValue > 0){
+        outputValue = outputValue + parseInt(refundValue);
+      }
+
+      if (inputValue > 0){
+        netIncome = outputValue - inputValue;
+      } else {
+        netIncome = outputValue;
+      }
+
+      return netIncome;
+    },
+    checkSendAddress(address, inputs){
+      for(let input of inputs) {
+        if (input.address === address) {
+          return true;
+        }
+      }
+    },
     getLink(page) {
       return { name: "address-id", params: { id: this.id }, query: { page } };
     },

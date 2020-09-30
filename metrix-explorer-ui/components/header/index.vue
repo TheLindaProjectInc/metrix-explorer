@@ -22,7 +22,7 @@
               <nuxt-link @click.native="unfold" to="/tx">Transaction</nuxt-link>
             </li>
             <li>
-              <nuxt-link @click.native="unfold" to="/misc/rich-list">Rich List</nuxt-link>
+              <nuxt-link @click.native="unfold" to="/misc/richlist">Rich List</nuxt-link>
             </li>
           </ul>
         </div>

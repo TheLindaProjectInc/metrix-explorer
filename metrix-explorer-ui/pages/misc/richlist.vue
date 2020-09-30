@@ -27,7 +27,7 @@
         </tr>
       </tbody>
     </table>
-    <Pagination :getLink="getLink" :currentPage="currentPage" :pages="pages"/>
+    <Pagination :getLink="getLink" :currentPage="currentPage" :pages="pages" />
   </Panel>
 </template>
 <script>
@@ -59,8 +59,7 @@ export default {
       }
       let page = Number(query.page || 1);
       let { totalCount, list } = await Misc.richList(
-        { from: (page - 1) * 100, to: page * 100 },
-        { ip: req && req.ip }
+        { from: (page - 1) * 100, to: page * 100 }
       );
       if (page > 1 && totalCount <= (page - 1) * 100) {
         redirect("/misc/rich-list", { page: Math.ceil(totalCount / 100) });
@@ -88,21 +87,28 @@ export default {
     }
   },
   methods: {
-    getLink(page) {
-      return { name: "rich-list", query: { page } };
+    getLink(t) {
+      return { 
+        name: "misc-richlist", 
+        query: { 
+          page: t
+        } 
+      };
+    },
+    scrollToTop: function() {
+      return this.$refs.section
     }
   },
   async beforeRouteUpdate(to, from, next) { 
       this.loading = !0;
       let page = Number(to.query.page || 1);
       let { totalCount, list } = await Misc.richList(
-        { from: (page - 1) * 100, to: page * 100 },
-        { ip: req && req.ip }
+        { from: (page - 1) * 100, to: page * 100 }
       );
       this.totalCount = totalCount;
       if (page > this.pages && this.pages > 1) {
         this.$router.push({
-          name: "/misc/rich-list",
+          name: "misc-richlist",
           query: { page: Math.ceil(totalCount / 100) }
         });
         return;
@@ -116,5 +122,5 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-@import url("../../styles/pages/misc/rich-list.less");
+@import url("../../styles/pages/misc/richlist.less");
 </style>

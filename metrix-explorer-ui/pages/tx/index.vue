@@ -54,12 +54,7 @@
               {{tx.outputValue | metrix(4)}} MRX
             </div>
             <div class="item-fee">{{tx.fees | metrix(4)}}</div>
-            <div class="item-type" v-if="tx.isCoinbase">Coinbase</div>
-            <div class="item-type" v-else-if="tx.isCoinstake">Coinstake</div>
-            <div class="item-type" v-else-if="tx.inputs[0].address === '0000000000000000000000000000000000000090' || 
-              tx.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
-            <div class="item-type" v-else-if="tx.mrc20TokenTransfers">Token Transfer</div>
-            <div class="item-type" v-else>MRX Transfer</div>
+            <div class="item-type">{{ typeChecker(tx) }}</div>
             <div class="item-confirm">{{tx.confirmations}}</div>
           </div>
           <div class="mobile-body">
@@ -88,12 +83,7 @@
             </div>
             <div class="item">
               <div class="title">Type</div>
-              <div class="content" v-if="tx.isCoinbase">Coinbase</div>
-              <div class="content" v-else-if="tx.isCoinstake">Coinstake</div>
-              <div class="content" v-else-if="tx.inputs[0].address === '0000000000000000000000000000000000000090' || 
-                tx.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
-              <div class="content" v-else-if="tx.mrc20TokenTransfers">Token Transfer</div>
-              <div class="content" v-else>MRX Transfer</div>
+              <div class="content">{{ typeChecker(tx) }}</div>
             </div>
             <div class="item">
               <div class="title">Confirmations</div>
@@ -285,6 +275,20 @@ export default {
     }
   },
   methods: {
+        typeChecker(transaction){
+          let type = "";
+
+          if (transaction.isCoinbase) { type = "Coinbase" }
+          else if (transaction.isCoinstake) { type = "Coinstake" }
+          else if (transaction.inputs[0].address === '0000000000000000000000000000000000000090' || 
+              transaction.inputs[0].address === '0000000000000000000000000000000000000089') { type = "DGP Contract" }
+          else if (transaction.mrc20TokenTransfers) { type = "Token Transfer" }
+          else {
+            type = "MRX Transfer";
+          }
+
+          return type;
+        },
         getLink: function(t) {
           return {
               name: "tx",

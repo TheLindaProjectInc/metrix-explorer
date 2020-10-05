@@ -55,14 +55,6 @@
             <!-- {{item.outputValue - item.inputValue | metrix(3)}} -->
           </div>
           <div class="item-type" >{{ typeChecker(item, id) }}</div>
-          <!-- <div class="item-type" v-if="item.isCoinbase">Coinbase</div>
-          <div class="item-type" v-else-if="item.isCoinstake">Coinstake</div>
-          <div class="item-type" v-else-if="item.inputs[0].address === '0000000000000000000000000000000000000090' || 
-          item.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
-          <div class="item-type" v-else-if="item.mrc20TokenTransfers">Token Transfer</div>
-          <div class="item-type" v-else-if="checkReceiveAddress(id, item.outputs)">MRX Receive</div>
-          <div class="item-type" v-else-if="checkSendAddress(id, item.inputs)">MRX Send</div>
-          <div class="item-type" v-else>MRX Transfer</div> -->
           <div class="item-confirmations">
             {{item.confirmations}}
           </div>
@@ -102,14 +94,6 @@
               Type
             </div>
             <div class="content">{{ typeChecker(item, id) }}</div>
-            <!-- <div class="content" v-if="item.isCoinbase">Coinbase</div>
-            <div class="content" v-else-if="item.isCoinstake">Coinstake</div>
-            <div class="content" v-else-if="item.inputs[0].address === '0000000000000000000000000000000000000090' || 
-            item.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
-            <div class="content" v-else-if="item.mrc20TokenTransfers">Token Transfer</div>
-            <div class="content" v-else-if="checkReceiveAddress(id, item.outputs)">MRX Receive</div>
-            <div class="content" v-else-if="checkSendAddress(id, item.inputs)">MRX Send</div>
-            <div class="content" v-else>MRX Transfer</div> -->
           </div>
           <div class="item">
             <div class="title">

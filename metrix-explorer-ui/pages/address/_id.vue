@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <div width="100%" style="width: inherit; text-align: center;" class="alert alert-danger" v-if="id === 'M7uAERuQW2AotfyLDyewFGcLUDtAYu9v5V'">
+      This is the burn address. The balances in here are unspendable and removed from supply.
+    </div>
     <Panel width="100%" title="Address Overview" noMargin="true">
       <div class="address-info">
         <div class="list">

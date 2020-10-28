@@ -255,7 +255,7 @@ class BalanceService extends Service {
     const db = this.ctx.model
     const {RichList} = db
     const {sql} = this.ctx.helper
-    let burnAddress = 'M7uAERuQW2AotfyLDyewFGcLUDtAYu9v5V';
+    let burnAddress = 'M7uAERuQW2AotfyLDyewFGcLUDtAYu9v5V'
     let {limit, offset} = this.ctx.state.pagination
     let totalCount = await RichList.count({transaction: this.ctx.state.transaction})
     let list = await db.query(sql`
@@ -263,7 +263,7 @@ class BalanceService extends Service {
       FROM (SELECT address_id FROM rich_list ORDER BY balance DESC LIMIT ${offset}, ${limit}) list
       INNER JOIN rich_list USING (address_id)
       INNER JOIN address ON address._id = list.address_id
-      WHERE NOT address = ${burnAddress}
+      WHERE NOT address.string = ${burnAddress}
     `, {type: db.QueryTypes.SELECT, transaction: this.ctx.state.transaction})
     return {
       totalCount,

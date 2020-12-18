@@ -62,7 +62,7 @@
               <a @click.native="unfold" href="https://github.com/TheLindaProjectInc/metrix-explorer/tree/master/metrix-explorer-api">Explorer API</a>
             </li>
             <li>
-              <a @click.native="unfold" href="https://testnet.metrixcoin.com/"  target="_Blank">Testnet Explorer</a>
+              <a @click.native="unfold" href="https://testnet-explorer.metrixcoin.com/"  target="_Blank">Testnet Explorer</a>
             </li>
             <!--
             <li>

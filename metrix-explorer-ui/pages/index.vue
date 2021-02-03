@@ -142,7 +142,12 @@ export default {
         },
         {
           img: "send",
-          describe: "Supply",
+          describe: "Circulating Supply",
+          number: 0
+        },
+        {
+          img: "send",
+          describe: "Total Supply",
           number: 0
         },
         {
@@ -165,6 +170,8 @@ export default {
       recentTransactions: [],
       netStakeWeight: 0,
       feeRate: 0,
+      supply: 0,
+      circulatingSupply: 0,
       blockchainInfo: [],
       dailyTransactions: [],
       isExpand: !1
@@ -175,7 +182,7 @@ export default {
       let [
         recentBlocks,
         recentTransactions,
-        { netStakeWeight, feeRate, supply, blockchainInfo},
+        { netStakeWeight, feeRate, supply, circulatingSupply, blockchainInfo},
         dailyTransactions,
         blockInterval24h
       ] = await Promise.all([
@@ -191,6 +198,7 @@ export default {
         recentTransactions,
         netStakeWeight,
         supply,
+        circulatingSupply,
         feeRate,
         blockchainInfo,
         dailyTransactions,
@@ -231,10 +239,11 @@ export default {
       this.icons[2].number = this.feeRate;
       this.icons[3].number = (+(dailyStats.transactionCount) + +(dailyStats.contractTransactionCount)).toLocaleString();
       this.icons[4].number = Math.round(dailyStats.transactionVolume / 1e8).toLocaleString()
-      this.icons[5].number = Math.round(this.blockchainInfo.moneysupply).toLocaleString();
-      this.icons[6].number = Math.round(this.netStakeWeight / 1e8).toLocaleString();
-      this.icons[7].number = parseFloat(this.blockInterval24h[0].blockInterval).toFixed(2);
-      this.icons[8].number = Math.round(this.blockchainInfo.difficulty).toLocaleString();
+      this.icons[5].number = Math.round(this.blockchainInfo.circulatingSupply).toLocaleString();
+      this.icons[6].number = Math.round(this.blockchainInfo.supply).toLocaleString();
+      this.icons[7].number = Math.round(this.netStakeWeight / 1e8).toLocaleString();
+      this.icons[8].number = parseFloat(this.blockInterval24h[0].blockInterval).toFixed(2);
+      this.icons[9].number = Math.round(this.blockchainInfo.difficulty).toLocaleString();
 
     },
     onRecentTransactions: function(t) {

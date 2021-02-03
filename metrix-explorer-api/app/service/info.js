@@ -1,4 +1,5 @@
 const {Service} = require('egg')
+const {U256} = require('../../node_modules/uint256/dist/UInt256')
 
 class InfoService extends Service {
   async getInfo() {
@@ -7,10 +8,12 @@ class InfoService extends Service {
     let feeRate = JSON.parse(await this.app.redis.hget(this.app.name, 'feerate')).find(item => item.blocks === 10).feeRate || 10
     let dgpInfo = JSON.parse(await this.app.redis.hget(this.app.name, 'dgpinfo')) || {}
     let blockchainInfo = JSON.parse(await this.app.redis.hget(this.app.name, 'blockchaininfo')) || {}
+    let totalSupply = await this.getTotalSupply()
+    let circulatingSupply = await this.getCirculatingSupply()
     return {
       height,
-      supply: this.getTotalSupply(),
-      ...this.app.chain.name === 'mainnet' ? {circulatingSupply: this.getCirculatingSupply()} : {},
+      supply: totalSupply,
+      circulatingSupply: circulatingSupply,
       netStakeWeight: Math.round(stakeWeight),
       feeRate,
       dgpInfo,
@@ -18,37 +21,20 @@ class InfoService extends Service {
     }
   }
 
-  getTotalSupply() {
-    let height = this.app.blockchainInfo.tip.height
-    if (height <= this.app.chain.lastPoWBlockHeight) {
-      return height * 20000
-    } else {
-      let supply = 1e8
-      let reward = 4
-      let interval = 985500
-      let stakeHeight = height - this.app.chain.lastPoWBlockHeight
-      let halvings = 0
-      while (halvings < 7 && stakeHeight > interval) {
-        supply += interval * reward / (1 << halvings++)
-        stakeHeight -= interval
-      }
-      supply += stakeHeight * reward / (1 << halvings)
-      return supply
-    }
+  async getTotalSupply() {
+    let blockchainInfo = await this.getBlockChainInfo()
+    return blockchainInfo.moneysupply
+  }
+
+  async getCirculatingSupply() {
+    let totalSupply = await this.getTotalSupply()
+    let governorLockedCoins = await this.getGovernorLockedCoins()
+
+    return totalSupply - governorLockedCoins
   }
 
   getTotalMaxSupply() {
     return 1e8 + 985500 * 4 * (1 - 1 / 2 ** 7) / (1 - 1 / 2)
-  }
-
-  getCirculatingSupply() {
-    let height = this.app.blockchainInfo.tip.height
-    let totalSupply = this.getTotalSupply(height)
-    if (this.app.chain.name === 'mainnet') {
-      return totalSupply - 575e4
-    } else {
-      return totalSupply
-    }
   }
 
   async getStakeWeight() {
@@ -87,8 +73,20 @@ class InfoService extends Service {
     return {
       maxBlockSize: info.maxblocksize,
       minGasPrice: info.mingasprice,
-      blockGasLimit: info.blockgaslimit
+      blockGasLimit: info.blockgaslimit,
+      governanceCollateral: info.governancecollateral / 1e8,
+      budgetFee: info.budgetfee / 1e8
     }
+  }
+
+  async getGovernorLockedCoins() {
+    let client = new this.app.metrixinfo.rpc(this.app.config.metrixinfo.rpc)
+    let contractData = await client.callcontract("0000000000000000000000000000000000000089","e8c9fd45")
+    let dgpInfo = await this.getDGPInfo()
+    let chunks = contractData.executionResult.output.match(new RegExp('.{1,64}', 'g'));
+    let count = Number(U256(chunks[0], 16));
+    let lockedGovernorSupply = Math.floor(dgpInfo.governanceCollateral/1e8) * count
+    return lockedGovernorSupply
   }
 
   async getBlockChainInfo() {

@@ -17,7 +17,8 @@
     "ioredis": "^4.14.1",
     "koa-ratelimit": "^4.2.0",
     "mysql2": "^1.7.0",
-    "socket.io-client": "^2.3.0"
+    "socket.io-client": "^2.3.0",
+    "uint256": "^1.0.8"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",

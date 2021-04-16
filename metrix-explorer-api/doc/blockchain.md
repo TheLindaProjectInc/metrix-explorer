@@ -39,9 +39,20 @@ GET /supply
 
 **Response**
 ```json
-101603852
+17249478911
 ```
 
+## Circulating Supply
+
+**Request**
+```
+GET /circulating-supply
+```
+
+**Response**
+```json
+16034478911
+```
 
 ## Total Max Supply
 

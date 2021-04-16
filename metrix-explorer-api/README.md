@@ -5,6 +5,7 @@
 * [Blockchain](https://github.com/TheLindaProjectInc/metrix-explorer/blob/master/metrix-explorer-api/doc/blockchain.md)
   * [Blockchain Information](https://github.com/TheLindaProjectInc/metrix-explorer/blob/master/metrix-explorer-api/doc/blockchain.md#Blockchain-Information)
   * [Supply](https://github.com/TheLindaProjectInc/metrix-explorer/blob/master/metrix-explorer-api/doc/blockchain.md#Supply)
+  * [Circulating Supply](https://github.com/TheLindaProjectInc/metrix-explorer/blob/master/metrix-explorer-api/doc/blockchain.md#Circulating-Supply)
   * [Total Max Supply](https://github.com/TheLindaProjectInc/metrix-explorer/blob/master/metrix-explorer-api/doc/blockchain.md#Total-Max-Supply)
 * [Block](https://github.com/TheLindaProjectInc/metrix-explorer/blob/master/metrix-explorer-api/doc/block.md)
   * [Block Information](https://github.com/TheLindaProjectInc/metrix-explorer/blob/master/metrix-explorer-api/doc/block.md#Block-Information)

@@ -3,6 +3,7 @@
 - [Blockchain API](#Blockchain-API)
   - [Blockchain Information](#Blockchain-Information)
   - [Supply](#Supply)
+  - [Circulating Supply](#Circulating-Supply)
   - [Total Max Supply](#Total-Max-Supply)
 
 

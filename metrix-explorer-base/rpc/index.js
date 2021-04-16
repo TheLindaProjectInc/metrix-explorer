@@ -121,6 +121,7 @@ const callspec = {
   getcontractcode: '',
   getdgpinfo: '',
   getblockchaininfo: '',
+  fromhexaddress: '',
   getstorage: '',
   gettransactionreceipt: '',
   listcontracts: 'int int',

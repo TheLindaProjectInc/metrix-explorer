@@ -9,6 +9,9 @@ module.exports = app => {
   router.get('/supply', controller.info.supply)
   router.get('/total-max-supply', controller.info.totalMaxSupply)
   router.get('/circulating-supply', controller.info.circulatingSupply)
+  router.get('/governorlocked', controller.info.governorLocked)
+  router.get('/governorlist', controller.info.governorList)
+  router.get('/dgpinfo', controller.info.dgpInfo)
   router.get('/feerates', controller.info.feeRates)
 
   router.get('/blocks', controller.block.list)

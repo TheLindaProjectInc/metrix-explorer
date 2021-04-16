@@ -34,7 +34,7 @@ class InfoService extends Service {
   }
 
   getTotalMaxSupply() {
-    return 1e8 + 985500 * 4 * (1 - 1 / 2 ** 7) / (1 - 1 / 2)
+    return 30e17;
   }
 
   async getStakeWeight() {
@@ -79,12 +79,45 @@ class InfoService extends Service {
     }
   }
 
+  async getGovernorList() {
+    let client = new this.app.metrixinfo.rpc(this.app.config.metrixinfo.rpc)
+    let contractData = await client.callcontract("0000000000000000000000000000000000000089","883703c2")
+    let chunks = contractData.executionResult.output.match(new RegExp('.{1,64}', 'g'));
+    let governorList = [];
+    let hexAddressList = [];
+    for (let i = 2; i < chunks.length; i++) {
+      let hexAddr = chunks[i].substring(24, 64);
+      hexAddressList.push(hexAddr)
+      if (!governorList[hexAddr]) {
+          let addr = await client.fromhexaddress([hexAddr]);
+          governorList[hexAddr] = addr
+      }
+    }
+
+    // remove old governors
+    Object.keys(governorList).forEach(hexAddr => {
+        if (hexAddressList.indexOf(hexAddr) === -1) {
+            delete governorList[hexAddr]
+        }
+    })
+
+    let govs = Object.assign({},governorList);
+    let count = Object.keys(governorList).length;
+
+    return {
+      governorCount: count,
+      governorList: govs
+    };
+  }
+
   async getGovernorLockedCoins() {
     let client = new this.app.metrixinfo.rpc(this.app.config.metrixinfo.rpc)
     let contractData = await client.callcontract("0000000000000000000000000000000000000089","e8c9fd45")
     let dgpInfo = await this.getDGPInfo()
     let chunks = contractData.executionResult.output.match(new RegExp('.{1,64}', 'g'));
     let count = Number(U256(chunks[0], 16));
+
+
     let lockedGovernorSupply = Math.floor(dgpInfo.governanceCollateral/1e8) * count
     return lockedGovernorSupply
   }

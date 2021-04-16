@@ -9,12 +9,28 @@ class InfoController extends Controller {
     this.ctx.body = await this.ctx.service.info.getTotalSupply()
   }
 
+  async supply() {
+    this.ctx.body = await this.ctx.service.info.getTotalSupply()
+  }
+
   async totalMaxSupply() {
     this.ctx.body = this.ctx.service.info.getTotalMaxSupply()
   }
 
   async circulatingSupply() {
     this.ctx.body = await this.ctx.service.info.getCirculatingSupply()
+  }
+
+  async dgpInfo() {
+    this.ctx.body = await this.ctx.service.info.getDGPInfo()
+  }
+
+  async governorList() {
+    this.ctx.body = await this.ctx.service.info.getGovernorList()
+  }
+
+  async governorLocked() {
+    this.ctx.body = await this.ctx.service.info.getGovernorLockedCoins()
   }
 
   async feeRates() {

@@ -36,8 +36,8 @@
 
 
 ## API Endpoint
-* `https://metrix.info/api/` for mainnet
-* `https://testnet.metrix.info/api/` for testnet
+* `https://explorer.metrixcoin.com/api/` for mainnet
+* `https://explorer-testnet.metrixcoin.com/api/` for testnet
 
 
 ## Pagination Parameters

@@ -81,6 +81,11 @@ module.exports = app => {
     controller.address.transactions
   )
   router.get(
+    '/address/:address/txs-detail',
+    addressMiddleware, paginationMiddleware, blockFilterMiddleware,
+    controller.address.transactionsDetail
+  )
+  router.get(
     '/address/:address/basic-txs',
     addressMiddleware, paginationMiddleware, blockFilterMiddleware,
     controller.address.basicTransactions

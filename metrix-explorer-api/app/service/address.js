@@ -119,6 +119,57 @@ class AddressService extends Service {
     return {totalCount, transactions}
   }
 
+  async getAddressTransactionsDetail(addressIds, rawAddresses) {
+    const {Address: RawAddress, Solidity} = this.app.metrixinfo.lib
+    const TransferABI = Solidity.mrc20ABIs.find(abi => abi.name === 'Transfer')
+    const db = this.ctx.model
+    const {Address} = db
+    const {sql} = this.ctx.helper
+    let {limit, offset, reversed = true} = this.ctx.state.pagination
+    let order = reversed ? 'DESC' : 'ASC'
+    let topics = rawAddresses
+      .filter(address => address.type === RawAddress.PAY_TO_PUBLIC_KEY_HASH)
+      .map(address => Buffer.concat([Buffer.alloc(12), address.data]))
+    let totalCount = await this.getAddressTransactionCount(addressIds, rawAddresses)
+    let transactionIds = (await db.query(sql`
+      SELECT tx.id AS id FROM (
+        SELECT _id FROM (
+          SELECT block_height, index_in_block, transaction_id AS _id FROM balance_change
+          WHERE address_id IN ${addressIds} AND ${this.ctx.service.block.getRawBlockFilter()}
+          UNION
+          SELECT block_height, index_in_block, transaction_id AS _id
+          FROM evm_receipt
+          WHERE (sender_type, sender_data) IN ${rawAddresses.map(address => [Address.parseType(address.type), address.data])}
+            AND ${this.ctx.service.block.getRawBlockFilter()}
+          UNION
+          SELECT receipt.block_height AS block_height, receipt.index_in_block AS index_in_block, receipt.transaction_id AS _id
+          FROM evm_receipt receipt, evm_receipt_log log, contract
+          WHERE receipt._id = log.receipt_id
+            AND ${this.ctx.service.block.getRawBlockFilter('receipt.block_height')}
+            AND contract.address = log.address AND contract.type IN ('mrc20', 'mrc721')
+            AND log.topic1 = ${TransferABI.id}
+            AND (log.topic2 IN ${topics} OR log.topic3 IN ${topics})
+            AND (
+              (contract.type = 'mrc20' AND log.topic3 IS NOT NULL AND log.topic4 IS NULL)
+              OR (contract.type = 'mrc721' AND log.topic4 IS NOT NULL)
+            )
+        ) list
+        ORDER BY block_height ${{raw: order}}, index_in_block ${{raw: order}}, _id ${{raw: order}}
+        LIMIT ${offset}, ${limit}
+      ) list, transaction tx
+      WHERE tx._id = list._id
+    `, {type: db.QueryTypes.SELECT, transaction: this.ctx.state.transaction})).map(({id}) => id)
+
+    let transactions = await Promise.all(transactionIds.map(async transactionId => {
+      let transaction = await this.ctx.service.transaction.getTransaction(transactionId)
+      return Object.assign(transaction, {
+        confirmations: transaction.block.height == null ? 0 : this.app.blockchainInfo.tip.height - transaction.block.height + 1
+      })
+    }))
+    console.log(transactions)
+    return {totalCount, transactions}
+  }
+
   async getAddressBasicTransactionCount(addressIds) {
     const {BalanceChange} = this.ctx.model
     const {in: $in} = this.app.Sequelize.Op

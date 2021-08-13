@@ -107,7 +107,6 @@ class AddressController extends Controller {
     let {ctx} = this
     let {address} = ctx.state
     let {totalCount, transactions} = await ctx.service.address.getAddressTransactionsDetail(address.addressIds, address.rawAddresses)
-    console.log(transactions)
     ctx.body = {
       totalCount,
       transactions: await Promise.all(transactions.map(tx => ctx.service.transaction.transformTransaction(tx)))

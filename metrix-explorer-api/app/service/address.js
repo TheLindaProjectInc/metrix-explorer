@@ -166,7 +166,6 @@ class AddressService extends Service {
         confirmations: transaction.block.height == null ? 0 : this.app.blockchainInfo.tip.height - transaction.block.height + 1
       })
     }))
-    console.log(transactions)
     return {totalCount, transactions}
   }
 

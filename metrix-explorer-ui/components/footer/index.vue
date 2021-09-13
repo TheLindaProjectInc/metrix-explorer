@@ -4,7 +4,7 @@
       <p class="footer-title">About Us</p>
       <div class="footer-main">
         <div class="footer-info">
-          <span>{{host}} is the official blockchain explorer of Metrixcoin, providing blocks, addresses, transactions, contracts and staking queries statistics service.</span>
+          <span>{{host}} is a blockchain explorer of Metrixcoin, providing blocks, addresses, transactions, contracts and staking queries statistics service.</span>
         </div>
         <div class="footer-dispose">
           <!--
@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="footer-split"></div>
-      <p class="copyright">2020 The Metrixcoin Developers</p>
+      <p class="copyright">{{new Date().getFullYear()}} The Metrixcoin Developers</p>
     </div>
   </div>
 </template>

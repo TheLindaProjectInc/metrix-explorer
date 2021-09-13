@@ -8,6 +8,10 @@ export default {
     hostprot: process.env.HOST_PROT,
   },
   privateRuntimeConfig: {},
+  generate: {
+    interval: 80,
+    fallback: '404.html'
+  },
   head: {
     titleTemplate: '%s - ' + process.env.HOST_FQDN,
     meta: [

@@ -104,7 +104,7 @@ export default {
   data() {
     return {
       fold: !1,
-      host: process.env.hostname
+      host: $config.hostname
     }
   },
   methods: {

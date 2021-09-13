@@ -4,7 +4,7 @@
       <p class="footer-title">About Us</p>
       <div class="footer-main">
         <div class="footer-info">
-          <span>Explorer.metrixcoin.com is the official blockchain explorer of Metrixcoin, providing blocks, addresses, transactions, contracts and staking queries statistics service.</span>
+          <span>{{process.env.HOST_FQDN}} is the official blockchain explorer of Metrixcoin, providing blocks, addresses, transactions, contracts and staking queries statistics service.</span>
         </div>
         <div class="footer-dispose">
           <!--
@@ -31,7 +31,7 @@
           -->
           <div class="footer-cancat">
             <span>Contact details：</span>
-            <a href="mailto:support@metrixcoin.com" target="_blank">support@metrixcoin.com</a>
+            <a :href="'mailto:support@' + process.env.HOST_FQDN" target="_blank">support@{{process.env.HOST_FQDN}}</a>
           </div>
         </div>
       </div>

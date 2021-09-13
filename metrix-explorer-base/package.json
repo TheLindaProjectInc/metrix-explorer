@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "bin/metrixinfo-node.js start",
+    "dev": "node bin/setup.mjs && node bin/metrixinfo-node.js start",
     "lint": "eslint --ext .js . --ignore-path .gitignore"
   },
   "repository": {

@@ -101,10 +101,10 @@
 import Search from "@/components/search";
 export default {
   components: { Search },
-  data() {
+  data({ $config: { hostname } }) {
     return {
       fold: !1,
-      host: $config.hostname
+      host: hostname
     }
   },
   methods: {

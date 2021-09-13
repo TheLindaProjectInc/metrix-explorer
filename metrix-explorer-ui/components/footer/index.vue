@@ -4,7 +4,7 @@
       <p class="footer-title">About Us</p>
       <div class="footer-main">
         <div class="footer-info">
-          <span>{{$config.hostname}} is the official blockchain explorer of Metrixcoin, providing blocks, addresses, transactions, contracts and staking queries statistics service.</span>
+          <span>{{host}} is the official blockchain explorer of Metrixcoin, providing blocks, addresses, transactions, contracts and staking queries statistics service.</span>
         </div>
         <div class="footer-dispose">
           <!--
@@ -31,7 +31,7 @@
           -->
           <div class="footer-cancat">
             <span>Contact details：</span>
-            <a :href="'mailto:support@' + $config.hostname" target="_blank">support@{{$config.hostname}}</a>
+            <a :href="'mailto:support@' + host" target="_blank">support@{{host}}</a>
           </div>
         </div>
       </div>
@@ -41,7 +41,12 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data({ $config: { hostname } }) {
+    return {
+      host: hostname
+    }
+  },};
 </script>
 
 <style lang="less" scoped>

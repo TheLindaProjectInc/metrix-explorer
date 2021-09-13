@@ -4,7 +4,7 @@ export default {
   mode: 'universal',
   loading: "@/components/loading",
   head: {
-    titleTemplate: '%s - ' + process.env.HOST_FQDN,
+    titleTemplate: '%s - ' + process.env.VUE_APP_HOST_FQDN,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui' }

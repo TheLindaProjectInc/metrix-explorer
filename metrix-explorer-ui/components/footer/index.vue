@@ -4,7 +4,7 @@
       <p class="footer-title">About Us</p>
       <div class="footer-main">
         <div class="footer-info">
-          <span>{{process.env.VUE_APP_HOST_FQDN}} is the official blockchain explorer of Metrixcoin, providing blocks, addresses, transactions, contracts and staking queries statistics service.</span>
+          <span>{{process.env.hostname}} is the official blockchain explorer of Metrixcoin, providing blocks, addresses, transactions, contracts and staking queries statistics service.</span>
         </div>
         <div class="footer-dispose">
           <!--
@@ -31,7 +31,7 @@
           -->
           <div class="footer-cancat">
             <span>Contact details：</span>
-            <a :href="'mailto:support@' + process.env.VUE_APP_HOST_FQDN" target="_blank">support@{{process.env.VUE_APP_HOST_FQDN}}</a>
+            <a :href="'mailto:support@' + process.env.hostname" target="_blank">support@{{process.env.hostname}}</a>
           </div>
         </div>
       </div>

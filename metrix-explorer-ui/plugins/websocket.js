@@ -3,7 +3,7 @@ import io from 'socket.io-client'
 
 export default function ({ app }) {
   let ws = io(
-    process.env.VUE_APP_HOST_PROT + process.env.metrixinfoWSBase,
+    process.env.HOST_PROT + process.env.metrixinfoWSBase,
     //'ws:' + process.env.metrixinfoWSBase,
     //{ transports: ['websocket'] }
   )

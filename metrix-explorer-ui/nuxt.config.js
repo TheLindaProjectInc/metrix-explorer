@@ -4,7 +4,7 @@ export default {
   mode: 'universal',
   loading: "@/components/loading",
   head: {
-    titleTemplate: '%s - ' + process.env.VUE_APP_HOST_FQDN,
+    titleTemplate: '%s - ' + process.env.hostname,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui' }
@@ -24,7 +24,8 @@ export default {
         'process.env.metrixinfoWSBase': JSON.stringify(process.env.METRIXINFO_WS_BASE
           || process.env.METRIXINFO_API_BASE_WS
           || '//explorer.metrixcoin.com/'),
-        'process.env.network': JSON.stringify(process.env.METRIX_NETWORK || 'mainnet')
+        'process.env.network': JSON.stringify(process.env.METRIX_NETWORK || 'mainnet'),
+        'process.env.hostname': JSON.stringify(process.env.HOST_FQDN || 'metrixcoin.com')
       }))
     },
     extractCSS: true,

@@ -24,13 +24,13 @@
   "homepage": "https://github.com/TheLindaProjectInc/metrix-explorer#readme",
   "dependencies": {
     "@nuxtjs/style-resources": "^1.0.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.4",
     "bn.js": "^4.11.9",
     "bs58": "^4.0.1",
     "buffer": "^5.7.1",
     "crypto-browserify": "^3.12.0",
     "moment": "^2.29.1",
-    "nuxt": "^2.14.12",
+    "nuxt": "^2.15.8",
     "vue-i18n": "^8.22.4"
   },
   "devDependencies": {

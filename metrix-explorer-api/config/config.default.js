@@ -34,7 +34,7 @@ exports.ratelimit = {
   disableHeader: false,
   errorMessage: 'Rate Limit Exceeded',
   duration: 10 * 60 * 1000,
-  max: 10 * 60
+  max: 5 * 60
 }
 
 exports.io = {

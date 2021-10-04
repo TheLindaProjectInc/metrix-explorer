@@ -9,7 +9,7 @@ class InfoService extends Service {
     let dgpInfo = JSON.parse(await this.app.redis.hget(this.app.name, 'dgpinfo')) || {}
     let blockchainInfo = JSON.parse(await this.app.redis.hget(this.app.name, 'blockchaininfo')) || {}
     let totalSupply = await this.getTotalSupply()
-    let circulatingSupply = await this.getCirculatingSupply()
+    let circulatingSupply = await this.getCirculatingSupply(totalSupply)
     return {
       height,
       supply: totalSupply,
@@ -26,10 +26,8 @@ class InfoService extends Service {
     return blockchainInfo.moneysupply
   }
 
-  async getCirculatingSupply() {
-    let totalSupply = await this.getTotalSupply()
+  async getCirculatingSupply(totalSupply) {
     let governorLockedCoins = await this.getGovernorLockedCoins()
-
     return totalSupply - governorLockedCoins
   }
 

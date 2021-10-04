@@ -1,11 +1,11 @@
 {
   "name": "metrix-explorer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An open-source frontend for the Metrixinfo API",
   "scripts": {
     "dev": "nuxt",
-    "build": "METRIXINFO_API_BASE_SERVER=http://127.0.0.1:7001/ METRIXINFO_API_BASE_CLIENT=http://explorer.metrixcoin.com:7001/ METRIXINFO_API_BASE_WS=//explorer.metrixcoin.com/ METRIX_NETWORK=mainnet nuxt build",
-    "start": "HOST=0.0.0.0 PORT=80 nuxt start"
+    "build": "node ./setup.mjs && nuxt build",
+    "start": "nuxt start"
   },
   "repository": {
     "type": "git",
@@ -24,13 +24,13 @@
   "homepage": "https://github.com/TheLindaProjectInc/metrix-explorer#readme",
   "dependencies": {
     "@nuxtjs/style-resources": "^1.0.0",
-    "axios": "^0.21.2",
+    "axios": "^0.21.4",
     "bn.js": "^4.11.9",
     "bs58": "^4.0.1",
     "buffer": "^5.7.1",
     "crypto-browserify": "^3.12.0",
     "moment": "^2.29.1",
-    "nuxt": "^2.14.12",
+    "nuxt": "^2.15.8",
     "vue-i18n": "^8.22.4"
   },
   "devDependencies": {

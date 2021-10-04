@@ -73,4 +73,5 @@ typings/
 .serverless
 
 /run
-config/config.local.js
+config/config.*.js
+!config/config.default.js

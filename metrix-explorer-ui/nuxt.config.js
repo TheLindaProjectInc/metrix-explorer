@@ -3,8 +3,17 @@ import webpack from 'webpack'
 export default {
   mode: 'universal',
   loading: "@/components/loading",
+  publicRuntimeConfig: {
+    hostname: process.env.HOST_FQDN,
+    hostprot: process.env.HOST_PROT,
+  },
+  privateRuntimeConfig: {},
+  generate: {
+    interval: 80,
+    fallback: '404.html'
+  },
   head: {
-    titleTemplate: '%s - explorer.metrixcoin.com',
+    titleTemplate: '%s - ' + process.env.HOST_FQDN,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui' }
@@ -24,7 +33,8 @@ export default {
         'process.env.metrixinfoWSBase': JSON.stringify(process.env.METRIXINFO_WS_BASE
           || process.env.METRIXINFO_API_BASE_WS
           || '//explorer.metrixcoin.com/'),
-        'process.env.network': JSON.stringify(process.env.METRIX_NETWORK || 'mainnet')
+        'process.env.network': JSON.stringify(process.env.METRIX_NETWORK || 'mainnet'),
+        'process.env.hostprot': JSON.stringify(process.env.HOST_PROT || 'https:')
       }))
     },
     extractCSS: true,

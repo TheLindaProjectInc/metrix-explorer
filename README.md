@@ -139,10 +139,9 @@ This will override corresponding field in config/config.default.js while running
 This repo is optional, you may not deploy it if you don't need UI.
 
 1. `cd metrix-explorer-ui && npm install`
-2. Edit package.json for example:
-Edit script.build to `"build": "METRIXINFO_API_BASE_SERVER=http://localhost:7001/ METRIXINFO_API_BASE_CLIENT=http://externaldnsname.com:7001 METRIXINFO_API_BASE_WS=//externaldnsname.com/ METRIX_NETWORK=testnet nuxt build"` in package.json to set the api URL base
-3. Edit script.start to `"start": "HOST=0.0.0.0 PORT=80 nuxt start"` to run metrix-explorer-ui on port 80
-4. `npm run build`
+2. `npm run build` to generate defaults.
+3. Setup the `.env` configuration file.
+4. `npm run build` to build app with `.env` config.
 5. `npm start`
 
 To run the UI in dev mode edit the package.json file and insert the follwing into the `"DEV: "` section. This allows live editing of the site, without the requirement to rebuild & start after every edit.

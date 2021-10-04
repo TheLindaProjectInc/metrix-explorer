@@ -3,7 +3,7 @@
     <nuxt-link to="/" class="anchor">
       <img src="./../../assets/images/logo.png" alt="Metrix Logo" style="max-height: 45px">
       <!-- <span class="metrix-icon metrix-icon--metrix"></span> -->
-      <span class="title">explorer.metrixcoin.com</span>
+      <span class="title">{{host}}</span>
     </nuxt-link>
     <div :class="{fold: fold}">
       <nav class="nav-list">
@@ -101,9 +101,10 @@
 import Search from "@/components/search";
 export default {
   components: { Search },
-  data() {
+  data({ $config: { hostname } }) {
     return {
-      fold: !1
+      fold: !1,
+      host: hostname
     }
   },
   methods: {

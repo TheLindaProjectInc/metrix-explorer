@@ -239,8 +239,8 @@ export default {
       this.icons[2].number = this.feeRate;
       this.icons[3].number = (+(dailyStats.transactionCount) + +(dailyStats.contractTransactionCount)).toLocaleString();
       this.icons[4].number = Math.round(dailyStats.transactionVolume / 1e8).toLocaleString()
-      this.icons[5].number = Math.round(this.blockchainInfo.circulatingSupply).toLocaleString();
-      this.icons[6].number = Math.round(this.blockchainInfo.supply).toLocaleString();
+      this.icons[5].number = Math.round(this.circulatingSupply).toLocaleString();
+      this.icons[6].number = Math.round(this.supply).toLocaleString();
       this.icons[7].number = Math.round(this.netStakeWeight / 1e8).toLocaleString();
       this.icons[8].number = parseFloat(this.blockInterval24h[0].blockInterval).toFixed(2);
       this.icons[9].number = Math.round(this.blockchainInfo.difficulty).toLocaleString();

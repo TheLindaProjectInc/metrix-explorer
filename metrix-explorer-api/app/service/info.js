@@ -1,6 +1,5 @@
 const {Service} = require('egg')
 const {U256} = require('../../node_modules/uint256/dist/UInt256')
-
 class InfoService extends Service {
   async getInfo() {
     let height = this.app.blockchainInfo.tip.height
@@ -9,7 +8,7 @@ class InfoService extends Service {
     let dgpInfo = JSON.parse(await this.app.redis.hget(this.app.name, 'dgpinfo')) || {}
     let blockchainInfo = JSON.parse(await this.app.redis.hget(this.app.name, 'blockchaininfo')) || {}
     let totalSupply = await this.getTotalSupply()
-    let circulatingSupply = await this.getCirculatingSupply(totalSupply)
+    let circulatingSupply = await this.getCirculatingSupply()
     return {
       height,
       supply: totalSupply,
@@ -26,7 +25,8 @@ class InfoService extends Service {
     return blockchainInfo.moneysupply
   }
 
-  async getCirculatingSupply(totalSupply) {
+  async getCirculatingSupply() {
+    let totalSupply = await this.getTotalSupply()
     let governorLockedCoins = await this.getGovernorLockedCoins()
     return totalSupply - governorLockedCoins
   }
@@ -114,9 +114,7 @@ class InfoService extends Service {
     let dgpInfo = await this.getDGPInfo()
     let chunks = contractData.executionResult.output.match(new RegExp('.{1,64}', 'g'));
     let count = Number(U256(chunks[0], 16));
-
-
-    let lockedGovernorSupply = Math.floor(dgpInfo.governanceCollateral/1e8) * count
+    let lockedGovernorSupply = Math.floor(dgpInfo.governanceCollateral) * count
     return lockedGovernorSupply
   }
 

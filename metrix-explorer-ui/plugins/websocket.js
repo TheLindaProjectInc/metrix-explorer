@@ -3,9 +3,9 @@ import io from 'socket.io-client'
 
 export default function ({ app }) {
   let ws = io(
-    process.env.hostprot + '//' + process.env.metrixinfoWSBase,
     //'ws:' + process.env.metrixinfoWSBase,
-    //{ transports: ['websocket'] }
+    process.env.wsprot + '//' + process.env.wshost,
+    { transports: ['websocket'] }
   )
   ws.on('tip', tip => app.store.commit('blockchain/height', tip.height))
   ws.on('reorg', tip => app.store.commit('blockchain/height', tip.height))

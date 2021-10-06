@@ -34,7 +34,9 @@ export default {
           || process.env.METRIXINFO_API_BASE_WS
           || '//explorer.metrixcoin.com/'),
         'process.env.network': JSON.stringify(process.env.METRIX_NETWORK || 'mainnet'),
-        'process.env.hostprot': JSON.stringify(process.env.HOST_PROT || 'https:')
+        'process.env.hostprot': JSON.stringify(process.env.HOST_PROT || 'https:'),
+        'process.env.wshost': JSON.stringify(process.env.WS_HOST || 'explorer.metrixcoin.com'),
+        'process.env.wsprot': JSON.stringify(process.env.WS_PROT || 'ws:')
       }))
     },
     extractCSS: true,

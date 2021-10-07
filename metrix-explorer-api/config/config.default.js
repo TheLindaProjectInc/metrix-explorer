@@ -56,6 +56,10 @@ exports.sequelize = {
   password: ''
 }
 
+exports.logger = {
+  level: 'WARN', // NONE, DEBUG, INFO, WARN and ERROR. logs level will be written into files
+}
+
 exports.metrix = {
   chain: 'mainnet'
 }

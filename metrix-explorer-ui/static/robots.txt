@@ -1,0 +1,7 @@
+User-agent:*
+Disallow: /address
+Disallow: /block
+Disallow: /contract
+Disallow: /mrc20
+Disallow: /tx
+Disallow: /api

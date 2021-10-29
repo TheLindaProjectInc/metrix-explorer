@@ -37,15 +37,13 @@
               <div class="item-title">Total Sent</div>
               <div class="item-info">{{ totalSent | metrix }} MRX</div>
             </li>
-            <li>
-              <div v-if="type === 'mrc20'">
-                <div class="item-title">MRC20 Token</div>
-                <div class="item-info">{{ mrc20.name }} ({{ mrc20.symbol }})</div>
-              </div>
-              <div v-if="type === 'mrc721'">
-                <div class="item-title">MRC721 Token</div>
-                <div class="item-info">{{ mrc721.name }} ({{ mrc721.symbol }})</div>
-              </div>
+            <li v-if="type === 'mrc20'">
+              <div class="item-title">MRC20 Token</div>
+              <div class="item-info">{{ mrc20.name }} ({{ mrc20.symbol }})</div>
+            </li>
+            <li v-if="type === 'mrc721'">
+              <div class="item-title">MRC721 Token</div>
+              <div class="item-info">{{ mrc721.name }} ({{ mrc721.symbol }})</div>
             </li>
           </ul>
         </div>

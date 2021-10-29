@@ -15,7 +15,12 @@
             <li>
               <div class="item-title">Total Supply</div>
               <div class="item-info">
-                {{ mrc20.totalSupply | mrc20(mrc20.decimals, true) }}
+                <div v-if="mrc20.type === 'mrc20'">
+                  {{ mrc20.totalSupply | mrc20(mrc20.decimals, true) }}
+                </div>
+                <div v-if="mrc20.type === 'mrc721'">
+                  {{ mrc20.totalSupply }}
+                </div>
                 {{ mrc20.symbol || $t('contract.token.tokens') }}
               </div>
             </li>
@@ -32,7 +37,8 @@
               <div class="item-info">{{ totalSent | metrix }} MRX</div>
             </li>
             <li>
-              <div class="item-title">MRC20 Token</div>
+              <div v-if="mrc20.type === 'mrc20'" class="item-title">MRC20 Token</div>
+              <div v-if="mrc20.type === 'mrc721'" class="item-title">MRC721 Token</div>
               <div class="item-info">{{ mrc20.name }} ({{ mrc20.symbol }})</div>
             </li>
           </ul>
@@ -68,6 +74,7 @@ export default {
       totalReceived: "0",
       totalSent: "0",
       mrc20Balances: [],
+      mrc721Balances: [],
       transactionCount: 0,
       panelAddress: [
         {
@@ -92,6 +99,7 @@ export default {
         totalReceived: contract.totalReceived,
         totalSent: contract.totalSent,
         mrc20Balances: contract.mrc20Balances,
+        mrc721Balances: contract.mrc721Balances,
         transactionCount: contract.transactionCount
       };
     } catch (err) {

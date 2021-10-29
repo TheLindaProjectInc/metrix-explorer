@@ -15,11 +15,11 @@
             <li>
               <div class="item-title">Total Supply</div>
               <div class="item-info">
-                <div v-if="mrc20.type === 'mrc20'">
+                <div v-if="type === 'mrc20'">
                   {{ mrc20.totalSupply | mrc20(mrc20.decimals, true) }}
                   {{ mrc20.symbol || $t('contract.token.tokens') }}
                 </div>
-                <div v-if="mrc20.type === 'mrc721'">
+                <div v-if="type === 'mrc721'">
                   {{ mrc721.totalSupply }}
                   {{ mrc721.symbol || $t('contract.token.tokens') }}
                 </div>
@@ -38,11 +38,11 @@
               <div class="item-info">{{ totalSent | metrix }} MRX</div>
             </li>
             <li>
-              <div v-if="mrc20.type === 'mrc20'">
+              <div v-if="type === 'mrc20'">
                 <div class="item-title">MRC20 Token</div>
                 <div class="item-info">{{ mrc20.name }} ({{ mrc20.symbol }})</div>
               </div>
-              <div v-if="mrc20.type === 'mrc721'">
+              <div v-if="type === 'mrc721'">
                 <div class="item-title">MRC721 Token</div>
                 <div class="item-info">{{ mrc721.name }} ({{ mrc721.symbol }})</div>
               </div>

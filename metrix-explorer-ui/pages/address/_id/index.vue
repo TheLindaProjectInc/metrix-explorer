@@ -204,8 +204,11 @@
               <div class="utxo-list input-list">
                 <div class="utxo">
                   <div class="is-pulled-left">
-                    <div class="utxo-address">
+                    <div v-if="mrc721.from !== null" class="utxo-address">
                       <nuxt-link class="mrx-link break-work monospace" :to="{name: 'address-id', params: {id: mrc721.from }}">{{ mrc721.from }}</nuxt-link>
+                    </div>
+                    <div v-if="mrc721.from === null" class="utxo-address">
+                      MINT
                     </div>
                   </div>
                 </div>
@@ -219,8 +222,8 @@
                   </div>
                   <div class="is-pulled-right">
                     <div class="utxo-value monospace">
-                      {{mrc721.value | mrc20(mrc721.decimals) }} 
-                      <nuxt-link class="mrx-link break-work monospace" :to="{name: 'mrc20-id', params: {id: mrc721.address }}">{{ mrc721.symbol }}</nuxt-link>
+                      {{ mrc721.tokenId }}
+                      <nuxt-link class="mrx-link break-work monospace" :to="{name: 'mrc721-id', params: {id: mrc721.address }}">{{ mrc721.symbol }}</nuxt-link>
                     </div>
                   </div>
                 </div>

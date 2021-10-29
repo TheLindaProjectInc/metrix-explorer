@@ -33,7 +33,7 @@
                   <nuxt-link class="mrx-link break-word monospace" :to="{name: 'mrc20-id', params: {id: token.address}}">{{token.symbol}}</nuxt-link>
                 </div>
                 <div v-if="mrc721Balances.length > 0" v-for="token in mrc721Balances">
-                  {{token.balance | mrc20(token.decimals, true) }} 
+                  {{ token.count }} 
                   <nuxt-link class="mrx-link break-word monospace" :to="{name: 'mrc721-id', params: {id: token.address}}">{{token.symbol}}</nuxt-link>
                 </div>
               </div>
@@ -91,6 +91,7 @@ export default {
       unconfirmed: "0",
       staking: "0",
       mrc20Balances: [],
+      mrc721Balances: [],
       ranking: 0,
       blocksMined: 0,
       transactionCount: 0,

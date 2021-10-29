@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "An open-source frontend for the Metrixinfo API",
   "scripts": {
-    "dev": "nuxt",
+    "dev": "node ./setup.mjs && nuxt",
     "build": "node ./setup.mjs && nuxt build",
     "start": "nuxt start"
   },

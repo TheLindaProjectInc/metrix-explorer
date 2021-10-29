@@ -17,11 +17,12 @@
               <div class="item-info">
                 <div v-if="mrc20.type === 'mrc20'">
                   {{ mrc20.totalSupply | mrc20(mrc20.decimals, true) }}
+                  {{ mrc20.symbol || $t('contract.token.tokens') }}
                 </div>
                 <div v-if="mrc20.type === 'mrc721'">
-                  {{ mrc20.totalSupply }}
+                  {{ mrc721.totalSupply }}
+                  {{ mrc721.symbol || $t('contract.token.tokens') }}
                 </div>
-                {{ mrc20.symbol || $t('contract.token.tokens') }}
               </div>
             </li>
           </ul>
@@ -37,9 +38,14 @@
               <div class="item-info">{{ totalSent | metrix }} MRX</div>
             </li>
             <li>
-              <div v-if="mrc20.type === 'mrc20'" class="item-title">MRC20 Token</div>
-              <div v-if="mrc20.type === 'mrc721'" class="item-title">MRC721 Token</div>
-              <div class="item-info">{{ mrc20.name }} ({{ mrc20.symbol }})</div>
+              <div v-if="mrc20.type === 'mrc20'">
+                <div class="item-title">MRC20 Token</div>
+                <div class="item-info">{{ mrc20.name }} ({{ mrc20.symbol }})</div>
+              </div>
+              <div v-if="mrc20.type === 'mrc721'">
+                <div class="item-title">MRC721 Token</div>
+                <div class="item-info">{{ mrc721.name }} ({{ mrc721.symbol }})</div>
+              </div>
             </li>
           </ul>
         </div>
@@ -122,10 +128,17 @@ export default {
       return Math.ceil(this.transactionCount / 20);
     },
     existingTokenBalances() {
-      return this.mrc20Balances.filter(token => token.balance !== "0");
+      if(this.mrc20Balances.length > 0)
+        return this.mrc20Balances.filter(token => token.balance !== "0");
+      if(this.mrc721Balances.length > 0)
+        return this.mrc721Balances.filter(token => token.count !== "0");
     },
     title() {
-      return this.mrc20.name + "Overview";
+      if (this.mrc20)
+        return this.mrc20.name + "Overview";
+
+      if (this.mrc721)
+        return this.mrc721.name + "Overview";
     }
   }
 };

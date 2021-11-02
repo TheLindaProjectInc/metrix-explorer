@@ -39,17 +39,11 @@
             {{ tx.value | mrc20(tx.token.decimals) }} 
             <nuxt-link class="mrx-link break-word monospace" :to="{name: 'mrc20-id', params: {id: tx.token.address}}">{{tx.token.symbol}}</nuxt-link>
             </td>
-            <td v-if="tx.from !== null">
+            <td>
               <nuxt-link class="mrx-link break-word monospace" :to="{name: tx.fromHex ? 'contract-id' : 'address-id', params: {id: tx.from}}">{{tx.from | format(10,10)}}</nuxt-link>
             </td>
-            <td v-if="tx.from === null">
-              Mint
-            </td>
-            <td v-if="tx.to !== null">
+            <td>
               <nuxt-link class="mrx-link break-word monospace" :to="{name: tx.toHex ? 'contract-id' : 'address-id', params: {id: tx.to}}">{{tx.to | format(10,10)}}</nuxt-link>
-            </td>
-            <td v-if="tx.to === null">
-              Burn
             </td>
             <td>
             {{tx.confirmations + 1}}
@@ -78,23 +72,17 @@
         </div>
         <div class="contractTx-info" >
           <div class="contractTx-info-item">
-            <div class="title">Sender</div>
-            <div v-if="tx.from !== null" class="content">
+            <div class="title">Receiver</div>
+            <div class="content">
               <nuxt-link class="mrx-link break-word monospace" :to="{name: tx.fromHex ? 'contract-id' : 'address-id', params: {id: tx.from}}">{{tx.from | format(10,10)}}</nuxt-link>
-            </div>
-            <div v-if="tx.from === null" class="content">
-              Mint
             </div>
           </div>
         </div>
         <div class="contractTx-info" >
           <div class="contractTx-info-item">
-            <div class="title">Receiver</div>
-            <div v-if="tx.to !== null" class="content">
+            <div class="title">Sender</div>
+            <div class="content">
               <nuxt-link class="mrx-link break-word monospace" :to="{name: tx.toHex ? 'contract-id' : 'address-id', params: {id: tx.to}}">{{tx.to | format(10,10)}}</nuxt-link>
-            </div>
-            <div v-if="tx.to === null" class="content">
-              Burn
             </div>
           </div>
         </div>
@@ -221,5 +209,5 @@ export default {
 
 
 <style lang="less" scoped>
-@import url("../../styles/pages/mrc20/deal_list.less");
+@import url("../../styles/pages/mrc721/deal_list.less");
 </style>

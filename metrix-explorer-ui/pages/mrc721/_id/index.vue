@@ -116,12 +116,12 @@ export default {
     };
   },
   props: {
-    mrc20: { required: true }
+    mrc721: { required: true }
   },
   async asyncData({ req, params, query, redirect, error }) {
     try {
       if (query.page && !/^[1-9]\d*$/.test(query.page)) {
-        redirect(`/contract/${params.id}/`);
+        redirect(`/mrc721/${params.id}/`);
       }
       let page = Number(query.page || 1);
       let { totalCount, transactions } = await Contract.getTransactions(
@@ -130,7 +130,7 @@ export default {
         { ip: req && req.ip }
       );
       if (page > 1 && totalCount <= (page - 1) * 20) {
-        redirect(`/contract/${params.id}/`, {
+        redirect(`/mrc721/${params.id}/`, {
           page: Math.ceil(totalCount / 20)
         });
       }
@@ -163,7 +163,7 @@ export default {
   },
   methods: {
     getLink(page) {
-      return { name: "contract-id", params: { id: this.id }, query: { page } };
+      return { name: "mrc721-id", params: { id: this.id }, query: { page } };
     },
     async onTransaction({ id, address }) {
       if (
@@ -218,7 +218,7 @@ export default {
     this.totalCount = totalCount;
     if (page > this.pages && this.pages > 1) {
       this.$router.push({
-        name: "contract-id",
+        name: "mrc721-id",
         params: { id: this.id },
         query: { page: Math.ceil(totalCount / 20) }
       });
@@ -236,5 +236,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import url("../../../styles/pages/contract/_id/index.less");
+@import url("../../../styles/pages/mrc721/_id/index.less");
 </style>

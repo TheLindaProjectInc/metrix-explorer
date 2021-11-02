@@ -36,10 +36,13 @@
           </div>
           <ul>
             <li>
-              <nuxt-link @click.native="unfold" to="/mrc20">Token Overview</nuxt-link>
+              <nuxt-link @click.native="unfold" to="/mrc20">MRC20 Overview</nuxt-link>
             </li>
             <li>
-              <nuxt-link @click.native="unfold" to="/mrc20/tx">Token Transactions</nuxt-link>
+              <nuxt-link @click.native="unfold" to="/mrc20/tx">MRC20 Transactions</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link @click.native="unfold" to="/mrc721">MRC721 Overview</nuxt-link>
             </li>
           </ul>
         </div>

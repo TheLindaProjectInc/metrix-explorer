@@ -150,8 +150,11 @@
             <div class="utxo-list input-list">
               <div class="utxo">
                 <div class="is-pulled-left">
-                  <div class="utxo-address">
+                  <div v-if="mrc20.from !== null" class="utxo-address">
                     <nuxt-link class="mrx-link break-work monospace" :to="{name: 'address-id', params: {id: mrc20.from }}">{{ mrc20.from }}</nuxt-link>
+                  </div>
+                  <div v-if="mrc20.from === null" class="utxo-address">
+                    Mint
                   </div>
                 </div>
               </div>
@@ -159,8 +162,11 @@
             <div class="utxo-list">
               <div class="utxo">
                 <div class="is-pulled-left">
-                  <div class="utxo-address">
+                  <div v-if="mrc20.to !== null" class="utxo-address">
                     <nuxt-link class="mrx-link break-work monospace" :to="{name: 'address-id', params: {id: mrc20.to }}">{{ mrc20.to }}</nuxt-link>
+                  </div>
+                  <div v-if="mrc20.to === null" class="utxo-address">
+                    Burn
                   </div>
                 </div>
                 <div class="is-pulled-right">
@@ -180,7 +186,7 @@
                     <nuxt-link class="mrx-link break-work monospace" :to="{name: 'address-id', params: {id: mrc721.from }}">{{ mrc721.from }}</nuxt-link>
                   </div>
                   <div v-if="mrc721.from === null" class="utxo-address">
-                    MINT
+                    Mint
                   </div>
                 </div>
               </div>
@@ -188,8 +194,11 @@
             <div class="utxo-list">
               <div class="utxo">
                 <div class="is-pulled-left">
-                  <div class="utxo-address">
+                  <div v-if="mrc721.to !== null" class="utxo-address">
                     <nuxt-link class="mrx-link break-work monospace" :to="{name: 'address-id', params: {id: mrc721.to }}">{{ mrc721.to }}</nuxt-link>
+                  </div>
+                  <div v-if="mrc721.to === null" class="utxo-address">
+                    Burn
                   </div>
                 </div>
                 <div class="is-pulled-right">

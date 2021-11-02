@@ -40,11 +40,17 @@
               {{item.timestamp | timestamp}}
             </div>
             <div class="item-value">{{item.value | mrc20(mrc20.decimals, true) }}</div>
-            <div class="item-sender">
+            <div v-if="item.from !== null" class="item-sender">
               <nuxt-link class="mrx-link break-word monospace" :to="{name: 'address-id', params: {id: item.from}}">{{item.from | format(9,9)}}</nuxt-link>
             </div>
-            <div class="item-receiver">
+            <div v-if="item.from === null" class="item-sender">
+              Mint
+            </div>
+            <div v-if="item.to !== null" class="item-receiver">
               <nuxt-link class="mrx-link break-word monospace" :to="{name: 'address-id', params: {id: item.to}}">{{item.to | format(9,9)}}</nuxt-link>
+            </div>
+            <div v-if="item.to === null" class="item-receiver">
+              Burn
             </div>
             <div class="item-confirmations">
               {{item.confirmations + 1 }}
@@ -79,16 +85,22 @@
               <div class="title">
                 Sender
               </div>
-              <div class="content">
+              <div v-if="item.from !== null" class="content">
                 <nuxt-link class="mrx-link break-word monospace" :to="{name: 'address-id', params: {id: item.from}}">{{item.from | format(9,9)}}</nuxt-link>
+              </div>
+              <div v-if="item.from === null" class="content">
+                Mint
               </div>
             </div>
             <div class="item">
               <div class="title">
                 Receiver
               </div>
-              <div class="content">
+              <div v-if="item.to !== null" class="content">
                 <nuxt-link class="mrx-link break-word monospace" :to="{name: 'address-id', params: {id: item.to}}">{{item.to | format(9,9)}}</nuxt-link>
+              </div>
+              <div v-if="item.to === null" class="content">
+                Burn
               </div>
             </div>
             <div class="item">

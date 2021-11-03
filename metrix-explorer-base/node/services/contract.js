@@ -8,6 +8,7 @@ const {ne: $ne, gt: $gt, in: $in} = Sequelize.Op
 const totalSupplyABI = Solidity.mrc20ABIs.find(abi => abi.name === 'totalSupply')
 const balanceOfABI = Solidity.mrc20ABIs.find(abi => abi.name === 'balanceOf')
 const ownerOfABI = Solidity.mrc721ABIs.find(abi => abi.name === 'ownerOf')
+const supportsInterfaceABI = Solidity.mrc721ABIs.find(abi => abi.name === 'supportsInterface')
 const transferABI = Solidity.mrc20ABIs.find(abi => abi.name === 'transfer')
 const TransferABI = Solidity.mrc20ABIs.find(abi => abi.name === 'Transfer')
 
@@ -449,6 +450,7 @@ function isMRC721(code) {
   return code.includes(balanceOfABI.id)
     && code.includes(ownerOfABI.id)
     && code.includes(TransferABI.id)
+    && code.includes(supportsInterfaceABI.id)
 }
 
 module.exports = ContractService

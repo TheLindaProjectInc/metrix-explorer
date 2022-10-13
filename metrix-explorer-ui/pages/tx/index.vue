@@ -293,7 +293,9 @@ export default {
           if (transaction.isCoinbase) { type = "Coinbase" }
           else if (transaction.isCoinstake) { type = "Coinstake" }
           else if (transaction.inputs[0].address === '0000000000000000000000000000000000000090' || 
-              transaction.inputs[0].address === '0000000000000000000000000000000000000089') { type = "DGP Contract" }
+              transaction.inputs[0].address === '0000000000000000000000000000000000000089' ||
+              transaction.inputs[0].address === 'b196971bc9ed1a193fa69310986d3de5d14c59c4' ||
+              transaction.inputs[0].address === '4e3d35f867c895c612d38dc28a30e815c6ccd717') { type = "DGP Contract" }
           else if (transaction.mrc20TokenTransfers) { type = "MRC20 Token Transfer" }
           else if (transaction.mrc721TokenTransfers) { type = "MRC721 Token Transfer" }
           else {

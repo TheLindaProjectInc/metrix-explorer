@@ -79,7 +79,14 @@ class InfoService extends Service {
 
   async getGovernorList() {
     let client = new this.app.metrixinfo.rpc(this.app.config.metrixinfo.rpc)
-    let contractData = await client.callcontract("0000000000000000000000000000000000000089","883703c2")
+    let chain = this.app.config.metrix.chain;
+    let govContract;
+    if (chain === 'testnet') {
+      govContract = '4e3d35f867c895c612d38dc28a30e815c6ccd717'
+    } else {
+      govContract = '0000000000000000000000000000000000000089'
+    }
+    let contractData = await client.callcontract(govContract,'883703c2')
     let chunks = contractData.executionResult.output.match(new RegExp('.{1,64}', 'g'));
     let governorList = [];
     let hexAddressList = [];
@@ -110,7 +117,14 @@ class InfoService extends Service {
 
   async getGovernorLockedCoins() {
     let client = new this.app.metrixinfo.rpc(this.app.config.metrixinfo.rpc)
-    let contractData = await client.callcontract("0000000000000000000000000000000000000089","e8c9fd45")
+    let chain = this.app.config.metrix.chain;
+    let govContract;
+    if (chain === 'testnet') {
+      govContract = '4e3d35f867c895c612d38dc28a30e815c6ccd717'
+    } else {
+      govContract = '0000000000000000000000000000000000000089'
+    }
+    let contractData = await client.callcontract(govContract,'e8c9fd45')
     let dgpInfo = await this.getDGPInfo()
     let chunks = contractData.executionResult.output.match(new RegExp('.{1,64}', 'g'));
     let count = Number(U256(chunks[0], 16));

@@ -93,6 +93,8 @@
               <div class="item-type" v-if="transaction.isCoinbase">Coinbase</div>
               <div class="item-type" v-else-if="transaction.isCoinstake">Coinstake</div>
               <div class="item-type" v-else-if="transaction.inputs[0].address === '0000000000000000000000000000000000000090' || 
+              transaction.inputs[0].address === 'b196971bc9ed1a193fa69310986d3de5d14c59c4' ||
+              transaction.inputs[0].address === '4e3d35f867c895c612d38dc28a30e815c6ccd717' ||
               transaction.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
               <div class="item-type" v-else>MRX Transfer</div>
             </div>
@@ -114,6 +116,8 @@
                 <div class="content" v-if="transaction.isCoinbase">Coinbase</div>
                 <div class="content" v-else-if="transaction.isCoinstake">Coinstake</div>
                 <div class="content" v-else-if="transaction.inputs[0].address === '0000000000000000000000000000000000000090' || 
+                  transaction.inputs[0].address === 'b196971bc9ed1a193fa69310986d3de5d14c59c4' || 
+                  transaction.inputs[0].address === '4e3d35f867c895c612d38dc28a30e815c6ccd717' || 
                   transaction.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
                 <div class="content" v-else>MRX Transfer</div>
               </div>

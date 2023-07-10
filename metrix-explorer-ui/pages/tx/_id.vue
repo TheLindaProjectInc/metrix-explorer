@@ -98,7 +98,19 @@
               <div class="utxo" v-for="output in outputs">
                 <div class="is-pulled-left">
                   <div class="utxo-address">
-                    <nuxt-link class="mrx-link break-work monospace" v-if="output.address === '0000000000000000000000000000000000000089' || output.address === 'b196971bc9ed1a193fa69310986d3de5d14c59c4' || output.address === '4e3d35f867c895c612d38dc28a30e815c6ccd717' || output.address === '0000000000000000000000000000000000000090'" :to="{name: 'address-id', params: {id: output.address}}">{{output.address}}</nuxt-link>
+                    <nuxt-link class="mrx-link break-work monospace" v-if="
+                    output.address === '0000000000000000000000000000000000000089' || 
+                    output.address === '0000000000000000000000000000000000000090' ||
+                    output.address === 'b196971bc9ed1a193fa69310986d3de5d14c59c4' ||
+                    output.address === '4e3d35f867c895c612d38dc28a30e815c6ccd717' ||
+                    output.address === '13a5933a1b786e8016178656145e36eccd0221f6' ||
+                    output.address === '28238c7d116aa2ca3739c4c93038fd5a06a77303' ||
+                    output.address === '3cc15a2bae287cabb1ef6f26a86fa6f1895708eb' ||
+                    output.address === 'f2d61e4cd5fc215071e5e60350261ec4f41ee2b5' ||
+                    output.address === '73e6c0383dceed1583eb6a4b2aa9253020cb2b18' ||
+                    output.address === '495e4ce99ab534cf8d3faa53c817b632681717fb'
+                    "
+                     :to="{name: 'address-id', params: {id: output.address}}">{{output.address}}</nuxt-link>
                     <nuxt-link class="mrx-link break-work monospace" v-else-if="output.address" :to="{name: (output.addressHex ? 'contract-id' : 'address-id'), params: {id: (output.addressHex ? output.addressHex : output.address)}}">{{output.addressHex ? output.addressHex : output.address}}</nuxt-link>
                     <span v-else>Empty Output</span>
                   </div>
@@ -212,10 +224,17 @@
           </div>
           <div v-for="output in outputs">
             <div class="receipt-list" v-if="output.receipt &&  !(
-              output.address === '0000000000000000000000000000000000000089' || 
+              output.address === '0000000000000000000000000000000000000089' ||
+              output.address === '0000000000000000000000000000000000000090' ||
               output.address === 'b196971bc9ed1a193fa69310986d3de5d14c59c4' ||
-              output.address === '4e3d35f867c895c612d38dc28a30e815c6ccd717' || 
-              output.address === '0000000000000000000000000000000000000090')">
+              output.address === '4e3d35f867c895c612d38dc28a30e815c6ccd717' ||
+              output.address === '13a5933a1b786e8016178656145e36eccd0221f6' ||
+              output.address === '28238c7d116aa2ca3739c4c93038fd5a06a77303' ||
+              output.address === '3cc15a2bae287cabb1ef6f26a86fa6f1895708eb' ||
+              output.address === 'f2d61e4cd5fc215071e5e60350261ec4f41ee2b5' ||
+              output.address === '73e6c0383dceed1583eb6a4b2aa9253020cb2b18' ||
+              output.address === '495e4ce99ab534cf8d3faa53c817b632681717fb'
+              )">
               <div class="receipt">
                 <div class="receipt-item">
                   <div class="info-title">

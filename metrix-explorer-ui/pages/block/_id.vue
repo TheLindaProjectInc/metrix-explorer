@@ -92,10 +92,18 @@
               <div class="item-fee" v-else>-</div>
               <div class="item-type" v-if="transaction.isCoinbase">Coinbase</div>
               <div class="item-type" v-else-if="transaction.isCoinstake">Coinstake</div>
-              <div class="item-type" v-else-if="transaction.inputs[0].address === '0000000000000000000000000000000000000090' || 
-              transaction.inputs[0].address === 'b196971bc9ed1a193fa69310986d3de5d14c59c4' ||
-              transaction.inputs[0].address === '4e3d35f867c895c612d38dc28a30e815c6ccd717' ||
-              transaction.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
+              <div class="item-type" v-else-if="
+                  transaction.inputs[0].address === '0000000000000000000000000000000000000089' ||
+                  transaction.inputs[0].address === '0000000000000000000000000000000000000090' ||
+                  transaction.inputs[0].address === 'b196971bc9ed1a193fa69310986d3de5d14c59c4' ||
+                  transaction.inputs[0].address === '4e3d35f867c895c612d38dc28a30e815c6ccd717' ||
+                  transaction.inputs[0].address === '13a5933a1b786e8016178656145e36eccd0221f6' ||
+                  transaction.inputs[0].address === '28238c7d116aa2ca3739c4c93038fd5a06a77303' ||
+                  transaction.inputs[0].address === '3cc15a2bae287cabb1ef6f26a86fa6f1895708eb' ||
+                  transaction.inputs[0].address === 'f2d61e4cd5fc215071e5e60350261ec4f41ee2b5' ||
+                  transaction.inputs[0].address === '73e6c0383dceed1583eb6a4b2aa9253020cb2b18' ||
+                  transaction.inputs[0].address === '495e4ce99ab534cf8d3faa53c817b632681717fb'
+              ">DGP Contract</div>
               <div class="item-type" v-else>MRX Transfer</div>
             </div>
             <div class="mobile-body">
@@ -115,10 +123,18 @@
                 <div class="title">Type</div>
                 <div class="content" v-if="transaction.isCoinbase">Coinbase</div>
                 <div class="content" v-else-if="transaction.isCoinstake">Coinstake</div>
-                <div class="content" v-else-if="transaction.inputs[0].address === '0000000000000000000000000000000000000090' || 
-                  transaction.inputs[0].address === 'b196971bc9ed1a193fa69310986d3de5d14c59c4' || 
-                  transaction.inputs[0].address === '4e3d35f867c895c612d38dc28a30e815c6ccd717' || 
-                  transaction.inputs[0].address === '0000000000000000000000000000000000000089'">DGP Contract</div>
+                <div class="content" v-else-if="
+                  transaction.inputs[0].address === '0000000000000000000000000000000000000089' ||
+                  transaction.inputs[0].address === '0000000000000000000000000000000000000090' ||
+                  transaction.inputs[0].address === 'b196971bc9ed1a193fa69310986d3de5d14c59c4' ||
+                  transaction.inputs[0].address === '4e3d35f867c895c612d38dc28a30e815c6ccd717' ||
+                  transaction.inputs[0].address === '13a5933a1b786e8016178656145e36eccd0221f6' ||
+                  transaction.inputs[0].address === '28238c7d116aa2ca3739c4c93038fd5a06a77303' ||
+                  transaction.inputs[0].address === '3cc15a2bae287cabb1ef6f26a86fa6f1895708eb' ||
+                  transaction.inputs[0].address === 'f2d61e4cd5fc215071e5e60350261ec4f41ee2b5' ||
+                  transaction.inputs[0].address === '73e6c0383dceed1583eb6a4b2aa9253020cb2b18' ||
+                  transaction.inputs[0].address === '495e4ce99ab534cf8d3faa53c817b632681717fb'
+                  ">DGP Contract</div>
                 <div class="content" v-else>MRX Transfer</div>
               </div>
               <div class="arrow-icon" @click="collapsed(transaction.id)" >

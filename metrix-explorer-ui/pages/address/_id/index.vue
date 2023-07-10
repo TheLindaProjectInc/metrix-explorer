@@ -308,9 +308,16 @@ export default {
       if (transaction.isCoinbase) { type = "Coinbase" }
       else if (transaction.isCoinstake) { type = "Coinstake" }
       else if (transaction.inputs[0].address === '0000000000000000000000000000000000000090' || 
-          transaction.inputs[0].address === 'b196971bc9ed1a193fa69310986d3de5d14c59c4' ||
-          transaction.inputs[0].address === '4e3d35f867c895c612d38dc28a30e815c6ccd717' ||
-          transaction.inputs[0].address === '0000000000000000000000000000000000000089') { type = "DGP Contract" }
+              transaction.inputs[0].address === '0000000000000000000000000000000000000089' ||
+              transaction.inputs[0].address === 'b196971bc9ed1a193fa69310986d3de5d14c59c4' || // TESTNET V2
+              transaction.inputs[0].address === '4e3d35f867c895c612d38dc28a30e815c6ccd717' || // TESTNET V2
+              transaction.inputs[0].address === '13a5933a1b786e8016178656145e36eccd0221f6' || // MAINNET V2
+              transaction.inputs[0].address === '28238c7d116aa2ca3739c4c93038fd5a06a77303' || // MAINNET V2
+              transaction.inputs[0].address === '3cc15a2bae287cabb1ef6f26a86fa6f1895708eb' || // TESTNET V3
+              transaction.inputs[0].address === 'f2d61e4cd5fc215071e5e60350261ec4f41ee2b5' || // TESTNET V3
+              transaction.inputs[0].address === '73e6c0383dceed1583eb6a4b2aa9253020cb2b18' || // MAINNET V3
+              transaction.inputs[0].address === '495e4ce99ab534cf8d3faa53c817b632681717fb'    // MAINNET V3 
+              ) { type = "DGP Contract" }
       else if (transaction.mrc20TokenTransfers) { type = "Token Transfer" }
       else if (this.checkSendAddress(id, transaction.inputs)) { type = "MRX Send" }
       else if (!this.checkSendAddress(id, transaction.inputs)) { type = "MRX Receive" }

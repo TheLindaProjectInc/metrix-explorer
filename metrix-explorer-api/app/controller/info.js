@@ -9,10 +9,6 @@ class InfoController extends Controller {
     this.ctx.body = await this.ctx.service.info.getTotalSupply()
   }
 
-  async supply() {
-    this.ctx.body = await this.ctx.service.info.getTotalSupply()
-  }
-
   async totalMaxSupply() {
     this.ctx.body = this.ctx.service.info.getTotalMaxSupply()
   }

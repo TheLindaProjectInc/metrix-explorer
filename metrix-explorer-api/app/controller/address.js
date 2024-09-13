@@ -212,15 +212,21 @@ class AddressController extends Controller {
   async utxo() {
     let {ctx} = this
     let utxos = await ctx.service.address.getUTXO(ctx.state.address.addressIds)
-    ctx.body = utxos.map(utxo => ({
-      transactionId: utxo.transactionId.toString('hex'),
-      outputIndex: utxo.outputIndex,
-      scriptPubKey: utxo.scriptPubKey.toString('hex'),
-      address: utxo.address,
-      value: utxo.value.toString(),
-      isStake: utxo.isStake,
-      blockHeight: utxo.blockHeight,
-      confirmations: utxo.confirmations
+
+    ctx.body = await Promise.all(utxos.map(async utxo => {
+      const tx = Buffer.from(utxo.transactionId.toString('hex'), 'hex')
+      const rawTx = await ctx.service.transaction.getRawTransaction(tx)
+      return {
+        transactionId: utxo.transactionId.toString('hex'),
+        outputIndex: utxo.outputIndex,
+        scriptPubKey: utxo.scriptPubKey.toString('hex'),
+        address: utxo.address,
+        value: utxo.value.toString(),
+        isStake: utxo.isStake,
+        blockHeight: utxo.blockHeight,
+        confirmations: utxo.confirmations,
+        rawtx: rawTx.toBuffer().toString('hex')
+      }
     }))
   }
 
